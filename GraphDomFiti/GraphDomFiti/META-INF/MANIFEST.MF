@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GraphDomFiti
+Bundle-SymbolicName: GraphDomFiti;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: graphdomfiti.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.graphiti,
+ org.eclipse.graphiti.ui,
+ GraphDominationEMF,
+ org.eclipse.graphiti.examples.common;bundle-version="0.12.1",
+ org.eclipse.graphiti.examples.tutorial;bundle-version="0.12.1",
+ org.eclipse.core.resources;bundle-version="3.10.1",
+ org.eclipse.ui.views.properties.tabbed;bundle-version="3.6.100"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
