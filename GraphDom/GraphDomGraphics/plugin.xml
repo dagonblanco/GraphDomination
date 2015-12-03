@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            name="GraphDomGraphics Diagram Type"
+            type="GraphDomGraphics"
+            id="GraphDomGraphics.GraphDomGraphicsDiagramType">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            name="GraphDomGraphics Diagram"
+            class="graphdomgraphics.diagram.GraphDomGraphicsDiagramTypeProvider"
+            id="GraphDomGraphics.GraphDomGraphicsDiagramTypeProvider">
+         <diagramType
+               id="GraphDomGraphics.GraphDomGraphicsDiagramType">
+         </diagramType>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            class="graphdomgraphics.GraphDomNewWizard"
+            id="GraphDomGraphics.NewWizard"
+            name="New GraphDom">
+      </wizard>
+   </extension>
+
+</plugin>
