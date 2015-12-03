@@ -10,10 +10,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Graph/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphDominationEMF.ecore#//Graph/nodes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphDominationEMF.ecore#//Graph/edges"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Graph/id"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Graph/id"/>
     </genClasses>
     <genClasses ecoreClass="graphDominationEMF.ecore#//Node">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Node/id"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Node/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Node/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphDominationEMF.ecore#//Node/color"/>
       <genOperations ecoreOperation="graphDominationEMF.ecore#//Node/getAdjacentNodes"/>

@@ -4,6 +4,7 @@ import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
+import org.eclipse.graphiti.mm.algorithms.Ellipse;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
@@ -33,17 +34,24 @@ public class AddNodeFeature extends AbstractAddFeature implements
 	@Override
 	public PictogramElement add(IAddContext context) {
 
+		Node addedClass = (Node) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		IGaService gaService = Graphiti.getGaService();
 
 		ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
-		RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
-		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
-		roundedRectangle.setFilled(false);
+
+		Ellipse ellipse = gaService.createEllipse(containerShape);
+		ellipse.setLineVisible(true);
+		ellipse.setHeight(context.getHeight());
+		ellipse.setWidth(context.getWidth());
+		
+		
+		gaService.setLocationAndSize(ellipse, context.getX(), context.getY(), context.getWidth(), context.getHeight());
+		ellipse.setFilled(false);
 		
 		Shape shape = peCreateService.createShape(containerShape, false);
-		Text text = gaService.createText(shape, "Node");
+		Text text = gaService.createText(shape, "nodo");
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
 		gaService.setLocationAndSize(text, 0, 0, context.getWidth(), context.getHeight());
@@ -52,7 +60,7 @@ public class AddNodeFeature extends AbstractAddFeature implements
 
 		// TODO: enable the link to the domain object
 		// Object addedDomainObject = context.getNewObject();
-		// link(containerShape, addedDomainObject);
+		//link(containerShape, addedClass);
 
 		return containerShape;
 	}

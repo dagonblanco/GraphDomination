@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.core.runtime.applications"
+         id="GraphdomEditorAdvisorApplication">
+      <!-- @generated graphdom -->
+      <application>
+         <run class="graphdom.presentation.GraphdomEditorAdvisor$Application"/>
+      </application>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectives">
+      <!-- @generated graphdom -->
+      <perspective
+            name="%_UI_Perspective_label"
+            class="graphdom.presentation.GraphdomEditorAdvisor$Perspective"
+            id="graphdom.presentation.GraphdomEditorAdvisorPerspective">
+      </perspective>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands">
+      <!-- @generated graphdom -->
+      <command
+            name="%_UI_Menu_OpenURI_label"
+            description="%_UI_Menu_OpenURI_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="graphdom.presentation.GraphdomEditorAdvisorOpenURICommand"/>
+      <command
+            name="%_UI_Menu_Open_label"
+            description="%_UI_Menu_Open_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="graphdom.presentation.GraphdomEditorAdvisorOpenCommand"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.bindings">
+      <!-- @generated graphdom -->
+      <key
+            commandId="graphdom.presentation.GraphdomEditorAdvisorOpenURICommand"
+            sequence="M1+U"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="graphdom.presentation.GraphdomEditorAdvisorOpenCommand"
+            sequence="M1+O"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets">
+      <!-- @generated graphdom -->
+      <actionSet
+            label="%_UI_GraphdomEditorAdvisor_ActionSet_label"
+            visible="true"
+            id="GraphdomEditorAdvisorActionSet">
+         <action
+               label="%_UI_Menu_About_label"
+               class="graphdom.presentation.GraphdomEditorAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="graphdom.presentation.GraphdomEditorAdvisorAboutAction"/>
+         <action
+               label="%_UI_Menu_OpenURI_label"
+               definitionId="graphdom.presentation.GraphdomEditorAdvisorOpenURICommand"
+               class="graphdom.presentation.GraphdomEditorAdvisor$OpenURIAction"
+               menubarPath="file/additions"
+               id="graphdom.presentation.GraphdomEditorAdvisorOpenURIAction"/>
+         <action
+               label="%_UI_Menu_Open_label"
+               definitionId="graphdom.presentation.GraphdomEditorAdvisorOpenCommand"
+               class="graphdom.presentation.GraphdomEditorAdvisor$OpenAction"
+               menubarPath="file/additions"
+               id="graphdom.presentation.GraphdomEditorAdvisorOpenAction"/>
+      </actionSet>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets">
+      <!-- @generated graphdom -->
+      <actionSet
+            label="%_UI_GraphdomModelWizard_ActionSet_label"
+            visible="true"
+            id="graphdom.presentation.GraphdomActionBarContributorActionSet">
+         <action
+               label="%_UI_GraphdomModelWizard_label"
+               class="graphdom.presentation.GraphdomActionBarContributor$NewAction"
+               menubarPath="file/new/additions"
+               id="graphdom.presentation.GraphdomActionBarContributorNewAction"/>
+      </actionSet>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated graphdom -->
+      <editor
+            id="graphdom.presentation.GraphdomEditorID"
+            name="%_UI_GraphdomEditor_label"
+            icon="icons/full/obj16/GraphdomModelFile.gif"
+            extensions="graphdom"
+            class="graphdom.presentation.GraphdomEditor"
+            contributorClass="graphdom.presentation.GraphdomActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

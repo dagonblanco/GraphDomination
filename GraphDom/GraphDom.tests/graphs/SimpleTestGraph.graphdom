@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<es.upm.fi.dma.graphdom:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:es.upm.fi.dma.graphdom="http://es/upm/fi/dma/graphdom">
+  <nodes nodeName="Nodo 1" color=""/>
+  <nodes nodeName="Nodo 2"/>
+  <edges connectedNodes="//@nodes.0 //@nodes.1"/>
+</es.upm.fi.dma.graphdom:Graph>

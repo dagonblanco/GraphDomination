@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GraphDom.edit.nl1 Fragment
+Bundle-SymbolicName: GraphDom.edit.nl1
+Bundle-Version: 1.0.0
+Fragment-Host: GraphDom.edit;bundle-version="[1.0.0,1.1.0)"
