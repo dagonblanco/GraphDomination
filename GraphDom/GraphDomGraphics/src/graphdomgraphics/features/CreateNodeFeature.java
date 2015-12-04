@@ -6,9 +6,17 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 
+import graphdom.GraphdomFactory;
+import graphdom.Node;
+import graphdomgraphics.common.ExampleUtil;
+
 public class CreateNodeFeature extends AbstractCreateFeature implements
 		ICreateFeature {
-
+	   
+	private static final String TITLE = "Create node";
+	   
+	private static final String USER_QUESTION = "Enter new node name";
+	    
 	public CreateNodeFeature(IFeatureProvider fp) {
 		super(fp, "Node", "Creates a new Node");
 	}
@@ -20,13 +28,20 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 
 	@Override
 	public Object[] create(ICreateContext context) {
-		// TODO: create the domain object here
-		Object newNode = null;
-		
-		// TODO: in case of an EMF object add the new object to a suitable resource
-		// getDiagram().eResource().getContents().add(newNode);
 
+		String newClassName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
+        if (newClassName == null || newClassName.trim().length() == 0) {
+            return EMPTY;
+        }
+		
+		Node newNode = GraphdomFactory.eINSTANCE.createNode();
+		
+		newNode.setNodeName(newClassName);
+		
+		getDiagram().eResource().getContents().add(newNode);	
+		
 		addGraphicalRepresentation(context, newNode);
+		
 		return new Object[] { newNode };
 	}
 }
