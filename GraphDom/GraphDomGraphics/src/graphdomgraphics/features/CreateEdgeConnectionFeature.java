@@ -5,8 +5,13 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
+import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+
+import graphdom.Edge;
+import graphdom.GraphdomFactory;
+import graphdom.Node;
 
 public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
 		implements ICreateConnectionFeature {
@@ -17,36 +22,71 @@ public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
 
 	@Override
 	public boolean canStartConnection(ICreateConnectionContext context) {
-		// TODO: check for right domain object instance below
-		// return getBusinessObjectForPictogramElement(context.getSourcePictogramElement()) instanceof <DomainObject>;
+	
+		return getBusinessObjectForPictogramElement(context.getSourcePictogramElement()) instanceof Node;
 
-		return true;
 	}
 
 	@Override
-	public boolean canCreate(ICreateConnectionContext context) {
-		PictogramElement sourcePictogramElement = context.getSourcePictogramElement();
-		PictogramElement targetPictogramElement = context.getTargetPictogramElement();
+	public boolean canCreate(ICreateConnectionContext context) {		
 
-		// TODO: check for right domain object instance below
-		// if (getBusinessObjectForPictogramElement(sourcePictogramElement) instanceof <DomainObject> && getBusinessObjectForPictogramElement(targetPictogramElement) instanceof <DomainObject>) {
-		//  	return true;
-		// }
+		Node source = getNode(context.getSourceAnchor());
+		Node target = getNode(context.getTargetAnchor());
 		
-		return sourcePictogramElement != null && targetPictogramElement != null;
+        if (source != null && target != null && source != target) {
+		  	return true;
+		 }
+		
+		return false;
+		
 	}
 
 	@Override
 	public Connection create(ICreateConnectionContext context) {
 		Connection newConnection = null;
 
-		// TODO: create the domain object connection here
-		Object newDomainObjectConnetion = null;
-
-		AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(), context.getTargetAnchor());
-		addContext.setNewObject(newDomainObjectConnetion);
-		newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
-
+        // get ENodes which should be connected
+		Node source = getNode(context.getSourceAnchor());
+		Node target = getNode(context.getTargetAnchor());
+        
+		if (source != null && target != null) {
+            // create new business object 
+            Edge myEdge = createEdge(source, target);
+            // add connection for business object
+            AddConnectionContext addContext =
+                new AddConnectionContext(context.getSourceAnchor(), context
+                    .getTargetAnchor());
+            addContext.setNewObject(myEdge);
+            newConnection =
+                (Connection) getFeatureProvider().addIfPossible(addContext);
+        }
+        
 		return newConnection;
 	}
+	
+    /**
+     * Returns the Node belonging to the anchor, or null if not available.
+     */
+    private Node getNode(Anchor anchor) {
+        if (anchor != null) {
+            Object object =
+                getBusinessObjectForPictogramElement(anchor.getParent());
+            if (object instanceof Node) {
+                return (Node) object;
+            }
+        }
+        return null;
+    }
+ 
+    /**
+    * Creates a Edge between two Nodees.
+    */
+    private Edge createEdge(Node source, Node target) {
+        Edge myEdge = GraphdomFactory.eINSTANCE.createEdge();
+        
+        myEdge.getConnectedNodes().add(source);
+        myEdge.getConnectedNodes().add(target);
+        
+        return myEdge;
+   }
 }

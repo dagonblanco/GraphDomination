@@ -101,7 +101,7 @@ public class AddNodeFeature extends AbstractAddFeature implements
 //		text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
 //		gaService.setLocationAndSize(text, 0, 0, context.getWidth(), context.getHeight());
 
-//		peCreateService.createChopboxAnchor(containerShape);
+		peCreateService.createChopboxAnchor(containerShape);
 
 		// TODO: enable the link to the domain object
 		// Object addedDomainObject = context.getNewObject();
