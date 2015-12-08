@@ -21,14 +21,31 @@
          </diagramType>
       </diagramTypeProvider>
    </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            class="graphdomgraphics.GraphDomNewWizard"
-            id="GraphDomGraphics.NewWizard"
-            name="New GraphDom">
-      </wizard>
-   </extension>
+   
+	<extension
+		point = "org.eclipse.ui.newWizards">
+		<wizard
+        class="graphdomgraphics.ui.CreateGraphdomProjectWizard"
+        finalPerspective="graphdomgraphics.ui.GFPerspective"
+        id="graphdomgraphics.ui.CreateSampleProjectWizard"
+        name="%wizard.name"
+        project="true">
+			<description>%wizard.description</description>
+			<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+		<wizard
+        class="graphdomgraphics.ui.CreateDiagramWizard"
+        finalPerspective="graphdomgraphics.ui.GFPerspective"
+        id="graphdomgraphics.ui.CreateDiagramWizard"
+        name="%wizard.name.0">
+     <description>
+        %wizard.description.0
+     </description>
+     <selection
+           class="org.eclipse.core.resources.IContainer">
+     </selection>
+		</wizard>
+	</extension>
    
 <extension
     point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
@@ -45,7 +62,7 @@
    <propertyTab
          category="Graphiti"
          id="graphiti.main.tab"
-         label="Main">
+         label="%propertyTab.label">
     </propertyTab>
    </propertyTabs>
 </extension>

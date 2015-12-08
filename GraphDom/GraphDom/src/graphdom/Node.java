@@ -24,6 +24,9 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Node extends EObject {
+	
+	 int getNextNode();
+	
 	/**
 	 * Returns the value of the '<em><b>Node Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

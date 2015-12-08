@@ -59,6 +59,8 @@ public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
             addContext.setNewObject(myEdge);
             newConnection =
                 (Connection) getFeatureProvider().addIfPossible(addContext);
+            
+            getDiagram().eResource().getContents().add(myEdge);
         }
         
 		return newConnection;

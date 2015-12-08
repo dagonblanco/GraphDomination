@@ -29,14 +29,14 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 	@Override
 	public Object[] create(ICreateContext context) {
 
-		String newClassName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
-        if (newClassName == null || newClassName.trim().length() == 0) {
-            return EMPTY;
-        }
+//		String newClassName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
+//        if (newClassName == null || newClassName.trim().length() == 0) {
+//            return EMPTY;
+//        }
 		
 		Node newNode = GraphdomFactory.eINSTANCE.createNode();
 		
-		newNode.setNodeName(newClassName);
+		newNode.setNodeName(String.valueOf(newNode.getNextNode()));
 		
 		getDiagram().eResource().getContents().add(newNode);	
 		

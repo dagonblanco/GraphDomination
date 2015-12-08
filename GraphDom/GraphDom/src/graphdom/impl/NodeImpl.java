@@ -41,6 +41,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
+	
+	static int numNodes = 1;
+	
 	/**
 	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -170,7 +173,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * @generated NOT
 	 */
 	public EList<Node> getAdjacentNodes() {
-		// TODO: implement this method
+
 		// Ensure that you remove @generated or mark it @generated NOT
 		
 		HashSet<Node> adjacentNodesSet = new HashSet<Node>();		
@@ -322,6 +325,11 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		result.append(color);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public int getNextNode() {
+		return numNodes++;
 	}
 
 } //NodeImpl
