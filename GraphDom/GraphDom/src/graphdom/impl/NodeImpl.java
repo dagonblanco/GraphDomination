@@ -178,7 +178,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		
 		HashSet<Node> adjacentNodesSet = new HashSet<Node>();		
 		
-		for (Edge edge : connectedEdges) {			
+		for (Edge edge : this.getConnectedEdges()) {			
 			adjacentNodesSet.addAll(edge.getConnectedNodes());			
 		}
 		

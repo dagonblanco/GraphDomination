@@ -6,11 +6,13 @@ import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.IReconnectionFeature;
 import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -21,7 +23,7 @@ import graphdomgraphics.features.AddNodeFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateNodeFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
-
+import graphdomgraphics.features.ReconnectNodeFeature;
 import graphdom.Node;
 import graphdom.Edge;
 
@@ -30,7 +32,7 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
-		// TODO Auto-generated method stub
+		
 		//return super.getResizeShapeFeature(context);
 		return null;
 	}
@@ -52,10 +54,10 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	
 	@Override
 	public IAddFeature getAddFeature(IAddContext context) {
-		// TODO: check for right domain object instances below
-		if (context instanceof IAddConnectionContext /* && context.getNewObject() instanceof <DomainObject> */) {
+
+		if (context instanceof IAddConnectionContext  && context.getNewObject() instanceof Edge ) {
 			return new AddEdgeConnectionFeature(this);
-		} else if (context instanceof IAddContext /* && context.getNewObject() instanceof <DomainObject> */) {
+		} else if (context instanceof IAddContext  && context.getNewObject() instanceof Node ) {
 			return new AddNodeFeature(this);
 		}
 
@@ -64,11 +66,16 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	
 	@Override
 	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
-		// TODO: check for right domain object instances below
-		if (context.getPictogramElement() instanceof ContainerShape /* && getBusinessObjectForPictogramElement(context.getPictogramElement()) instanceof <DomainObject> */) {
+
+		if (context.getPictogramElement() instanceof ContainerShape  && getBusinessObjectForPictogramElement(context.getPictogramElement()) instanceof Node) {
 			return  new LayoutNodeFeature(this);
 		}
 	
 		return super.getLayoutFeature(context);
+	}
+	
+	@Override
+	public IReconnectionFeature getReconnectionFeature(IReconnectionContext context) {
+	    return new ReconnectNodeFeature(this);
 	}
 }
