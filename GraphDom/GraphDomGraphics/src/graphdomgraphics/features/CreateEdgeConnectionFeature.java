@@ -33,7 +33,7 @@ public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
 		Node source = getNode(context.getSourceAnchor());
 		Node target = getNode(context.getTargetAnchor());
 		
-        if ((source != null && target != null && source != target) && !source.getConnectedEdges().contains(target)) {
+        if (source != null && target != null && source != target && !source.getAdjacentNodes().contains(target)) {
 		  	return true;
 		 }
 		
