@@ -57,7 +57,7 @@ public class CreateGraphdomProjectWizard extends BasicNewProjectResourceWizard {
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
 		eclass.setName("PredefinedEClass"); //$NON-NLS-1$
 		ResourceSet set = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI(newProject.getFolder("src").getFile("Predefined.data").getFullPath().toString(), true); //$NON-NLS-1$ //$NON-NLS-2$
+		URI uri = URI.createPlatformResourceURI(newProject.getFile("Predefined.data").getFullPath().toString(), true); //$NON-NLS-1$ //$NON-NLS-2$
 		Resource resource = set.createResource(uri);
 		resource.getContents().add(eclass);
 		try {
