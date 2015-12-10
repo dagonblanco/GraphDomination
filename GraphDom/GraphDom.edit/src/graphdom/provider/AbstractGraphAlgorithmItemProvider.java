@@ -3,16 +3,16 @@
 package graphdom.provider;
 
 
-import graphdom.Edge;
+import graphdom.AbstractGraphAlgorithm;
+import graphdom.AlgorithmStatus;
 import graphdom.GraphdomPackage;
-import graphdom.Node;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -27,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link graphdom.Edge} object.
+ * This is the item provider adapter for a {@link graphdom.AbstractGraphAlgorithm} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EdgeItemProvider 
+public class AbstractGraphAlgorithmItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class EdgeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EdgeItemProvider(AdapterFactory adapterFactory) {
+	public AbstractGraphAlgorithmItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,27 +61,27 @@ public class EdgeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConnectedNodesPropertyDescriptor(object);
-			addMarkedPropertyDescriptor(object);
-			addGuidPropertyDescriptor(object);
+			addInitialGraphPropertyDescriptor(object);
+			addProcessedGraphPropertyDescriptor(object);
+			addStatusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Connected Nodes feature.
+	 * This adds a property descriptor for the Initial Graph feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConnectedNodesPropertyDescriptor(Object object) {
+	protected void addInitialGraphPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Edge_connectedNodes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_connectedNodes_feature", "_UI_Edge_type"),
-				 GraphdomPackage.Literals.EDGE__CONNECTED_NODES,
+				 getString("_UI_AbstractGraphAlgorithm_initialGraph_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractGraphAlgorithm_initialGraph_feature", "_UI_AbstractGraphAlgorithm_type"),
+				 GraphdomPackage.Literals.ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH,
 				 true,
 				 false,
 				 true,
@@ -91,41 +91,41 @@ public class EdgeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Marked feature.
+	 * This adds a property descriptor for the Processed Graph feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMarkedPropertyDescriptor(Object object) {
+	protected void addProcessedGraphPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Edge_marked_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_marked_feature", "_UI_Edge_type"),
-				 GraphdomPackage.Literals.EDGE__MARKED,
+				 getString("_UI_AbstractGraphAlgorithm_processedGraph_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractGraphAlgorithm_processedGraph_feature", "_UI_AbstractGraphAlgorithm_type"),
+				 GraphdomPackage.Literals.ABSTRACT_GRAPH_ALGORITHM__PROCESSED_GRAPH,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Guid feature.
+	 * This adds a property descriptor for the Status feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGuidPropertyDescriptor(Object object) {
+	protected void addStatusPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Edge_guid_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_guid_feature", "_UI_Edge_type"),
-				 GraphdomPackage.Literals.EDGE__GUID,
+				 getString("_UI_AbstractGraphAlgorithm_status_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractGraphAlgorithm_status_feature", "_UI_AbstractGraphAlgorithm_type"),
+				 GraphdomPackage.Literals.ABSTRACT_GRAPH_ALGORITHM__STATUS,
 				 true,
 				 false,
 				 false,
@@ -135,32 +135,29 @@ public class EdgeItemProvider
 	}
 
 	/**
-	 * This returns Edge.gif.
+	 * This returns AbstractGraphAlgorithm.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Edge"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AbstractGraphAlgorithm"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-				
-		EList<Node> nodes = ((Edge)object).getConnectedNodes();
-		String label = (nodes.size()==2?nodes.get(0).getNodeName()+"-"+nodes.get(1).getNodeName():null);
-		
+		AlgorithmStatus labelValue = ((AbstractGraphAlgorithm)object).getStatus();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-				getString("_UI_Edge_type") :
-				getString("_UI_Edge_type") + " " + label;
-		
+			getString("_UI_AbstractGraphAlgorithm_type") :
+			getString("_UI_AbstractGraphAlgorithm_type") + " " + label;
 	}
 	
 
@@ -175,9 +172,8 @@ public class EdgeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Edge.class)) {
-			case GraphdomPackage.EDGE__MARKED:
-			case GraphdomPackage.EDGE__GUID:
+		switch (notification.getFeatureID(AbstractGraphAlgorithm.class)) {
+			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

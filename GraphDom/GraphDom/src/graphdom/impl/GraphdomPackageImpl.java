@@ -2,6 +2,8 @@
  */
 package graphdom.impl;
 
+import graphdom.AbstractGraphAlgorithm;
+import graphdom.AlgorithmStatus;
 import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.GraphdomFactory;
@@ -10,6 +12,7 @@ import graphdom.Node;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -43,6 +46,20 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * @generated
 	 */
 	private EClass edgeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractGraphAlgorithmEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum algorithmStatusEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -182,6 +199,33 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNode_Marked() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNode_Grade() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNode_Guid() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getNode__GetAdjacentNodes() {
 		return nodeEClass.getEOperations().get(0);
 	}
@@ -202,6 +246,87 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	public EReference getEdge_ConnectedNodes() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEdge_Marked() {
+		return (EAttribute)edgeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEdge_Guid() {
+		return (EAttribute)edgeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAbstractGraphAlgorithm() {
+		return abstractGraphAlgorithmEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractGraphAlgorithm_InitialGraph() {
+		return (EReference)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractGraphAlgorithm_ProcessedGraph() {
+		return (EReference)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractGraphAlgorithm_Status() {
+		return (EAttribute)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAbstractGraphAlgorithm__RunToEnd() {
+		return abstractGraphAlgorithmEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAbstractGraphAlgorithm__NextStep() {
+		return abstractGraphAlgorithmEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAlgorithmStatus() {
+		return algorithmStatusEEnum;
 	}
 
 	/**
@@ -241,10 +366,25 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEAttribute(nodeEClass, NODE__NODE_NAME);
 		createEAttribute(nodeEClass, NODE__COLOR);
 		createEReference(nodeEClass, NODE__CONNECTED_EDGES);
+		createEAttribute(nodeEClass, NODE__MARKED);
+		createEAttribute(nodeEClass, NODE__GRADE);
+		createEAttribute(nodeEClass, NODE__GUID);
 		createEOperation(nodeEClass, NODE___GET_ADJACENT_NODES);
 
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__CONNECTED_NODES);
+		createEAttribute(edgeEClass, EDGE__MARKED);
+		createEAttribute(edgeEClass, EDGE__GUID);
+
+		abstractGraphAlgorithmEClass = createEClass(ABSTRACT_GRAPH_ALGORITHM);
+		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH);
+		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__PROCESSED_GRAPH);
+		createEAttribute(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__STATUS);
+		createEOperation(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM___RUN_TO_END);
+		createEOperation(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM___NEXT_STEP);
+
+		// Create enums
+		algorithmStatusEEnum = createEEnum(ALGORITHM_STATUS);
 	}
 
 	/**
@@ -286,11 +426,31 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEAttribute(getNode_NodeName(), ecorePackage.getEString(), "nodeName", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Color(), ecorePackage.getEString(), "color", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_ConnectedEdges(), this.getEdge(), this.getEdge_ConnectedNodes(), "connectedEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_Marked(), ecorePackage.getEBoolean(), "marked", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_Grade(), ecorePackage.getELong(), "grade", "0", 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_Guid(), ecorePackage.getEString(), "guid", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getNode__GetAdjacentNodes(), this.getNode(), "getAdjacentNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_ConnectedNodes(), this.getNode(), this.getNode_ConnectedEdges(), "connectedNodes", null, 2, 2, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getEdge_Marked(), ecorePackage.getEBoolean(), "marked", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEdge_Guid(), ecorePackage.getEString(), "guid", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(abstractGraphAlgorithmEClass, AbstractGraphAlgorithm.class, "AbstractGraphAlgorithm", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractGraphAlgorithm_InitialGraph(), this.getGraph(), null, "initialGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractGraphAlgorithm_ProcessedGraph(), this.getGraph(), null, "processedGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractGraphAlgorithm_Status(), this.getAlgorithmStatus(), "status", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getAbstractGraphAlgorithm__RunToEnd(), null, "runToEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getAbstractGraphAlgorithm__NextStep(), null, "nextStep", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(algorithmStatusEEnum, AlgorithmStatus.class, "AlgorithmStatus");
+		addEEnumLiteral(algorithmStatusEEnum, AlgorithmStatus.UNINITIALIZED);
+		addEEnumLiteral(algorithmStatusEEnum, AlgorithmStatus.INPROGRESS);
+		addEEnumLiteral(algorithmStatusEEnum, AlgorithmStatus.ENDED);
 
 		// Create resource
 		createResource(eNS_URI);
