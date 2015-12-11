@@ -1,8 +1,13 @@
 package graphdomgraphics.diagram;
 
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
+import org.eclipse.graphiti.tb.IToolBehaviorProvider;
+
+import graphdomgraphics.tools.GraphdomToolBehaviorProvider;
 
 public class GraphDomGraphicsDiagramTypeProvider extends AbstractDiagramTypeProvider {
+
+	private IToolBehaviorProvider[] toolBehaviorProviders;
 
 	@Override
 	public boolean isAutoUpdateAtRuntime() {
@@ -31,5 +36,13 @@ public class GraphDomGraphicsDiagramTypeProvider extends AbstractDiagramTypeProv
 	public GraphDomGraphicsDiagramTypeProvider() {
 		super();
 		setFeatureProvider(new GraphDomGraphicsFeatureProvider(this));
+	}
+
+	@Override
+	public IToolBehaviorProvider[] getAvailableToolBehaviorProviders() {
+		if (toolBehaviorProviders == null) {
+			toolBehaviorProviders = new IToolBehaviorProvider[] { new GraphdomToolBehaviorProvider(this) };
+		}
+		return toolBehaviorProviders;
 	}
 }

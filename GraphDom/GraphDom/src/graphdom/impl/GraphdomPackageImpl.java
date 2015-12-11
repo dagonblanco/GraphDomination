@@ -226,6 +226,24 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNode_XCoord() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNode_YCoord() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getNode__GetAdjacentNodes() {
 		return nodeEClass.getEOperations().get(0);
 	}
@@ -369,6 +387,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEAttribute(nodeEClass, NODE__MARKED);
 		createEAttribute(nodeEClass, NODE__GRADE);
 		createEAttribute(nodeEClass, NODE__GUID);
+		createEAttribute(nodeEClass, NODE__XCOORD);
+		createEAttribute(nodeEClass, NODE__YCOORD);
 		createEOperation(nodeEClass, NODE___GET_ADJACENT_NODES);
 
 		edgeEClass = createEClass(EDGE);
@@ -429,6 +449,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEAttribute(getNode_Marked(), ecorePackage.getEBoolean(), "marked", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Grade(), ecorePackage.getELong(), "grade", "0", 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Guid(), ecorePackage.getEString(), "guid", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_XCoord(), ecorePackage.getEInt(), "xCoord", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_YCoord(), ecorePackage.getEInt(), "yCoord", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getNode__GetAdjacentNodes(), this.getNode(), "getAdjacentNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 

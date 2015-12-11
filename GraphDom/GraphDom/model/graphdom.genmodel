@@ -3,7 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/GraphDom/src" creationSubmenus="true" modelPluginID="GraphDom"
     modelName="Graphdom" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true">
+    language="" interfaceNamePattern="" operationReflection="true" runtimePlatform="RCP"
+    importOrganizing="true">
   <foreignModel>graphdom.ecore</foreignModel>
   <genPackages prefix="Graphdom" disposableProviderFactory="true" ecorePackage="graphdom.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="graphdom.ecore#//AlgorithmStatus">
@@ -23,6 +24,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/marked"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/grade"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/guid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/xCoord"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/yCoord"/>
       <genOperations ecoreOperation="graphdom.ecore#//Node/getAdjacentNodes"/>
     </genClasses>
     <genClasses ecoreClass="graphdom.ecore#//Edge">

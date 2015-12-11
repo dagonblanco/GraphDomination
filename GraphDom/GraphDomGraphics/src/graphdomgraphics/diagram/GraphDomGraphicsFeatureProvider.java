@@ -21,6 +21,7 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 import graphdomgraphics.features.AddEdgeConnectionFeature;
 import graphdomgraphics.features.AddNodeFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
+import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
@@ -29,14 +30,12 @@ import graphdom.Edge;
 
 public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 
-
 	@Override
 	public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
-		
-		//return super.getResizeShapeFeature(context);
+
+		// return super.getResizeShapeFeature(context);
 		return null;
 	}
-
 
 	public GraphDomGraphicsFeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
@@ -44,38 +43,41 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
-		return new ICreateFeature[] {new CreateNodeFeature(this)};
+		return new ICreateFeature[] { new CreateNodeFeature(this) };
 	}
-	
+
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-		return new ICreateConnectionFeature[] {new CreateEdgeConnectionFeature(this)};
+		return new ICreateConnectionFeature[] { 
+				new CreateEdgeConnectionFeature(this),
+				new CreateEdgeConnectionWithNodeFeature(this) };
 	}
-	
+
 	@Override
 	public IAddFeature getAddFeature(IAddContext context) {
 
-		if (context instanceof IAddConnectionContext  && context.getNewObject() instanceof Edge ) {
+		if (context instanceof IAddConnectionContext && context.getNewObject() instanceof Edge) {
 			return new AddEdgeConnectionFeature(this);
-		} else if (context instanceof IAddContext  && context.getNewObject() instanceof Node ) {
+		} else if (context instanceof IAddContext && context.getNewObject() instanceof Node) {
 			return new AddNodeFeature(this);
 		}
 
 		return super.getAddFeature(context);
 	}
-	
+
 	@Override
 	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
 
-		if (context.getPictogramElement() instanceof ContainerShape  && getBusinessObjectForPictogramElement(context.getPictogramElement()) instanceof Node) {
-			return  new LayoutNodeFeature(this);
+		if (context.getPictogramElement() instanceof ContainerShape
+				&& getBusinessObjectForPictogramElement(context.getPictogramElement()) instanceof Node) {
+			return new LayoutNodeFeature(this);
 		}
-	
+
 		return super.getLayoutFeature(context);
 	}
-	
+
 	@Override
 	public IReconnectionFeature getReconnectionFeature(IReconnectionContext context) {
-	    return new ReconnectNodeFeature(this);
+		return new ReconnectNodeFeature(this);
 	}
 }

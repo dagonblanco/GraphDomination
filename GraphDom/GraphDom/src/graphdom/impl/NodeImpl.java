@@ -39,13 +39,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link graphdom.impl.NodeImpl#isMarked <em>Marked</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#getGrade <em>Grade</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getXCoord <em>XCoord</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getYCoord <em>YCoord</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
-	
-	static int numNodes = 1;
 	
 	/**
 	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
@@ -158,6 +158,46 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected String guid = GUID_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getXCoord() <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int XCOORD_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getXCoord() <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected int xCoord = XCOORD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getYCoord() <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getYCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int YCOORD_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getYCoord() <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getYCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected int yCoord = YCOORD_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -254,10 +294,10 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public long getGrade() {
-		return grade;
+		return getConnectedEdges().size();
 	}
 
 	/**
@@ -291,6 +331,48 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		guid = newGuid;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__GUID, oldGuid, guid));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getXCoord() {
+		return xCoord;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXCoord(int newXCoord) {
+		int oldXCoord = xCoord;
+		xCoord = newXCoord;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__XCOORD, oldXCoord, xCoord));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getYCoord() {
+		return yCoord;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setYCoord(int newYCoord) {
+		int oldYCoord = yCoord;
+		yCoord = newYCoord;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__YCOORD, oldYCoord, yCoord));
 	}
 
 	/**
@@ -361,6 +443,10 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 				return getGrade();
 			case GraphdomPackage.NODE__GUID:
 				return getGuid();
+			case GraphdomPackage.NODE__XCOORD:
+				return getXCoord();
+			case GraphdomPackage.NODE__YCOORD:
+				return getYCoord();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -393,6 +479,12 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case GraphdomPackage.NODE__GUID:
 				setGuid((String)newValue);
 				return;
+			case GraphdomPackage.NODE__XCOORD:
+				setXCoord((Integer)newValue);
+				return;
+			case GraphdomPackage.NODE__YCOORD:
+				setYCoord((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -423,6 +515,12 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case GraphdomPackage.NODE__GUID:
 				setGuid(GUID_EDEFAULT);
 				return;
+			case GraphdomPackage.NODE__XCOORD:
+				setXCoord(XCOORD_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__YCOORD:
+				setYCoord(YCOORD_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -447,6 +545,10 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 				return grade != GRADE_EDEFAULT;
 			case GraphdomPackage.NODE__GUID:
 				return GUID_EDEFAULT == null ? guid != null : !GUID_EDEFAULT.equals(guid);
+			case GraphdomPackage.NODE__XCOORD:
+				return xCoord != XCOORD_EDEFAULT;
+			case GraphdomPackage.NODE__YCOORD:
+				return yCoord != YCOORD_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -485,13 +587,13 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		result.append(grade);
 		result.append(", guid: ");
 		result.append(guid);
+		result.append(", xCoord: ");
+		result.append(xCoord);
+		result.append(", yCoord: ");
+		result.append(yCoord);
 		result.append(')');
 		return result.toString();
 	}
 
-	@Override
-	public int getNextNode() {
-		return numNodes++;
-	}
 
 } //NodeImpl

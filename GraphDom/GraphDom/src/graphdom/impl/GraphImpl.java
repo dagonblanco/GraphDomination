@@ -39,6 +39,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
+
+	int nextNodeId = 0;
+	
 	/**
 	 * The default value of the '{@link #getGraphName() <em>Graph Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -254,6 +257,12 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 		result.append(graphName);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public int getNextNode() {
+		// TODO Auto-generated method stub
+		return this.nextNodeId++;
 	}
 
 } //GraphImpl

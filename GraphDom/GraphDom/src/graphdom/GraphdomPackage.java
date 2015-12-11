@@ -178,13 +178,31 @@ public interface GraphdomPackage extends EPackage {
 	int NODE__GUID = 5;
 
 	/**
+	 * The feature id for the '<em><b>XCoord</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__XCOORD = 6;
+
+	/**
+	 * The feature id for the '<em><b>YCoord</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__YCOORD = 7;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 6;
+	int NODE_FEATURE_COUNT = 8;
 
 	/**
 	 * The operation id for the '<em>Get Adjacent Nodes</em>' operation.
@@ -464,6 +482,28 @@ public interface GraphdomPackage extends EPackage {
 	EAttribute getNode_Guid();
 
 	/**
+	 * Returns the meta object for the attribute '{@link graphdom.Node#getXCoord <em>XCoord</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>XCoord</em>'.
+	 * @see graphdom.Node#getXCoord()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_XCoord();
+
+	/**
+	 * Returns the meta object for the attribute '{@link graphdom.Node#getYCoord <em>YCoord</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>YCoord</em>'.
+	 * @see graphdom.Node#getYCoord()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_YCoord();
+
+	/**
 	 * Returns the meta object for the '{@link graphdom.Node#getAdjacentNodes() <em>Get Adjacent Nodes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -703,6 +743,22 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NODE__GUID = eINSTANCE.getNode_Guid();
+
+		/**
+		 * The meta object literal for the '<em><b>XCoord</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__XCOORD = eINSTANCE.getNode_XCoord();
+
+		/**
+		 * The meta object literal for the '<em><b>YCoord</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__YCOORD = eINSTANCE.getNode_YCoord();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Adjacent Nodes</b></em>' operation.

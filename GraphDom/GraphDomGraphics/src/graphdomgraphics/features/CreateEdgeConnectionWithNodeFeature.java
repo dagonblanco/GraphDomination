@@ -1,12 +1,17 @@
 package graphdomgraphics.features;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.context.IAreaContext;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
+import org.eclipse.graphiti.features.context.impl.AreaContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import graphdom.Edge;
@@ -14,11 +19,11 @@ import graphdom.GraphdomFactory;
 import graphdom.Node;
 import graphdomgraphics.common.ExampleUtil;
 
-public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
+public class CreateEdgeConnectionWithNodeFeature extends AbstractCreateConnectionFeature
 		implements ICreateConnectionFeature {
 
-	public CreateEdgeConnectionFeature(IFeatureProvider fp) {
-		super(fp, "Edge", "Creates a new Edge between two Nodes");
+	public CreateEdgeConnectionWithNodeFeature(IFeatureProvider fp) {
+		super(fp, "Edge and Node", "Creates a new connected Node");
 	}
 
 	@Override
@@ -34,7 +39,7 @@ public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
 		Node source = getNode(context.getSourceAnchor());
 		Node target = getNode(context.getTargetAnchor());
 		
-        if (source != null && target != null && source != target && !source.getAdjacentNodes().contains(target)) {
+        if (source != null && target == null) {
 		  	return true;
 		 }
 		
@@ -48,15 +53,28 @@ public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
 
         // get ENodes which should be connected
 		Node source = getNode(context.getSourceAnchor());
-		Node target = getNode(context.getTargetAnchor());
+		Node target = GraphdomFactory.eINSTANCE.createNode();
+		
+		target.setNodeName(String.valueOf(ExampleUtil.getRootGraph(getDiagram()).getNextNode()));
+		target.setGuid(EcoreUtil.generateUUID());
+		target.setXCoord(context.getTargetLocation().getX());
+		target.setYCoord(context.getTargetLocation().getY());
+	
+	
+		ExampleUtil.getRootGraph(getDiagram()).getNodes().add(target);
+		AddContext ac = new AddContext();
+		ac.setLocation(target.getXCoord(), target.getYCoord());
+		ac.setNewObject(target);
+		ac.setTargetContainer(getDiagram());
+		ContainerShape addedShape = (ContainerShape)getFeatureProvider().addIfPossible(ac);
+
         
 		if (source != null && target != null) {
             // create new business object 
             Edge myEdge = createEdge(source, target);
             // add connection for business object
             AddConnectionContext addContext =
-                new AddConnectionContext(context.getSourceAnchor(), context
-                    .getTargetAnchor());
+                new AddConnectionContext(context.getSourceAnchor(), addedShape.getAnchors().get(0));
             addContext.setNewObject(myEdge);
             newConnection =
                 (Connection) getFeatureProvider().addIfPossible(addContext);

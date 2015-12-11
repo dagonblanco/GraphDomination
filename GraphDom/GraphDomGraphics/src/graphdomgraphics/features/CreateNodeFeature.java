@@ -1,5 +1,6 @@
 package graphdomgraphics.features;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
@@ -8,6 +9,7 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 
 import graphdom.GraphdomFactory;
 import graphdom.Node;
+import graphdom.util.Utils;
 import graphdomgraphics.common.ExampleUtil;
 
 public class CreateNodeFeature extends AbstractCreateFeature implements
@@ -36,9 +38,13 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 		
 		Node newNode = GraphdomFactory.eINSTANCE.createNode();
 		
-		newNode.setNodeName(String.valueOf(newNode.getNextNode()));
+		newNode.setNodeName(String.valueOf(ExampleUtil.getRootGraph(getDiagram()).getNextNode()));
+		newNode.setGuid(EcoreUtil.generateUUID());
+		newNode.setXCoord(context.getX());
+		newNode.setYCoord(context.getY());
 		
-		getDiagram().eResource().getContents().add(newNode);	
+		//getDiagram().eResource().getContents().add(newNode);	
+		ExampleUtil.getRootGraph(getDiagram()).getNodes().add(newNode);
 		
 		addGraphicalRepresentation(context, newNode);
 		

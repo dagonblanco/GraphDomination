@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link graphdom.Node#isMarked <em>Marked</em>}</li>
  *   <li>{@link graphdom.Node#getGrade <em>Grade</em>}</li>
  *   <li>{@link graphdom.Node#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.Node#getXCoord <em>XCoord</em>}</li>
+ *   <li>{@link graphdom.Node#getYCoord <em>YCoord</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getNode()
@@ -27,8 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Node extends EObject {
-	
-	 int getNextNode();
+
 	
 	/**
 	 * Returns the value of the '<em><b>Node Name</b></em>' attribute.
@@ -178,6 +179,58 @@ public interface Node extends EObject {
 	 * @generated
 	 */
 	void setGuid(String value);
+
+	/**
+	 * Returns the value of the '<em><b>XCoord</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>XCoord</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>XCoord</em>' attribute.
+	 * @see #setXCoord(int)
+	 * @see graphdom.GraphdomPackage#getNode_XCoord()
+	 * @model
+	 * @generated
+	 */
+	int getXCoord();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#getXCoord <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>XCoord</em>' attribute.
+	 * @see #getXCoord()
+	 * @generated
+	 */
+	void setXCoord(int value);
+
+	/**
+	 * Returns the value of the '<em><b>YCoord</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>YCoord</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>YCoord</em>' attribute.
+	 * @see #setYCoord(int)
+	 * @see graphdom.GraphdomPackage#getNode_YCoord()
+	 * @model
+	 * @generated
+	 */
+	int getYCoord();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#getYCoord <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>YCoord</em>' attribute.
+	 * @see #getYCoord()
+	 * @generated
+	 */
+	void setYCoord(int value);
 
 	/**
 	 * <!-- begin-user-doc -->
