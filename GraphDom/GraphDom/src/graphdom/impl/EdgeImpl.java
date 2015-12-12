@@ -7,11 +7,13 @@ import graphdom.GraphdomPackage;
 import graphdom.Node;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -25,6 +27,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link graphdom.impl.EdgeImpl#getConnectedNodes <em>Connected Nodes</em>}</li>
+ *   <li>{@link graphdom.impl.EdgeImpl#isMarked <em>Marked</em>}</li>
+ *   <li>{@link graphdom.impl.EdgeImpl#getGuid <em>Guid</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,6 +43,45 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @ordered
 	 */
 	protected EList<Node> connectedNodes;
+
+	/**
+	 * The default value of the '{@link #isMarked() <em>Marked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMarked()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean MARKED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isMarked() <em>Marked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMarked()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean marked = MARKED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getGuid() <em>Guid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuid()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String GUID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getGuid() <em>Guid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuid()
+	 * @generated
+	 * @ordered
+	 */
+	protected String guid = GUID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,6 +112,48 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 			connectedNodes = new EObjectWithInverseResolvingEList.ManyInverse<Node>(Node.class, this, GraphdomPackage.EDGE__CONNECTED_NODES, GraphdomPackage.NODE__CONNECTED_EDGES);
 		}
 		return connectedNodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isMarked() {
+		return marked;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMarked(boolean newMarked) {
+		boolean oldMarked = marked;
+		marked = newMarked;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.EDGE__MARKED, oldMarked, marked));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getGuid() {
+		return guid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGuid(String newGuid) {
+		String oldGuid = guid;
+		guid = newGuid;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.EDGE__GUID, oldGuid, guid));
 	}
 
 	/**
@@ -110,6 +195,10 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GraphdomPackage.EDGE__CONNECTED_NODES:
 				return getConnectedNodes();
+			case GraphdomPackage.EDGE__MARKED:
+				return isMarked();
+			case GraphdomPackage.EDGE__GUID:
+				return getGuid();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,6 +216,12 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 				getConnectedNodes().clear();
 				getConnectedNodes().addAll((Collection<? extends Node>)newValue);
 				return;
+			case GraphdomPackage.EDGE__MARKED:
+				setMarked((Boolean)newValue);
+				return;
+			case GraphdomPackage.EDGE__GUID:
+				setGuid((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -142,6 +237,12 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 			case GraphdomPackage.EDGE__CONNECTED_NODES:
 				getConnectedNodes().clear();
 				return;
+			case GraphdomPackage.EDGE__MARKED:
+				setMarked(MARKED_EDEFAULT);
+				return;
+			case GraphdomPackage.EDGE__GUID:
+				setGuid(GUID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -156,8 +257,30 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GraphdomPackage.EDGE__CONNECTED_NODES:
 				return connectedNodes != null && !connectedNodes.isEmpty();
+			case GraphdomPackage.EDGE__MARKED:
+				return marked != MARKED_EDEFAULT;
+			case GraphdomPackage.EDGE__GUID:
+				return GUID_EDEFAULT == null ? guid != null : !GUID_EDEFAULT.equals(guid);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (marked: ");
+		result.append(marked);
+		result.append(", guid: ");
+		result.append(guid);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EdgeImpl

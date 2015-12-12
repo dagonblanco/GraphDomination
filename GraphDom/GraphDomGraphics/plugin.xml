@@ -79,4 +79,12 @@
         </propertySection>
     </propertySections>
 </extension>
+
+   <extension
+         point="org.eclipse.graphiti.ui.imageProviders">
+      <imageProvider
+            class="graphdom.common.GraphdomImageProvider"
+            id="graphdom.common.GraphdomImageProvider">
+      </imageProvider>
+   </extension>
 </plugin>

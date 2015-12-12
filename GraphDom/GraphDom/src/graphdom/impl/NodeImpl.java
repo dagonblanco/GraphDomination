@@ -36,13 +36,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link graphdom.impl.NodeImpl#getNodeName <em>Node Name</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#getColor <em>Color</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#getConnectedEdges <em>Connected Edges</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#isMarked <em>Marked</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getGrade <em>Grade</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getXCoord <em>XCoord</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getYCoord <em>YCoord</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
-	
-	static int numNodes = 1;
 	
 	/**
 	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
@@ -93,6 +96,106 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * @ordered
 	 */
 	protected EList<Edge> connectedEdges;
+
+	/**
+	 * The default value of the '{@link #isMarked() <em>Marked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMarked()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean MARKED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isMarked() <em>Marked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMarked()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean marked = MARKED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getGrade() <em>Grade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrade()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long GRADE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getGrade() <em>Grade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrade()
+	 * @generated
+	 * @ordered
+	 */
+	protected long grade = GRADE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getGuid() <em>Guid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuid()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String GUID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getGuid() <em>Guid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuid()
+	 * @generated
+	 * @ordered
+	 */
+	protected String guid = GUID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getXCoord() <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int XCOORD_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getXCoord() <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getXCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected int xCoord = XCOORD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getYCoord() <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getYCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int YCOORD_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getYCoord() <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getYCoord()
+	 * @generated
+	 * @ordered
+	 */
+	protected int yCoord = YCOORD_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +273,111 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isMarked() {
+		return marked;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMarked(boolean newMarked) {
+		boolean oldMarked = marked;
+		marked = newMarked;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__MARKED, oldMarked, marked));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public long getGrade() {
+		return getConnectedEdges().size();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGrade(long newGrade) {
+		long oldGrade = grade;
+		grade = newGrade;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__GRADE, oldGrade, grade));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getGuid() {
+		return guid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGuid(String newGuid) {
+		String oldGuid = guid;
+		guid = newGuid;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__GUID, oldGuid, guid));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getXCoord() {
+		return xCoord;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXCoord(int newXCoord) {
+		int oldXCoord = xCoord;
+		xCoord = newXCoord;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__XCOORD, oldXCoord, xCoord));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getYCoord() {
+		return yCoord;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setYCoord(int newYCoord) {
+		int oldYCoord = yCoord;
+		yCoord = newYCoord;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__YCOORD, oldYCoord, yCoord));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Node> getAdjacentNodes() {
@@ -229,6 +437,16 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 				return getColor();
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				return getConnectedEdges();
+			case GraphdomPackage.NODE__MARKED:
+				return isMarked();
+			case GraphdomPackage.NODE__GRADE:
+				return getGrade();
+			case GraphdomPackage.NODE__GUID:
+				return getGuid();
+			case GraphdomPackage.NODE__XCOORD:
+				return getXCoord();
+			case GraphdomPackage.NODE__YCOORD:
+				return getYCoord();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -252,6 +470,21 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 				getConnectedEdges().clear();
 				getConnectedEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
+			case GraphdomPackage.NODE__MARKED:
+				setMarked((Boolean)newValue);
+				return;
+			case GraphdomPackage.NODE__GRADE:
+				setGrade((Long)newValue);
+				return;
+			case GraphdomPackage.NODE__GUID:
+				setGuid((String)newValue);
+				return;
+			case GraphdomPackage.NODE__XCOORD:
+				setXCoord((Integer)newValue);
+				return;
+			case GraphdomPackage.NODE__YCOORD:
+				setYCoord((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -273,6 +506,21 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				getConnectedEdges().clear();
 				return;
+			case GraphdomPackage.NODE__MARKED:
+				setMarked(MARKED_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__GRADE:
+				setGrade(GRADE_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__GUID:
+				setGuid(GUID_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__XCOORD:
+				setXCoord(XCOORD_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__YCOORD:
+				setYCoord(YCOORD_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -291,6 +539,16 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 				return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				return connectedEdges != null && !connectedEdges.isEmpty();
+			case GraphdomPackage.NODE__MARKED:
+				return marked != MARKED_EDEFAULT;
+			case GraphdomPackage.NODE__GRADE:
+				return grade != GRADE_EDEFAULT;
+			case GraphdomPackage.NODE__GUID:
+				return GUID_EDEFAULT == null ? guid != null : !GUID_EDEFAULT.equals(guid);
+			case GraphdomPackage.NODE__XCOORD:
+				return xCoord != XCOORD_EDEFAULT;
+			case GraphdomPackage.NODE__YCOORD:
+				return yCoord != YCOORD_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -323,13 +581,19 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		result.append(nodeName);
 		result.append(", color: ");
 		result.append(color);
+		result.append(", marked: ");
+		result.append(marked);
+		result.append(", grade: ");
+		result.append(grade);
+		result.append(", guid: ");
+		result.append(guid);
+		result.append(", xCoord: ");
+		result.append(xCoord);
+		result.append(", yCoord: ");
+		result.append(yCoord);
 		result.append(')');
 		return result.toString();
 	}
 
-	@Override
-	public int getNextNode() {
-		return numNodes++;
-	}
 
 } //NodeImpl

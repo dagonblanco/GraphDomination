@@ -26,8 +26,18 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.eclipse.graphiti.mm.algorithms.styles.Color;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.mm.pictograms.PictogramLink;
+import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
+import org.eclipse.graphiti.mm.pictograms.PictogramsPackage;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
@@ -35,6 +45,9 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+
+import graphdom.Graph;
+import graphdom.GraphdomFactory;
 
 public class ExampleUtil {
 
@@ -98,9 +111,9 @@ public class ExampleUtil {
 	private static Shell getShell() {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 	}
-	
+
 	public static EObject getDiagramDO(final Diagram d) {
-		//TODO: ¿Y esto?
+		// TODO: ¿Y esto?
 		return null;
 	}
 
@@ -121,4 +134,40 @@ public class ExampleUtil {
 		resource.getContents().add(obj);
 
 	}
+
+	public static Graph getRootGraph(Diagram diagram) {
+
+		PictogramLink link = diagram.getLink();
+
+		if (link == null) {
+
+			EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(diagram);
+			Command command;
+
+			// Create base domain object (eObject)
+			Graph diagramBO = GraphdomFactory.eINSTANCE.createGraph();
+
+			// Add the x object to the diagram resource
+			command = new AddCommand(editingDomain, diagram.eResource().getContents(), diagramBO);
+			editingDomain.getCommandStack().execute(command);
+
+			// Create the pictogram link object
+			link = PictogramsFactory.eINSTANCE.createPictogramLink();
+			link.getBusinessObjects().add(diagramBO);
+
+			// Set the pictogram link object for the diagram object
+			command = new SetCommand(editingDomain, diagram,
+					PictogramsPackage.eINSTANCE.getDiagram().getEStructuralFeature(PictogramsPackage.DIAGRAM__LINK),
+					link);
+			editingDomain.getCommandStack().execute(command);
+		}
+
+		if (link.getBusinessObjects().size() == 1 && link.getBusinessObjects().get(0) instanceof Graph) {
+			// Return the diagram object
+			return (Graph) link.getBusinessObjects().get(0);
+		} else {
+			throw new IllegalStateException();
+		}
+	}
+
 }

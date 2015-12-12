@@ -17,6 +17,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link graphdom.Node#getNodeName <em>Node Name</em>}</li>
  *   <li>{@link graphdom.Node#getColor <em>Color</em>}</li>
  *   <li>{@link graphdom.Node#getConnectedEdges <em>Connected Edges</em>}</li>
+ *   <li>{@link graphdom.Node#isMarked <em>Marked</em>}</li>
+ *   <li>{@link graphdom.Node#getGrade <em>Grade</em>}</li>
+ *   <li>{@link graphdom.Node#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.Node#getXCoord <em>XCoord</em>}</li>
+ *   <li>{@link graphdom.Node#getYCoord <em>YCoord</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getNode()
@@ -24,8 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Node extends EObject {
-	
-	 int getNextNode();
+
 	
 	/**
 	 * Returns the value of the '<em><b>Node Name</b></em>' attribute.
@@ -96,6 +100,137 @@ public interface Node extends EObject {
 	 * @generated
 	 */
 	EList<Edge> getConnectedEdges();
+
+	/**
+	 * Returns the value of the '<em><b>Marked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Marked</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Marked</em>' attribute.
+	 * @see #setMarked(boolean)
+	 * @see graphdom.GraphdomPackage#getNode_Marked()
+	 * @model
+	 * @generated
+	 */
+	boolean isMarked();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#isMarked <em>Marked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Marked</em>' attribute.
+	 * @see #isMarked()
+	 * @generated
+	 */
+	void setMarked(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Grade</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Grade</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Grade</em>' attribute.
+	 * @see #setGrade(long)
+	 * @see graphdom.GraphdomPackage#getNode_Grade()
+	 * @model default="0" derived="true"
+	 * @generated
+	 */
+	long getGrade();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#getGrade <em>Grade</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grade</em>' attribute.
+	 * @see #getGrade()
+	 * @generated
+	 */
+	void setGrade(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Guid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Guid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Guid</em>' attribute.
+	 * @see #setGuid(String)
+	 * @see graphdom.GraphdomPackage#getNode_Guid()
+	 * @model id="true" required="true"
+	 * @generated
+	 */
+	String getGuid();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#getGuid <em>Guid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Guid</em>' attribute.
+	 * @see #getGuid()
+	 * @generated
+	 */
+	void setGuid(String value);
+
+	/**
+	 * Returns the value of the '<em><b>XCoord</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>XCoord</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>XCoord</em>' attribute.
+	 * @see #setXCoord(int)
+	 * @see graphdom.GraphdomPackage#getNode_XCoord()
+	 * @model
+	 * @generated
+	 */
+	int getXCoord();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#getXCoord <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>XCoord</em>' attribute.
+	 * @see #getXCoord()
+	 * @generated
+	 */
+	void setXCoord(int value);
+
+	/**
+	 * Returns the value of the '<em><b>YCoord</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>YCoord</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>YCoord</em>' attribute.
+	 * @see #setYCoord(int)
+	 * @see graphdom.GraphdomPackage#getNode_YCoord()
+	 * @model
+	 * @generated
+	 */
+	int getYCoord();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#getYCoord <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>YCoord</em>' attribute.
+	 * @see #getYCoord()
+	 * @generated
+	 */
+	void setYCoord(int value);
 
 	/**
 	 * <!-- begin-user-doc -->

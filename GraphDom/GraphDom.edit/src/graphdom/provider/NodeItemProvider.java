@@ -63,6 +63,11 @@ public class NodeItemProvider
 			addNodeNamePropertyDescriptor(object);
 			addColorPropertyDescriptor(object);
 			addConnectedEdgesPropertyDescriptor(object);
+			addMarkedPropertyDescriptor(object);
+			addGradePropertyDescriptor(object);
+			addGuidPropertyDescriptor(object);
+			addXCoordPropertyDescriptor(object);
+			addYCoordPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -134,6 +139,116 @@ public class NodeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Marked feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMarkedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_marked_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_marked_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__MARKED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Grade feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGradePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_grade_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_grade_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__GRADE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Guid feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGuidPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_guid_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_guid_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__GUID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the XCoord feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addXCoordPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_xCoord_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_xCoord_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__XCOORD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the YCoord feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addYCoordPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_yCoord_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_yCoord_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__YCOORD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Node.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -173,6 +288,11 @@ public class NodeItemProvider
 		switch (notification.getFeatureID(Node.class)) {
 			case GraphdomPackage.NODE__NODE_NAME:
 			case GraphdomPackage.NODE__COLOR:
+			case GraphdomPackage.NODE__MARKED:
+			case GraphdomPackage.NODE__GRADE:
+			case GraphdomPackage.NODE__GUID:
+			case GraphdomPackage.NODE__XCOORD:
+			case GraphdomPackage.NODE__YCOORD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -83,5 +83,7 @@ public interface Graph extends EObject {
 	 * @generated
 	 */
 	EList<Edge> getEdges();
+	
+	 int getNextNode();
 
 } // Graph

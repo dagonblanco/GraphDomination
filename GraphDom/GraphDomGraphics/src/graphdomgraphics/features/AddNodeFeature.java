@@ -19,6 +19,7 @@ import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 import graphdom.Node;
+import graphdomgraphics.common.ExampleUtil;
 
 public class AddNodeFeature extends AbstractAddFeature implements
 		IAddFeature {
@@ -51,13 +52,16 @@ public class AddNodeFeature extends AbstractAddFeature implements
 	    }
 	@Override
 	public PictogramElement add(IAddContext context) {
-		Node addedClass = (Node) context.getNewObject();
+		Node addedNode = (Node) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		IGaService gaService = Graphiti.getGaService();
 		
 		int width = 20;
         int height = 20;
+        
+        addedNode.setXCoord(context.getX());
+        addedNode.setYCoord(context.getY());
         
         
 		ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
@@ -70,11 +74,12 @@ public class AddNodeFeature extends AbstractAddFeature implements
 		gaService.setLocationAndSize(ellipse, context.getX(), context.getY(), width, height);
         // if added Class has no resource we add it to the resource 
         // of the diagram
-		if (addedClass.eResource() == null) {
-            getDiagram().eResource().getContents().add(addedClass);
+		if (addedNode.eResource() == null) {
+			ExampleUtil.getRootGraph(getDiagram()).getNodes().add(addedNode);
+            
    }
         // create link and wire it
-        link(containerShape, addedClass);
+        link(containerShape, addedNode);
 		
 //		RoundedRectangle roundedRectangle = gaService.createRoundedRectangle(containerShape, 5, 5);
 //		gaService.setLocationAndSize(roundedRectangle, context.getX(), context.getY(), context.getWidth(), context.getHeight());
@@ -85,7 +90,7 @@ public class AddNodeFeature extends AbstractAddFeature implements
         Shape shape = peCreateService.createShape(containerShape, false);
 
         // create and set text graphics algorithm
-        Text text = gaService.createText(shape, addedClass.getNodeName());
+        Text text = gaService.createText(shape, addedNode.getNodeName());
         text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
         text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER ); 
         // vertical alignment has as default value "center"
@@ -93,7 +98,7 @@ public class AddNodeFeature extends AbstractAddFeature implements
         gaService.setLocationAndSize(text, 0, 0, width, 20);
 
         // create link and wire it
-        link(shape, addedClass);
+        link(shape, addedNode);
         
 //		Shape shape = peCreateService.createShape(containerShape, false);
 //		Text text = gaService.createText(shape, "Node");

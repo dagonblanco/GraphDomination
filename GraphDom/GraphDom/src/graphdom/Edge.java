@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link graphdom.Edge#getConnectedNodes <em>Connected Nodes</em>}</li>
+ *   <li>{@link graphdom.Edge#isMarked <em>Marked</em>}</li>
+ *   <li>{@link graphdom.Edge#getGuid <em>Guid</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getEdge()
@@ -40,5 +42,57 @@ public interface Edge extends EObject {
 	 * @generated
 	 */
 	EList<Node> getConnectedNodes();
+
+	/**
+	 * Returns the value of the '<em><b>Marked</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Marked</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Marked</em>' attribute.
+	 * @see #setMarked(boolean)
+	 * @see graphdom.GraphdomPackage#getEdge_Marked()
+	 * @model
+	 * @generated
+	 */
+	boolean isMarked();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Edge#isMarked <em>Marked</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Marked</em>' attribute.
+	 * @see #isMarked()
+	 * @generated
+	 */
+	void setMarked(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Guid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Guid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Guid</em>' attribute.
+	 * @see #setGuid(String)
+	 * @see graphdom.GraphdomPackage#getEdge_Guid()
+	 * @model id="true" required="true"
+	 * @generated
+	 */
+	String getGuid();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Edge#getGuid <em>Guid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Guid</em>' attribute.
+	 * @see #getGuid()
+	 * @generated
+	 */
+	void setGuid(String value);
 
 } // Edge

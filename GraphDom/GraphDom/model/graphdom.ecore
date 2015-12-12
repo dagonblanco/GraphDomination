@@ -15,9 +15,31 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectedEdges" upperBound="-1"
         eType="#//Edge" eOpposite="#//Edge/connectedNodes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="marked" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="grade" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+        defaultValueLiteral="0" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xCoord" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yCoord" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Edge">
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectedNodes" ordered="false"
         lowerBound="2" upperBound="2" eType="#//Node" eOpposite="#//Node/connectedEdges"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="marked" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractGraphAlgorithm" abstract="true">
+    <eOperations name="runToEnd"/>
+    <eOperations name="nextStep"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialGraph" eType="#//Graph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processedGraph" eType="#//Graph"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//AlgorithmStatus"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AlgorithmStatus">
+    <eLiterals name="UNINITIALIZED"/>
+    <eLiterals name="INPROGRESS" value="1"/>
+    <eLiterals name="ENDED" value="2"/>
   </eClassifiers>
 </ecore:EPackage>
