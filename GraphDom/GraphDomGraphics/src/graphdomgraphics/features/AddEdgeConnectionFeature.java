@@ -19,7 +19,7 @@ import graphdom.Edge;
 public class AddEdgeConnectionFeature extends AbstractAddFeature implements
 		IAddFeature {
 
-	 private static final IColorConstant E_REFERENCE_FOREGROUND = new ColorConstant(98, 131, 167);
+	 private static final IColorConstant EDGE_FOREGROUND = new ColorConstant(98, 131, 167);
 	
 	public AddEdgeConnectionFeature(IFeatureProvider fp) {
 		super(fp);
@@ -44,7 +44,7 @@ public class AddEdgeConnectionFeature extends AbstractAddFeature implements
 
 		Polyline polyline = gaService.createPolyline(connection);
         polyline.setLineWidth(2);
-        polyline.setForeground(manageColor(E_REFERENCE_FOREGROUND));
+        polyline.setForeground(manageColor(EDGE_FOREGROUND));
 		 
 		link(connection, addedEdge);
 

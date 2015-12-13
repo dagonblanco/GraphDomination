@@ -7,6 +7,7 @@ import graphdom.Graph;
 import graphdom.GraphdomPackage;
 import graphdom.Node;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -34,14 +35,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link graphdom.impl.GraphImpl#getGraphName <em>Graph Name</em>}</li>
  *   <li>{@link graphdom.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link graphdom.impl.GraphImpl#getEdges <em>Edges</em>}</li>
+ *   <li>{@link graphdom.impl.GraphImpl#getNextNodeId <em>Next Node Id</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
-
-	int nextNodeId = 0;
-	
 	/**
 	 * The default value of the '{@link #getGraphName() <em>Graph Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,6 +80,26 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * @ordered
 	 */
 	protected EList<Edge> edges;
+
+	/**
+	 * The default value of the '{@link #getNextNodeId() <em>Next Node Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNextNodeId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int NEXT_NODE_ID_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getNextNodeId() <em>Next Node Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNextNodeId()
+	 * @generated
+	 * @ordered
+	 */
+	protected int nextNodeId = NEXT_NODE_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,6 +168,38 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getNextNodeId() {
+		return nextNodeId++;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNextNodeId(int newNextNodeId) {
+		int oldNextNodeId = nextNodeId;
+		nextNodeId = newNextNodeId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.GRAPH__NEXT_NODE_ID, oldNextNodeId, nextNodeId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Node findNodeById(String id) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -176,6 +227,8 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return getNodes();
 			case GraphdomPackage.GRAPH__EDGES:
 				return getEdges();
+			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
+				return getNextNodeId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -200,6 +253,9 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				getEdges().clear();
 				getEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
+			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
+				setNextNodeId((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -221,6 +277,9 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 			case GraphdomPackage.GRAPH__EDGES:
 				getEdges().clear();
 				return;
+			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
+				setNextNodeId(NEXT_NODE_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -239,8 +298,24 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return nodes != null && !nodes.isEmpty();
 			case GraphdomPackage.GRAPH__EDGES:
 				return edges != null && !edges.isEmpty();
+			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
+				return nextNodeId != NEXT_NODE_ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case GraphdomPackage.GRAPH___FIND_NODE_BY_ID__STRING:
+				return findNodeById((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
@@ -255,14 +330,10 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (graphName: ");
 		result.append(graphName);
+		result.append(", nextNodeId: ");
+		result.append(nextNodeId);
 		result.append(')');
 		return result.toString();
-	}
-
-	@Override
-	public int getNextNode() {
-		// TODO Auto-generated method stub
-		return this.nextNodeId++;
 	}
 
 } //GraphImpl

@@ -9,13 +9,18 @@ import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
 import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
+import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
+import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import graphdomgraphics.features.AddEdgeConnectionFeature;
@@ -23,8 +28,12 @@ import graphdomgraphics.features.AddNodeFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
+import graphdomgraphics.features.GenerateRandomNodesCustomFeature;
+import graphdomgraphics.features.GreedyDominationTestCustomFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
+import graphdomgraphics.features.MarkNodeCustomFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
+import graphdomgraphics.features.UpdateNodeFeature;
 import graphdom.Node;
 import graphdom.Edge;
 
@@ -80,4 +89,23 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	public IReconnectionFeature getReconnectionFeature(IReconnectionContext context) {
 		return new ReconnectNodeFeature(this);
 	}
+	
+	@Override
+	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
+	    return new ICustomFeature[] { new MarkNodeCustomFeature(this), new GenerateRandomNodesCustomFeature(this), new GreedyDominationTestCustomFeature(this) };
+	}
+	
+	@Override
+	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
+	   PictogramElement pictogramElement = context.getPictogramElement();
+	   if (pictogramElement instanceof ContainerShape) {
+	       Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+	       if (bo instanceof Node) {
+	           return new UpdateNodeFeature(this);
+	       }
+	   }
+	   return super.getUpdateFeature(context);
+	}
+	
+	
 }

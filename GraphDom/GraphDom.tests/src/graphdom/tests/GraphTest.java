@@ -24,6 +24,12 @@ import junit.textui.TestRunner;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Graph</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class GraphTest extends TestCase {
@@ -97,6 +103,19 @@ public class GraphTest extends TestCase {
 		setFixture(null);
 	}
 	
+	/**
+	 * Tests the '{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Graph#findNodeById(java.lang.String)
+	 * @generated
+	 */
+	public void testFindNodeById__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
 	public void testLoad() throws Exception{
 		// Initialize the model
 	    GraphdomPackage.eINSTANCE.eClass();

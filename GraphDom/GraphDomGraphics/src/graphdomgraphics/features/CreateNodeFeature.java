@@ -38,7 +38,7 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 		
 		Node newNode = GraphdomFactory.eINSTANCE.createNode();
 		
-		newNode.setNodeName(String.valueOf(ExampleUtil.getRootGraph(getDiagram()).getNextNode()));
+		newNode.setNodeName(String.valueOf(ExampleUtil.getRootGraph(getDiagram()).getNextNodeId()));
 		newNode.setGuid(EcoreUtil.generateUUID());
 		newNode.setXCoord(context.getX());
 		newNode.setYCoord(context.getY());

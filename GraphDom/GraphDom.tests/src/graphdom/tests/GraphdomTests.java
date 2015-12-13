@@ -31,6 +31,7 @@ public class GraphdomTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new GraphdomTests("graphdom Tests");
+		suite.addTestSuite(GraphTest.class);
 		suite.addTestSuite(NodeTest.class);
 		return suite;
 	}

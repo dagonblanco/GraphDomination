@@ -64,6 +64,7 @@ public class EdgeItemProvider
 			addConnectedNodesPropertyDescriptor(object);
 			addMarkedPropertyDescriptor(object);
 			addGuidPropertyDescriptor(object);
+			addWeightPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,6 +136,28 @@ public class EdgeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Weight feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWeightPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Edge_weight_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_weight_feature", "_UI_Edge_type"),
+				 GraphdomPackage.Literals.EDGE__WEIGHT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Edge.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,6 +201,7 @@ public class EdgeItemProvider
 		switch (notification.getFeatureID(Edge.class)) {
 			case GraphdomPackage.EDGE__MARKED:
 			case GraphdomPackage.EDGE__GUID:
+			case GraphdomPackage.EDGE__WEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -7,6 +7,7 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
 import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
@@ -30,6 +31,7 @@ import graphdom.Node;
 import graphdomgraphics.common.GraphdomImageProvider;
 import graphdomgraphics.common.IGraphdomImageConstants;
 import graphdomgraphics.features.CreateNodeFeature;
+import graphdomgraphics.features.MarkNodeCustomFeature;
 
 /**
  * @author xIS02028
@@ -135,5 +137,17 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 	     IContextMenuEntry ret[] = new IContextMenuEntry[] { subMenu };
 	     return ret;
+	}
+	
+	@Override
+	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
+	    ICustomFeature customFeature =
+	        new MarkNodeCustomFeature(getFeatureProvider());
+	    // canExecute() tests especially if the context contains a node
+	    if (customFeature.canExecute(context)) {
+	        return customFeature;
+	    }
+	 
+	    return super.getDoubleClickFeature(context);
 	}
 }

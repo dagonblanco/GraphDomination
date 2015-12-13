@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link graphdom.Edge#getConnectedNodes <em>Connected Nodes</em>}</li>
  *   <li>{@link graphdom.Edge#isMarked <em>Marked</em>}</li>
  *   <li>{@link graphdom.Edge#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.Edge#getWeight <em>Weight</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getEdge()
@@ -94,5 +95,32 @@ public interface Edge extends EObject {
 	 * @generated
 	 */
 	void setGuid(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Weight</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Weight</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Weight</em>' attribute.
+	 * @see #setWeight(int)
+	 * @see graphdom.GraphdomPackage#getEdge_Weight()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getWeight();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Edge#getWeight <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Weight</em>' attribute.
+	 * @see #getWeight()
+	 * @generated
+	 */
+	void setWeight(int value);
 
 } // Edge

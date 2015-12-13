@@ -1,8 +1,10 @@
 package graphdom.algorithms;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import graphdom.AlgorithmStatus;
 import graphdom.Graph;
 import graphdom.Node;
 import graphdom.impl.AbstractGraphAlgorithmImpl;
@@ -11,11 +13,13 @@ import graphdom.util.Utils;
 public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 
 	Graph workingGraph = null;
+	EList<Node> dominatingNodes = new BasicEList<Node>();
 	
 	@Override
 	public void setInitialGraph(Graph newInitialGraph) {
 		super.setInitialGraph(newInitialGraph);
 		workingGraph = (Graph) EcoreUtil.copy(newInitialGraph);
+		setStatus(AlgorithmStatus.INPROGRESS);
 	}
 
 	@Override
@@ -27,7 +31,7 @@ public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 		Node maxNode = Utils.findHighestGradeNode(workingGraph.getNodes());
 		
 		// Mark as part of domination
-		processedGraph.getNodes().get(0).setMarked(true);
+		dominatingNodes.add(maxNode);
 		
 		
 		// Remove node and connected nodes
@@ -39,6 +43,11 @@ public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 		
 		workingGraph.getNodes().remove(maxNode);
 		
+		if (workingGraph.getNodes().isEmpty()){
+			
+			setStatus(AlgorithmStatus.ENDED);
+		}
+				
 		// Step ended
 	}
 

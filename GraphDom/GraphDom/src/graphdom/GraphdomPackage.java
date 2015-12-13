@@ -96,13 +96,31 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH__EDGES = 2;
 
 	/**
+	 * The feature id for the '<em><b>Next Node Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__NEXT_NODE_ID = 3;
+
+	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = 3;
+	int GRAPH_FEATURE_COUNT = 4;
+
+	/**
+	 * The operation id for the '<em>Find Node By Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___FIND_NODE_BY_ID__STRING = 0;
 
 	/**
 	 * The number of operations of the '<em>Graph</em>' class.
@@ -111,7 +129,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 0;
+	int GRAPH_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -260,13 +278,22 @@ public interface GraphdomPackage extends EPackage {
 	int EDGE__GUID = 2;
 
 	/**
+	 * The feature id for the '<em><b>Weight</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__WEIGHT = 3;
+
+	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = 3;
+	int EDGE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Edge</em>' class.
@@ -404,6 +431,27 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGraph_Edges();
+
+	/**
+	 * Returns the meta object for the attribute '{@link graphdom.Graph#getNextNodeId <em>Next Node Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Next Node Id</em>'.
+	 * @see graphdom.Graph#getNextNodeId()
+	 * @see #getGraph()
+	 * @generated
+	 */
+	EAttribute getGraph_NextNodeId();
+
+	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Node By Id</em>' operation.
+	 * @see graphdom.Graph#findNodeById(java.lang.String)
+	 * @generated
+	 */
+	EOperation getGraph__FindNodeById__String();
 
 	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
@@ -557,6 +605,17 @@ public interface GraphdomPackage extends EPackage {
 	EAttribute getEdge_Guid();
 
 	/**
+	 * Returns the meta object for the attribute '{@link graphdom.Edge#getWeight <em>Weight</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Weight</em>'.
+	 * @see graphdom.Edge#getWeight()
+	 * @see #getEdge()
+	 * @generated
+	 */
+	EAttribute getEdge_Weight();
+
+	/**
 	 * Returns the meta object for class '{@link graphdom.AbstractGraphAlgorithm <em>Abstract Graph Algorithm</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -687,6 +746,22 @@ public interface GraphdomPackage extends EPackage {
 		EReference GRAPH__EDGES = eINSTANCE.getGraph_Edges();
 
 		/**
+		 * The meta object literal for the '<em><b>Next Node Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GRAPH__NEXT_NODE_ID = eINSTANCE.getGraph_NextNodeId();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Node By Id</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___FIND_NODE_BY_ID__STRING = eINSTANCE.getGraph__FindNodeById__String();
+
+		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -801,6 +876,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EDGE__GUID = eINSTANCE.getEdge_Guid();
+
+		/**
+		 * The meta object literal for the '<em><b>Weight</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EDGE__WEIGHT = eINSTANCE.getEdge_Weight();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.AbstractGraphAlgorithmImpl <em>Abstract Graph Algorithm</em>}' class.

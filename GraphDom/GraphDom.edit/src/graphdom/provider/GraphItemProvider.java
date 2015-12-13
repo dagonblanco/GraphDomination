@@ -64,6 +64,7 @@ public class GraphItemProvider
 			super.getPropertyDescriptors(object);
 
 			addGraphNamePropertyDescriptor(object);
+			addNextNodeIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,28 @@ public class GraphItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Next Node Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNextNodeIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Graph_nextNodeId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Graph_nextNodeId_feature", "_UI_Graph_type"),
+				 GraphdomPackage.Literals.GRAPH__NEXT_NODE_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -160,6 +183,7 @@ public class GraphItemProvider
 
 		switch (notification.getFeatureID(Graph.class)) {
 			case GraphdomPackage.GRAPH__GRAPH_NAME:
+			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GraphdomPackage.GRAPH__NODES:

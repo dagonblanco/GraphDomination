@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link graphdom.impl.EdgeImpl#getConnectedNodes <em>Connected Nodes</em>}</li>
  *   <li>{@link graphdom.impl.EdgeImpl#isMarked <em>Marked</em>}</li>
  *   <li>{@link graphdom.impl.EdgeImpl#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.impl.EdgeImpl#getWeight <em>Weight</em>}</li>
  * </ul>
  *
  * @generated
@@ -82,6 +83,26 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @ordered
 	 */
 	protected String guid = GUID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWeight() <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int WEIGHT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getWeight() <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected int weight = WEIGHT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,6 +182,27 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getWeight() {
+		return weight;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWeight(int newWeight) {
+		int oldWeight = weight;
+		weight = newWeight;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.EDGE__WEIGHT, oldWeight, weight));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -199,6 +241,8 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 				return isMarked();
 			case GraphdomPackage.EDGE__GUID:
 				return getGuid();
+			case GraphdomPackage.EDGE__WEIGHT:
+				return getWeight();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,6 +266,9 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 			case GraphdomPackage.EDGE__GUID:
 				setGuid((String)newValue);
 				return;
+			case GraphdomPackage.EDGE__WEIGHT:
+				setWeight((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -243,6 +290,9 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 			case GraphdomPackage.EDGE__GUID:
 				setGuid(GUID_EDEFAULT);
 				return;
+			case GraphdomPackage.EDGE__WEIGHT:
+				setWeight(WEIGHT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,6 +311,8 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 				return marked != MARKED_EDEFAULT;
 			case GraphdomPackage.EDGE__GUID:
 				return GUID_EDEFAULT == null ? guid != null : !GUID_EDEFAULT.equals(guid);
+			case GraphdomPackage.EDGE__WEIGHT:
+				return weight != WEIGHT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -279,6 +331,8 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		result.append(marked);
 		result.append(", guid: ");
 		result.append(guid);
+		result.append(", weight: ");
+		result.append(weight);
 		result.append(')');
 		return result.toString();
 	}
