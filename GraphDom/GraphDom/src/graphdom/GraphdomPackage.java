@@ -123,13 +123,22 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH___FIND_NODE_BY_ID__STRING = 0;
 
 	/**
+	 * The operation id for the '<em>Unmark All Nodes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___UNMARK_ALL_NODES = 1;
+
+	/**
 	 * The number of operations of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 1;
+	int GRAPH_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -454,6 +463,16 @@ public interface GraphdomPackage extends EPackage {
 	EOperation getGraph__FindNodeById__String();
 
 	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#unmarkAllNodes() <em>Unmark All Nodes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unmark All Nodes</em>' operation.
+	 * @see graphdom.Graph#unmarkAllNodes()
+	 * @generated
+	 */
+	EOperation getGraph__UnmarkAllNodes();
+
+	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -760,6 +779,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GRAPH___FIND_NODE_BY_ID__STRING = eINSTANCE.getGraph__FindNodeById__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Unmark All Nodes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___UNMARK_ALL_NODES = eINSTANCE.getGraph__UnmarkAllNodes();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.

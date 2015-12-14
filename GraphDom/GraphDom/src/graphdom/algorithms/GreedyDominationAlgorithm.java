@@ -17,24 +17,31 @@ public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 	
 	@Override
 	public void setInitialGraph(Graph newInitialGraph) {
+		
+		// Set graph to dominate
 		super.setInitialGraph(newInitialGraph);
+
+		// Unmark all of its nodes, so we can mark the dominating ones
+		getInitialGraph().unmarkAllNodes();
+		
+		// Get a working copy so we can delete nodes and change stuff
 		workingGraph = (Graph) EcoreUtil.copy(newInitialGraph);
+		
+		// Switch status from uninitialized
 		setStatus(AlgorithmStatus.INPROGRESS);
 	}
 
 	@Override
 	public void nextStep() {
-		// TODO Auto-generated method stub
+		// TODO Unfinished
 		
-		// Search highest-grade node
-		
+		// Search highest-grade node		
 		Node maxNode = Utils.findHighestGradeNode(workingGraph.getNodes());
 		
-		// Mark as part of domination
-		dominatingNodes.add(maxNode);
-		
-		
-		// Remove node and connected nodes
+		// Mark as dominating in real graph
+		initialGraph.findNodeById(maxNode.getGuid()).setMarked(true);
+				
+		// Remove node and connected (dominated) nodes from working graph
 		EList<Node> removeList = maxNode.getAdjacentNodes();
 		
 		for (Node node : removeList) {
@@ -43,6 +50,7 @@ public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 		
 		workingGraph.getNodes().remove(maxNode);
 		
+		// If no more nodes left, we have finished
 		if (workingGraph.getNodes().isEmpty()){
 			
 			setStatus(AlgorithmStatus.ENDED);

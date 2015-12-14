@@ -119,4 +119,12 @@ public interface Graph extends EObject {
 	 */
 	Node findNodeById(String id);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void unmarkAllNodes();
+
 } // Graph

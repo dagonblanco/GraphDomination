@@ -26,7 +26,7 @@ import org.eclipse.ui.views.properties.PropertyDescriptor;
  * Defines the properties that shall be displayed for {@link EReference}s
  * selected in the {@link IDiagramContainerUI}.
  */
-public class EReferencePropertySource implements IPropertySource {
+public class EdgePropertySource implements IPropertySource {
 
 	private static final String NAME_ID = "name";
 	private static final PropertyDescriptor NAME_PROP_DESC = new PropertyDescriptor(NAME_ID, "Name");
@@ -34,7 +34,7 @@ public class EReferencePropertySource implements IPropertySource {
 
 	private EReference reference;
 
-	public EReferencePropertySource(EReference reference) {
+	public EdgePropertySource(EReference reference) {
 		super();
 		this.reference = reference;
 	}

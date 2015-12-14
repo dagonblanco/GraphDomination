@@ -20,6 +20,7 @@
       <genOperations ecoreOperation="graphdom.ecore#//Graph/findNodeById">
         <genParameters ecoreParameter="graphdom.ecore#//Graph/findNodeById/id"/>
       </genOperations>
+      <genOperations ecoreOperation="graphdom.ecore#//Graph/unmarkAllNodes"/>
     </genClasses>
     <genClasses ecoreClass="graphdom.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/nodeName"/>

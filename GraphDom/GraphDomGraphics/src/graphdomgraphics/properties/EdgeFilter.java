@@ -23,16 +23,18 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
 import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
 
+import graphdom.Edge;
+
 /**
  * Filters out all other object than {@link EReference}s that get selected in
  * the {@link IDiagramContainerUI} for displaying properties.
  */
-public class TutorialEReferenceFilter extends AbstractPropertySectionFilter {
+public class EdgeFilter extends AbstractPropertySectionFilter {
 
 	@Override
 	protected boolean accept(PictogramElement pe) {
 		EObject bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-		if (bo instanceof EReference) {
+		if (bo instanceof Edge) {
 			return true;
 		}
 		return false;

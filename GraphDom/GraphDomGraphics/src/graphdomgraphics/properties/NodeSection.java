@@ -15,7 +15,7 @@
  *******************************************************************************/
 package graphdomgraphics.properties;
 
-import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
@@ -29,7 +29,9 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
-public class TutorialEClassSection extends GFPropertySection implements ITabbedPropertyConstants {
+import graphdom.Node;
+
+public class NodeSection extends GFPropertySection implements ITabbedPropertyConstants {
 
 	private Text nameText;
 
@@ -65,7 +67,7 @@ public class TutorialEClassSection extends GFPropertySection implements ITabbedP
 			// the filter assured, that it is a EClass
 			if (bo == null)
 				return;
-			String name = ((EClass) bo).getName();
+			String name = ((Node) bo).getNodeName();
 			nameText.setText(name == null ? "" : name); //$NON-NLS-1$
 		}
 	}

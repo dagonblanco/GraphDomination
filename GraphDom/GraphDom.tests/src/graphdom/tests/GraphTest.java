@@ -28,6 +28,7 @@ import junit.textui.TestRunner;
  * The following operations are tested:
  * <ul>
  *   <li>{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}</li>
+ *   <li>{@link graphdom.Graph#unmarkAllNodes() <em>Unmark All Nodes</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -111,6 +112,19 @@ public class GraphTest extends TestCase {
 	 * @generated
 	 */
 	public void testFindNodeById__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Graph#unmarkAllNodes() <em>Unmark All Nodes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Graph#unmarkAllNodes()
+	 * @generated
+	 */
+	public void testUnmarkAllNodes() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

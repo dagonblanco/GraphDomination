@@ -22,7 +22,7 @@ import org.eclipse.osgi.util.NLS;
  *
  */
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.graphiti.examples.common.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "graphdomgraphics.common.messages"; //$NON-NLS-1$
 	public static String CompartmentPattern_CompartmentChangesText;
 	public static String CreateDiagramWizard_DiagramNameField;
 	public static String CreateDiagramWizard_DiagramTypeField;

@@ -45,6 +45,10 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_13swwaE9EeWAOoYpAY3guQ" fontName="Segoe UI" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_13swwqE9EeWAOoYpAY3guQ"/>
               </children>
+              <children xmi:type="notation:Node" xmi:id="_4F8LQKJAEeWA8JeF-WO-PQ" type="3010" element="_4FgGYKJAEeWA8JeF-WO-PQ">
+                <styles xmi:type="notation:FontStyle" xmi:id="_4F8LQaJAEeWA8JeF-WO-PQ" fontName="Segoe UI" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_4F8LQqJAEeWA8JeF-WO-PQ"/>
+              </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_Al1tEZmsEeWH2-0gp6ZZAg"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_Al1tEpmsEeWH2-0gp6ZZAg"/>
             </children>
@@ -269,6 +273,14 @@
           <semanticElements xmi:type="ecore:EOperation" href="graphdom.ecore#//Graph/findNodeById"/>
           <semanticElements xmi:type="ecore:EParameter" href="graphdom.ecore#//Graph/findNodeById/id"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_13nRMaE9EeWAOoYpAY3guQ" labelAlignment="LEFT">
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_4FgGYKJAEeWA8JeF-WO-PQ" name="unmarkAllNodes()" tooltipText="unmarkAllNodes()">
+          <target xmi:type="ecore:EOperation" href="graphdom.ecore#//Graph/unmarkAllNodes"/>
+          <semanticElements xmi:type="ecore:EOperation" href="graphdom.ecore#//Graph/unmarkAllNodes"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_4FhUgKJAEeWA8JeF-WO-PQ" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>

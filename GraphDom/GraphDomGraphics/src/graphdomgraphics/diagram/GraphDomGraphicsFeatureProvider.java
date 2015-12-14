@@ -33,6 +33,7 @@ import graphdomgraphics.features.GreedyDominationTestCustomFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
 import graphdomgraphics.features.MarkNodeCustomFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
+import graphdomgraphics.features.UnmarkAllNodesCustomFeature;
 import graphdomgraphics.features.UpdateNodeFeature;
 import graphdom.Node;
 import graphdom.Edge;
@@ -59,7 +60,8 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
 		return new ICreateConnectionFeature[] { 
 				new CreateEdgeConnectionFeature(this),
-				new CreateEdgeConnectionWithNodeFeature(this) };
+				new CreateEdgeConnectionWithNodeFeature(this)
+				};
 	}
 
 	@Override
@@ -89,23 +91,27 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	public IReconnectionFeature getReconnectionFeature(IReconnectionContext context) {
 		return new ReconnectNodeFeature(this);
 	}
-	
+
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-	    return new ICustomFeature[] { new MarkNodeCustomFeature(this), new GenerateRandomNodesCustomFeature(this), new GreedyDominationTestCustomFeature(this) };
+		return new ICustomFeature[] { 
+				new MarkNodeCustomFeature(this),
+				new GenerateRandomNodesCustomFeature(this),
+				new GreedyDominationTestCustomFeature(this),
+				new UnmarkAllNodesCustomFeature(this)
+				};
 	}
-	
+
 	@Override
 	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
-	   PictogramElement pictogramElement = context.getPictogramElement();
-	   if (pictogramElement instanceof ContainerShape) {
-	       Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-	       if (bo instanceof Node) {
-	           return new UpdateNodeFeature(this);
-	       }
-	   }
-	   return super.getUpdateFeature(context);
+		PictogramElement pictogramElement = context.getPictogramElement();
+		if (pictogramElement instanceof ContainerShape) {
+			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+			if (bo instanceof Node) {
+				return new UpdateNodeFeature(this);
+			}
+		}
+		return super.getUpdateFeature(context);
 	}
-	
-	
+
 }
