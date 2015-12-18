@@ -19,6 +19,9 @@
          <diagramType
                id="GraphDomGraphics.GraphDomGraphicsDiagramType">
          </diagramType>
+         <imageProvider
+               id="graphdom.common.GraphdomImageProvider">
+         </imageProvider>
       </diagramTypeProvider>
    </extension>
    
