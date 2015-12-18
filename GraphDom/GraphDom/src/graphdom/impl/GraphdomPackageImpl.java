@@ -181,6 +181,15 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getGraph__UnmarkAllNodes() {
+		return graphEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -408,6 +417,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEReference(graphEClass, GRAPH__EDGES);
 		createEAttribute(graphEClass, GRAPH__NEXT_NODE_ID);
 		createEOperation(graphEClass, GRAPH___FIND_NODE_BY_ID__STRING);
+		createEOperation(graphEClass, GRAPH___UNMARK_ALL_NODES);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NODE_NAME);
@@ -475,6 +485,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 
 		EOperation op = initEOperation(getGraph__FindNodeById__String(), this.getNode(), "findNodeById", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "id", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getGraph__UnmarkAllNodes(), null, "unmarkAllNodes", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_NodeName(), ecorePackage.getEString(), "nodeName", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -189,12 +189,29 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Node findNodeById(String id) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		for (Node node : getNodes()) {
+			if (node.getGuid().equals(id)){
+				return node;
+			}
+			
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unmarkAllNodes() {
+		
+		for (Node node : getNodes()) {
+		node.setMarked(false);	
+		}
 	}
 
 	/**
@@ -314,6 +331,9 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 		switch (operationID) {
 			case GraphdomPackage.GRAPH___FIND_NODE_BY_ID__STRING:
 				return findNodeById((String)arguments.get(0));
+			case GraphdomPackage.GRAPH___UNMARK_ALL_NODES:
+				unmarkAllNodes();
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}

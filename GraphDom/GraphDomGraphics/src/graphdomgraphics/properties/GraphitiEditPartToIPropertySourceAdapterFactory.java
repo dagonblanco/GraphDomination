@@ -41,7 +41,7 @@ public class GraphitiEditPartToIPropertySourceAdapterFactory implements IAdapter
 				PictogramElement pictogramElement = editPart.getPictogramElement();
 				Object object = editPart.getFeatureProvider().getBusinessObjectForPictogramElement(pictogramElement);
 				if (object instanceof EReference) {
-					return new EReferencePropertySource((EReference) object);
+					return new EdgePropertySource((EReference) object);
 				}
 			}
 		}

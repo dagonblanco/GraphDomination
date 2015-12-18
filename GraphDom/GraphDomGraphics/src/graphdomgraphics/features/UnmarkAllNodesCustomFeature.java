@@ -3,45 +3,42 @@
  */
 package graphdomgraphics.features;
 
-import java.util.Random;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
-import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILinkService;
-import org.eclipse.graphiti.services.IPeCreateService;
 
 import graphdom.Graph;
 import graphdom.Node;
-import graphdom.algorithms.GreedyDominationAlgorithm;
+import graphdom.util.Utils;
 import graphdomgraphics.common.ExampleUtil;
 
 /**
  * @author David
  *
  */
-public class GreedyDominationTestCustomFeature extends AbstractCustomFeature {
-
+public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 
 	/**
 	 * @param fp
 	 */
-	public GreedyDominationTestCustomFeature(IFeatureProvider fp) {
+	public UnmarkAllNodesCustomFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
 
+	private boolean hasDoneChanges = false;
+
 	@Override
 	public String getName() {
-		return "Greedy domination";
+		return "Unmark all Nodes";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Apply greedy domination algorithm";
+		return "Reset the mark on all nodes";
 	}
 
 	@Override
@@ -51,29 +48,30 @@ public class GreedyDominationTestCustomFeature extends AbstractCustomFeature {
 
 	@Override
 	public void execute(ICustomContext context) {
-
-		// Access the graph
+		
+		// Get the graph
 		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
 
-		GreedyDominationAlgorithm gda = new GreedyDominationAlgorithm();
-		
-		gda.setInitialGraph(theGraph);
-		
-		gda.runToEnd();
-		
+		// Get the linkservice
 		ILinkService linkserv = Graphiti.getLinkService();
-		
-		for (Node node : theGraph.getNodes()){
-			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)){
-				updatePictogramElement(pe);	
+
+		// For every node in the graph
+		for (Node node : theGraph.getNodes()) {
+			// If marked...
+			if (node.isMarked()) {				
+				//unmark
+				node.setMarked(false);
+				// and update pictogram
+				for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
+					updatePictogramElement(pe);
+				}
+				hasDoneChanges=true;
 			}
 		}
-		
 	}
 
 	@Override
 	public boolean hasDoneChanges() {
-		return true;
+		return this.hasDoneChanges;
 	}
-
 }

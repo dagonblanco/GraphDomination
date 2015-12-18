@@ -30,6 +30,7 @@ import org.eclipse.graphiti.tb.IContextMenuEntry;
 import graphdom.Node;
 import graphdomgraphics.common.GraphdomImageProvider;
 import graphdomgraphics.common.IGraphdomImageConstants;
+import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
 import graphdomgraphics.features.MarkNodeCustomFeature;
 
@@ -58,7 +59,7 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 		// 1. set the generic context buttons
 		// note, that we do not add 'remove' (just as an example)
-		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
+		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
 
 		// 2. add domain specific context-buttons, which offer all
 		// available create-features
@@ -73,18 +74,18 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 		// create context buttons for all applicable features
 
-		ICreateFeature[] features = getFeatureProvider().getCreateFeatures();
-		for (ICreateFeature feature : features) {
-			if (feature.isAvailable(cc) && feature.canCreate(cc)) {
-				ContextButtonEntry button = new ContextButtonEntry(feature, cc);
-
-				button.setText(feature.getCreateDescription());
-				button.setIconId(IGraphdomImageConstants.IMG_NEW_NODE);
-				if (data.getDomainSpecificContextButtons().size() < MAX_DOMAIN_BUTTONS) {
-					data.getDomainSpecificContextButtons().add(button);
-				}
-			}
-		}
+//		ICreateFeature[] features = getFeatureProvider().getCreateFeatures();
+//		for (ICreateFeature feature : features) {
+//			if (feature.isAvailable(cc) && feature.canCreate(cc)) {
+//				ContextButtonEntry button = new ContextButtonEntry(feature, cc);
+//
+//				button.setText(feature.getCreateDescription());
+//				button.setIconId(IGraphdomImageConstants.IMG_NEW_NODE);
+//				if (data.getDomainSpecificContextButtons().size() < MAX_DOMAIN_BUTTONS) {
+//					data.getDomainSpecificContextButtons().add(button);
+//				}
+//			}
+//		}
 
 		// 3.a. create new CreateConnectionContext
 		CreateConnectionContext ccc = new CreateConnectionContext();
@@ -100,11 +101,11 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 		// 3.b. create context button and add all applicable features
 		ContextButtonEntry button = new ContextButtonEntry(null, context);
-		button.setText("Create connection");
-		button.setIconId(IGraphdomImageConstants.IMG_TREE_RIGHT);
+		button.setText("Create connection (and node)");
+		button.setIconId(GraphdomImageProvider.IMG_NEW_NODE);
 		ICreateConnectionFeature[] connectionFeatures = getFeatureProvider().getCreateConnectionFeatures();
 		for (ICreateConnectionFeature feature : connectionFeatures) {
-			if (feature.isAvailable(ccc) && feature.canStartConnection(ccc))
+			if (feature.isAvailable(ccc) && feature.canStartConnection(ccc) && (feature instanceof CreateEdgeConnectionWithNodeFeature))
 				button.addDragAndDropFeature(feature);
 		}
 

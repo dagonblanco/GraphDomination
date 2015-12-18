@@ -38,7 +38,7 @@
 		</wizard>
 		<wizard
         class="graphdomgraphics.ui.CreateDiagramWizard"
-        finalPerspective="graphdomgraphics.ui.GFPerspective"
+        finalPerspective="graphdom.presentation.GraphdomEditorAdvisorPerspective"
         id="graphdomgraphics.ui.CreateDiagramWizard"
         name="%wizard.name.0">
      <description>
@@ -49,7 +49,7 @@
      </selection>
 		</wizard>
 	</extension>
-   
+  
 <extension
     point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
     <propertyContributor contributorId="GraphDomGraphics.PropertyContributor"> 
@@ -75,19 +75,29 @@
     <propertySections
           contributorId="GraphDomGraphics.PropertyContributor">
         <propertySection
-              class="graphdomgraphics.properties.MyTutorialEClassSection"
-              filter="graphdomgraphics.properties.MyTutorialEClassFilter"
+              class="graphdomgraphics.properties.NodeSection"
+              filter="graphdomgraphics.properties.NodeFilter"
               id="graphiti.main.tab.emfclass"
               tab="graphiti.main.tab">
         </propertySection>
     </propertySections>
 </extension>
-
+ 
+    <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="graphdomgraphics.ui.GFPerspective"
+            fixed="false"
+            icon="icons/rialto16.gif"
+            id="org.eclipse.graphiti.examples.common.perspective.GFPerspective"
+            name="%perspective.name"/>
+   </extension>
+   
    <extension
          point="org.eclipse.graphiti.ui.imageProviders">
       <imageProvider
-            class="graphdom.common.GraphdomImageProvider"
-            id="graphdom.common.GraphdomImageProvider">
+            class="graphdomgraphics.common.GraphdomImageProvider"
+            id="graphdomgraphics.common.GraphdomImageProvider">
       </imageProvider>
    </extension>
 </plugin>

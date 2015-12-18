@@ -5,6 +5,7 @@
     <eOperations name="findNodeById" eType="#//Node">
       <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="unmarkAllNodes"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="graphName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
