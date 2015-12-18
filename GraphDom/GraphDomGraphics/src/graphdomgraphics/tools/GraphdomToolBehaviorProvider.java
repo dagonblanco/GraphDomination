@@ -29,7 +29,7 @@ import org.eclipse.graphiti.tb.IContextMenuEntry;
 
 import graphdom.Node;
 import graphdomgraphics.common.GraphdomImageProvider;
-import graphdomgraphics.common.IGraphdomImageConstants;
+
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
 import graphdomgraphics.features.MarkNodeCustomFeature;

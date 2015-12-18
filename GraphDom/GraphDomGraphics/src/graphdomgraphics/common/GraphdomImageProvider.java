@@ -30,12 +30,14 @@ public class GraphdomImageProvider extends AbstractImageProvider {
 
 	// The image identifier for an EReference.
 	public static final String IMG_EREFERENCE = PREFIX + "ereference"; //$NON-NLS-1$
+	
+	public static final String IMG_PERSPECTIVE = PREFIX + "perspective"; //$NON-NLS-1$
 
 	//private static final String ROOT_FOLDER_FOR_IMG = "icons/"; //$NON-NLS-1$
 
-	public static final String IMG_NEW_NODE = PREFIX + "new_node";
+	public static final String IMG_NEW_NODE = PREFIX + "newnode";
 
-	public static final String IMG_NEW_LINK = PREFIX + "new_link";
+	public static final String IMG_NEW_LINK = PREFIX + "newlink";
 
 	@Override
 	protected void addAvailableImages() {
@@ -74,6 +76,7 @@ public class GraphdomImageProvider extends AbstractImageProvider {
 		addImageFilePath(IMG_NEW_NODE, "icons/newnode.gif"); //$NON-NLS-1$
 		addImageFilePath(IMG_NEW_LINK, "icons/tree/tree_right.gif");
 		addImageFilePath(IMG_EREFERENCE, "icons/ereference.gif"); //$NON-NLS-1$
+		addImageFilePath(IMG_PERSPECTIVE, "icons/GraphDom.gif"); //$NON-NLS-1$
 	}
 	
 

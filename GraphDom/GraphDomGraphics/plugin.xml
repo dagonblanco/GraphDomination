@@ -20,7 +20,7 @@
                id="GraphDomGraphics.GraphDomGraphicsDiagramType">
          </diagramType>
          <imageProvider
-               id="graphdom.common.GraphdomImageProvider">
+               id="GraphdomImageProvider">
          </imageProvider>
       </diagramTypeProvider>
    </extension>
@@ -29,7 +29,7 @@
 		point = "org.eclipse.ui.newWizards">
 		<wizard
         class="graphdomgraphics.ui.CreateGraphdomProjectWizard"
-        finalPerspective="graphdomgraphics.ui.GFPerspective"
+        finalPerspective="GraphDomPerspective"
         id="graphdomgraphics.ui.CreateSampleProjectWizard"
         name="%wizard.name"
         project="true">
@@ -38,7 +38,7 @@
 		</wizard>
 		<wizard
         class="graphdomgraphics.ui.CreateDiagramWizard"
-        finalPerspective="graphdom.presentation.GraphdomEditorAdvisorPerspective"
+        finalPerspective="GraphDomPerspective"
         id="graphdomgraphics.ui.CreateDiagramWizard"
         name="%wizard.name.0">
      <description>
@@ -89,15 +89,15 @@
             class="graphdomgraphics.ui.GFPerspective"
             fixed="false"
             icon="icons/rialto16.gif"
-            id="org.eclipse.graphiti.examples.common.perspective.GFPerspective"
-            name="%perspective.name"/>
+            id="GraphDomPerspective"
+            name="GraphDom"/>
    </extension>
    
    <extension
          point="org.eclipse.graphiti.ui.imageProviders">
       <imageProvider
             class="graphdomgraphics.common.GraphdomImageProvider"
-            id="graphdomgraphics.common.GraphdomImageProvider">
+            id="GraphdomImageProvider">
       </imageProvider>
    </extension>
 </plugin>
