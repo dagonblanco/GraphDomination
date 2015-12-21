@@ -24,17 +24,21 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
+import graphdom.Graph;
+import graphdom.GraphdomFactory;
 import graphdomgraphics.common.GraphdomProjectNature;
 
 public class CreateGraphdomProjectWizard extends BasicNewProjectResourceWizard {
 
+	private static final String DIAGRAM_PATH = "diagrams/";
+	
 	@Override
 	public boolean performFinish() {
 		if (!super.performFinish())
@@ -49,21 +53,26 @@ public class CreateGraphdomProjectWizard extends BasicNewProjectResourceWizard {
 		} catch (CoreException e) {
 			return false;
 		}
-
+		
 		return true;
 	}
 
 	private void createPredefinedContent(IProject newProject) throws CoreException {
-		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-		eclass.setName("PredefinedEClass"); //$NON-NLS-1$
+
 		ResourceSet set = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI(newProject.getFile("Predefined.data").getFullPath().toString(), true); //$NON-NLS-1$ //$NON-NLS-2$
+		URI uri = URI.createPlatformResourceURI(newProject.getFile(DIAGRAM_PATH + "newDiagram.diagram").getFullPath().toString(), true); //$NON-NLS-1$ //$NON-NLS-2$
 		Resource resource = set.createResource(uri);
-		resource.getContents().add(eclass);
+		Graph theGraph = GraphdomFactory.eINSTANCE.createGraph();
+		
+		Diagram theDiagram = Graphiti.getPeCreateService().createDiagram("GraphDomGraphics", "newDiagram", true);
+		
+		resource.getContents().add(theDiagram);
+		resource.getContents().add(theGraph);
+		
 		try {
 			resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			IStatus status = new Status(IStatus.ERROR, "org.eclipse.tutorial.support", 0, e.getMessage(), e); //$NON-NLS-1$
+			IStatus status = new Status(IStatus.ERROR, "GraphDomGraphics", 0, e.getMessage(), e); //$NON-NLS-1$
 			throw new CoreException(status);
 		}
 	}

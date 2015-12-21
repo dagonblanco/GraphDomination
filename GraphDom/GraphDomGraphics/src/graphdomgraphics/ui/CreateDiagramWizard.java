@@ -50,6 +50,7 @@ import graphdomgraphics.common.Messages;
  */
 public class CreateDiagramWizard extends BasicNewResourceWizard {
 
+	private static final String DIAGRAM_PATH = "diagrams/";
 	private static final String PAGE_NAME_DIAGRAM_TYPE = Messages.CreateDiagramWizard_DiagramTypeField;
 	private static final String PAGE_NAME_DIAGRAM_NAME = Messages.CreateDiagramWizard_DiagramNameField;
 	private static final String WIZARD_WINDOW_TITLE = Messages.CreateDiagramWizard_WizardTitle;
@@ -59,7 +60,10 @@ public class CreateDiagramWizard extends BasicNewResourceWizard {
 	@Override
 	public void addPages() {
 		super.addPages();
-		addPage(new DiagramTypeWizardPage(PAGE_NAME_DIAGRAM_TYPE));
+		// Only ask for type if more than 1 available
+		if (GraphitiUi.getExtensionManager().getDiagramTypes().length != 1){
+			addPage(new DiagramTypeWizardPage(PAGE_NAME_DIAGRAM_TYPE));
+		}
 		addPage(new DiagramNameWizardPage(PAGE_NAME_DIAGRAM_NAME));
 	}
 
@@ -76,8 +80,17 @@ public class CreateDiagramWizard extends BasicNewResourceWizard {
 
 	@Override
 	public boolean performFinish() {
+		
+		
+		// Get diagram selection only if more than one diagram type available
+		String diagramTypeId;
+		if (GraphitiUi.getExtensionManager().getDiagramTypes().length != 1){
 		ITextProvider typePage = (ITextProvider) getPage(PAGE_NAME_DIAGRAM_TYPE);
-		final String diagramTypeId = typePage.getText();
+			diagramTypeId = typePage.getText();
+		} else {
+			// Diagram selected is the only available one
+			diagramTypeId = GraphitiUi.getExtensionManager().getDiagramTypes()[0].getId();
+		}
 
 		ITextProvider namePage = (ITextProvider) getPage(PAGE_NAME_DIAGRAM_NAME);
 		final String diagramName = namePage.getText();
@@ -105,7 +118,7 @@ public class CreateDiagramWizard extends BasicNewResourceWizard {
 
 		Diagram diagram = Graphiti.getPeCreateService().createDiagram(diagramTypeId, diagramName, true);
 		if (diagramFolder == null) {
-			diagramFolder = project.getFolder("src/diagrams/"); //$NON-NLS-1$
+			diagramFolder = project.getFolder(DIAGRAM_PATH); //$NON-NLS-1$
 		}
 
 		String editorID = DiagramEditor.DIAGRAM_EDITOR_ID;

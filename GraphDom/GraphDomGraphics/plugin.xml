@@ -100,4 +100,14 @@
             id="GraphdomImageProvider">
       </imageProvider>
    </extension>
+   
+   <extension
+      point="org.eclipse.core.resources.natures"
+      id="graphdomgraphics.graphdomnature"
+      name="GraphDom Nature">
+      <runtime>
+         <run class="graphdomgraphics.common.GraphdomProjectNature">
+         </run>
+      </runtime>
+</extension>
 </plugin>
