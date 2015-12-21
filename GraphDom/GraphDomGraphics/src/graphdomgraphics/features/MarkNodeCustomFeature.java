@@ -38,7 +38,7 @@ public class MarkNodeCustomFeature extends AbstractCustomFeature {
 
 	@Override
 	public boolean canExecute(ICustomContext context) {
-		// allow rename if exactly one pictogram element
+		// allow mark if exactly one pictogram element
 		// representing a Node is selected
 		boolean ret = false;
 		PictogramElement[] pes = context.getPictogramElements();
@@ -58,8 +58,11 @@ public class MarkNodeCustomFeature extends AbstractCustomFeature {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
 			if (bo instanceof Node) {
 				Node node = (Node) bo;
-				node.setMarked(!node.isMarked());
+				node.setDominating(!node.isDominating());
 				updatePictogramElement(pes[0]);
+				for (Node adjacent : node.getAdjacentNodes()){
+					
+				}
 			}
 		}
 	}

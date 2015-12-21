@@ -28,10 +28,14 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 
 	static final IColorConstant NODE_BACKGROUND = new ColorConstant(187, 218, 247);
 
-	static final IColorConstant NODE_FOREGROUND_MARKED = new ColorConstant(168, 100, 98);
+	static final IColorConstant NODE_FOREGROUND_DOMINATING = new ColorConstant(168, 100, 98);
 
-	static final IColorConstant NODE_BACKGROUND_MARKED = new ColorConstant(248, 188, 189);
+	static final IColorConstant NODE_BACKGROUND_DOMINATING = new ColorConstant(248, 188, 189);
 
+	static final IColorConstant NODE_FOREGROUND_DOMINATED = new ColorConstant(168, 168, 168);
+
+	static final IColorConstant NODE_BACKGROUND_DOMINATED = new ColorConstant(188, 188, 188);
+	
 	public AddNodeFeature(IFeatureProvider fp) {
 		super(fp);
 	}
@@ -66,13 +70,16 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 		Ellipse ellipse = gaService.createEllipse(containerShape);
 		ellipse.setHeight(height);
 		ellipse.setWidth(width);
-
-		if (!addedNode.isMarked()) {
-			ellipse.setForeground(manageColor(NODE_FOREGROUND));
-			ellipse.setBackground(manageColor(NODE_BACKGROUND));
+		
+		if (addedNode.isDominating()) {
+			ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_DOMINATING));
+			ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_DOMINATING));
+		} else if (addedNode.isDominated()){
+			ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_DOMINATED));
+			ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_DOMINATED));
 		} else {
-			ellipse.setForeground(manageColor(NODE_FOREGROUND_MARKED));
-			ellipse.setBackground(manageColor(NODE_BACKGROUND_MARKED));
+			ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND));
+			ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND));
 		}
 		gaService.setLocationAndSize(ellipse, context.getX(), context.getY(), width, height);
 		// if added node has no resource we add it to the resource

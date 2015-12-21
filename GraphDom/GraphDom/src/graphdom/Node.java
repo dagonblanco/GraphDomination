@@ -17,11 +17,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link graphdom.Node#getNodeName <em>Node Name</em>}</li>
  *   <li>{@link graphdom.Node#getColor <em>Color</em>}</li>
  *   <li>{@link graphdom.Node#getConnectedEdges <em>Connected Edges</em>}</li>
- *   <li>{@link graphdom.Node#isMarked <em>Marked</em>}</li>
+ *   <li>{@link graphdom.Node#isDominating <em>Dominating</em>}</li>
  *   <li>{@link graphdom.Node#getGrade <em>Grade</em>}</li>
  *   <li>{@link graphdom.Node#getGuid <em>Guid</em>}</li>
  *   <li>{@link graphdom.Node#getXCoord <em>XCoord</em>}</li>
  *   <li>{@link graphdom.Node#getYCoord <em>YCoord</em>}</li>
+ *   <li>{@link graphdom.Node#isDominated <em>Dominated</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getNode()
@@ -102,30 +103,31 @@ public interface Node extends EObject {
 	EList<Edge> getConnectedEdges();
 
 	/**
-	 * Returns the value of the '<em><b>Marked</b></em>' attribute.
+	 * Returns the value of the '<em><b>Dominating</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Marked</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Dominating</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Marked</em>' attribute.
-	 * @see #setMarked(boolean)
-	 * @see graphdom.GraphdomPackage#getNode_Marked()
-	 * @model
+	 * @return the value of the '<em>Dominating</em>' attribute.
+	 * @see #setDominating(boolean)
+	 * @see graphdom.GraphdomPackage#getNode_Dominating()
+	 * @model default="false"
 	 * @generated
 	 */
-	boolean isMarked();
+	boolean isDominating();
 
 	/**
-	 * Sets the value of the '{@link graphdom.Node#isMarked <em>Marked</em>}' attribute.
+	 * Sets the value of the '{@link graphdom.Node#isDominating <em>Dominating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Marked</em>' attribute.
-	 * @see #isMarked()
+	 * @param value the new value of the '<em>Dominating</em>' attribute.
+	 * @see #isDominating()
 	 * @generated
 	 */
-	void setMarked(boolean value);
+	void setDominating(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Grade</b></em>' attribute.
@@ -231,6 +233,32 @@ public interface Node extends EObject {
 	 * @generated
 	 */
 	void setYCoord(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Dominated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dominated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dominated</em>' attribute.
+	 * @see #setDominated(boolean)
+	 * @see graphdom.GraphdomPackage#getNode_Dominated()
+	 * @model
+	 * @generated
+	 */
+	boolean isDominated();
+
+	/**
+	 * Sets the value of the '{@link graphdom.Node#isDominated <em>Dominated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dominated</em>' attribute.
+	 * @see #isDominated()
+	 * @generated
+	 */
+	void setDominated(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

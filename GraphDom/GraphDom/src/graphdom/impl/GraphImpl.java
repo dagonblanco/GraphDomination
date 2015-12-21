@@ -208,10 +208,9 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * @generated
 	 */
 	public void unmarkAllNodes() {
-		
-		for (Node node : getNodes()) {
-		node.setMarked(false);	
-		}
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

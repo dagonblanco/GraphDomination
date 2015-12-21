@@ -63,11 +63,12 @@ public class NodeItemProvider
 			addNodeNamePropertyDescriptor(object);
 			addColorPropertyDescriptor(object);
 			addConnectedEdgesPropertyDescriptor(object);
-			addMarkedPropertyDescriptor(object);
+			addDominatingPropertyDescriptor(object);
 			addGradePropertyDescriptor(object);
 			addGuidPropertyDescriptor(object);
 			addXCoordPropertyDescriptor(object);
 			addYCoordPropertyDescriptor(object);
+			addDominatedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -139,19 +140,19 @@ public class NodeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Marked feature.
+	 * This adds a property descriptor for the Dominating feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMarkedPropertyDescriptor(Object object) {
+	protected void addDominatingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_marked_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_marked_feature", "_UI_Node_type"),
-				 GraphdomPackage.Literals.NODE__MARKED,
+				 getString("_UI_Node_dominating_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_dominating_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__DOMINATING,
 				 true,
 				 false,
 				 false,
@@ -249,6 +250,28 @@ public class NodeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Dominated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDominatedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Node_dominated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_dominated_feature", "_UI_Node_type"),
+				 GraphdomPackage.Literals.NODE__DOMINATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Node.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -288,11 +311,12 @@ public class NodeItemProvider
 		switch (notification.getFeatureID(Node.class)) {
 			case GraphdomPackage.NODE__NODE_NAME:
 			case GraphdomPackage.NODE__COLOR:
-			case GraphdomPackage.NODE__MARKED:
+			case GraphdomPackage.NODE__DOMINATING:
 			case GraphdomPackage.NODE__GRADE:
 			case GraphdomPackage.NODE__GUID:
 			case GraphdomPackage.NODE__XCOORD:
 			case GraphdomPackage.NODE__YCOORD:
+			case GraphdomPackage.NODE__DOMINATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
