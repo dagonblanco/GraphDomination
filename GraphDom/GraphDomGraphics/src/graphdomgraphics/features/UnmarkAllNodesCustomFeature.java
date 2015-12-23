@@ -58,9 +58,10 @@ public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 		// For every node in the graph
 		for (Node node : theGraph.getNodes()) {
 			// If marked...
-			if (node.isDominating()) {				
+			if (node.isDominating() || node.isDominated()) {				
 				//unmark
 				node.setDominating(false);
+				node.setDominated(false);
 				// and update pictogram
 				for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
 					updatePictogramElement(pe);

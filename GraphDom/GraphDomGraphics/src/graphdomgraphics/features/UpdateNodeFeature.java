@@ -16,6 +16,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import graphdom.Node;
+import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.IColorConstants;
 
 /**
  * @author David
@@ -82,6 +84,7 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 			Node node = (Node) bo;
 			businessName = node.getNodeName();
 			dominating = node.isDominating();
+			dominated = node.isDominated();
 		}
 
 		// update needed, if names are different
@@ -89,14 +92,14 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 				|| (pictogramName != null && !pictogramName.equals(businessName)));
 
 		boolean markChanged = (
-				(dominating && !AddNodeFeature.NODE_FOREGROUND_DOMINATING.equals(pictogramColor))
-				||(!dominating && dominated && !AddNodeFeature.NODE_FOREGROUND_DOMINATED.equals(pictogramColor))
-				||(!dominating && !dominated && AddNodeFeature.NODE_FOREGROUND.equals(pictogramColor))
+				(dominating && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATING))
+				||(!dominating && dominated && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATED))
+				||(!dominating && !dominated && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND))
 				);
 		if (updateNameNeeded) {
 			return Reason.createTrueReason("Name is out of date");
-//		} else if (markChanged) {
-//			return Reason.createTrueReason("Mark has changed");
+		} else if (markChanged) {
+			return Reason.createTrueReason("Domination state has changed");
 		} else {
 			return Reason.createFalseReason();
 		}
@@ -130,14 +133,14 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 			if (cs.getGraphicsAlgorithm() instanceof Ellipse) {
 				Ellipse ellipse = (Ellipse) cs.getGraphicsAlgorithm();
 				if (dominating) {
-					ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_DOMINATING));
-					ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_DOMINATING));
+					ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND_DOMINATING));
+					ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND_DOMINATING));
 				} else if (dominated){
-					ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_DOMINATED));
-					ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_DOMINATED));
+					ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND_DOMINATED));
+					ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND_DOMINATED));
 				} else {
-					ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND));
-					ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND));
+					ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND));
+					ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND));
 				}
 			}
 			for (Shape shape : cs.getChildren()) {

@@ -15,26 +15,13 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
-import org.eclipse.graphiti.util.ColorConstant;
-import org.eclipse.graphiti.util.IColorConstant;
 
 import graphdom.Node;
 import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.IColorConstants;
 
 public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
-	private static final IColorConstant NODE_TEXT_FOREGROUND = IColorConstant.BLACK;
 
-	static final IColorConstant NODE_FOREGROUND = new ColorConstant(98, 131, 167);
-
-	static final IColorConstant NODE_BACKGROUND = new ColorConstant(187, 218, 247);
-
-	static final IColorConstant NODE_FOREGROUND_DOMINATING = new ColorConstant(168, 100, 98);
-
-	static final IColorConstant NODE_BACKGROUND_DOMINATING = new ColorConstant(248, 188, 189);
-
-	static final IColorConstant NODE_FOREGROUND_DOMINATED = new ColorConstant(168, 168, 168);
-
-	static final IColorConstant NODE_BACKGROUND_DOMINATED = new ColorConstant(188, 188, 188);
 	
 	public AddNodeFeature(IFeatureProvider fp) {
 		super(fp);
@@ -72,14 +59,14 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 		ellipse.setWidth(width);
 		
 		if (addedNode.isDominating()) {
-			ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_DOMINATING));
-			ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_DOMINATING));
+			ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND_DOMINATING));
+			ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND_DOMINATING));
 		} else if (addedNode.isDominated()){
-			ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_DOMINATED));
-			ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_DOMINATED));
+			ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND_DOMINATED));
+			ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND_DOMINATED));
 		} else {
-			ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND));
-			ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND));
+			ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND));
+			ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND));
 		}
 		gaService.setLocationAndSize(ellipse, context.getX(), context.getY(), width, height);
 		// if added node has no resource we add it to the resource
@@ -96,7 +83,7 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 
 		// create and set text graphics algorithm
 		Text text = gaService.createText(shape, addedNode.getNodeName());
-		text.setForeground(manageColor(NODE_TEXT_FOREGROUND));
+		text.setForeground(manageColor(IColorConstants.NODE_TEXT_FOREGROUND));
 		text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 		// vertical alignment has as default value "center"
 		text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
