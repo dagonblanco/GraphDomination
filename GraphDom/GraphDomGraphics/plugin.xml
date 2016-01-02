@@ -110,4 +110,36 @@
          </run>
       </runtime>
 </extension>
+   <extension
+         id="GraphDomGraphics"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="GraphDom">
+         <property
+               name="aboutText"
+               value="GraphDom - Dominación en Grafos&#x0A;&#x0A;TFC&#x0A;&#x0A;Autor: David Gonzalo Blanco&#x0A;Tutor: Gregorio Hernández&#x0A;&#x0A;Facultad de Informática, Universidad Politécnica de Madrid">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,275,445,15">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,252,445,20">
+         </property>
+         <property
+               name="appName"
+               value="GraphDom">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+      </product>
+   </extension>
 </plugin>
