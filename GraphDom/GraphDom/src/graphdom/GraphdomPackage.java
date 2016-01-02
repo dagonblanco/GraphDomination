@@ -178,13 +178,13 @@ public interface GraphdomPackage extends EPackage {
 	int NODE__CONNECTED_EDGES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Marked</b></em>' attribute.
+	 * The feature id for the '<em><b>Dominating</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__MARKED = 3;
+	int NODE__DOMINATING = 3;
 
 	/**
 	 * The feature id for the '<em><b>Grade</b></em>' attribute.
@@ -223,13 +223,22 @@ public interface GraphdomPackage extends EPackage {
 	int NODE__YCOORD = 7;
 
 	/**
+	 * The feature id for the '<em><b>Dominated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__DOMINATED = 8;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 8;
+	int NODE_FEATURE_COUNT = 9;
 
 	/**
 	 * The operation id for the '<em>Get Adjacent Nodes</em>' operation.
@@ -516,15 +525,15 @@ public interface GraphdomPackage extends EPackage {
 	EReference getNode_ConnectedEdges();
 
 	/**
-	 * Returns the meta object for the attribute '{@link graphdom.Node#isMarked <em>Marked</em>}'.
+	 * Returns the meta object for the attribute '{@link graphdom.Node#isDominating <em>Dominating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Marked</em>'.
-	 * @see graphdom.Node#isMarked()
+	 * @return the meta object for the attribute '<em>Dominating</em>'.
+	 * @see graphdom.Node#isDominating()
 	 * @see #getNode()
 	 * @generated
 	 */
-	EAttribute getNode_Marked();
+	EAttribute getNode_Dominating();
 
 	/**
 	 * Returns the meta object for the attribute '{@link graphdom.Node#getGrade <em>Grade</em>}'.
@@ -569,6 +578,17 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNode_YCoord();
+
+	/**
+	 * Returns the meta object for the attribute '{@link graphdom.Node#isDominated <em>Dominated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dominated</em>'.
+	 * @see graphdom.Node#isDominated()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_Dominated();
 
 	/**
 	 * Returns the meta object for the '{@link graphdom.Node#getAdjacentNodes() <em>Get Adjacent Nodes</em>}' operation.
@@ -823,12 +843,12 @@ public interface GraphdomPackage extends EPackage {
 		EReference NODE__CONNECTED_EDGES = eINSTANCE.getNode_ConnectedEdges();
 
 		/**
-		 * The meta object literal for the '<em><b>Marked</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Dominating</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NODE__MARKED = eINSTANCE.getNode_Marked();
+		EAttribute NODE__DOMINATING = eINSTANCE.getNode_Dominating();
 
 		/**
 		 * The meta object literal for the '<em><b>Grade</b></em>' attribute feature.
@@ -861,6 +881,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NODE__YCOORD = eINSTANCE.getNode_YCoord();
+
+		/**
+		 * The meta object literal for the '<em><b>Dominated</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__DOMINATED = eINSTANCE.getNode_Dominated();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Adjacent Nodes</b></em>' operation.

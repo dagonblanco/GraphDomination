@@ -210,7 +210,8 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	public void unmarkAllNodes() {
 		
 		for (Node node : getNodes()) {
-		node.setMarked(false);	
+		node.setDominated(false);
+		node.setDominating(false);
 		}
 	}
 

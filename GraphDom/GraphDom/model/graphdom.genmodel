@@ -26,11 +26,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/nodeName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/color"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphdom.ecore#//Node/connectedEdges"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/marked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/dominating"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/grade"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/guid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/xCoord"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/yCoord"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/dominated"/>
       <genOperations ecoreOperation="graphdom.ecore#//Node/getAdjacentNodes"/>
     </genClasses>
     <genClasses ecoreClass="graphdom.ecore#//Edge">

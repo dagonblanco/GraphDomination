@@ -39,7 +39,7 @@ public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 		Node maxNode = Utils.findHighestGradeNode(workingGraph.getNodes());
 		
 		// Mark as dominating in real graph
-		initialGraph.findNodeById(maxNode.getGuid()).setMarked(true);
+		initialGraph.findNodeById(maxNode.getGuid()).setDominating(true);
 				
 		// Remove node and connected (dominated) nodes from working graph
 		EList<Node> removeList = maxNode.getAdjacentNodes();

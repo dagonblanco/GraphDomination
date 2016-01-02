@@ -16,6 +16,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import graphdom.Node;
+import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.IColorConstants;
 
 /**
  * @author David
@@ -74,25 +76,30 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 
 		// retrieve name from business model
 		String businessName = null;
-		boolean marked = false;
+		boolean dominating = false;
+		boolean dominated = false;
 
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		if (bo instanceof Node) {
 			Node node = (Node) bo;
 			businessName = node.getNodeName();
-			marked = node.isMarked();
+			dominating = node.isDominating();
+			dominated = node.isDominated();
 		}
 
 		// update needed, if names are different
 		boolean updateNameNeeded = ((pictogramName == null && businessName != null)
 				|| (pictogramName != null && !pictogramName.equals(businessName)));
 
-		boolean markChanged = (marked && !AddNodeFeature.NODE_FOREGROUND_MARKED.equals(pictogramColor))
-				||(!marked && AddNodeFeature.NODE_FOREGROUND_MARKED.equals(pictogramColor));
+		boolean markChanged = (
+				(dominating && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATING))
+				||(!dominating && dominated && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATED))
+				||(!dominating && !dominated && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND))
+				);
 		if (updateNameNeeded) {
 			return Reason.createTrueReason("Name is out of date");
-//		} else if (markChanged) {
-//			return Reason.createTrueReason("Mark has changed");
+		} else if (markChanged) {
+			return Reason.createTrueReason("Domination state has changed");
 		} else {
 			return Reason.createFalseReason();
 		}
@@ -109,13 +116,15 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 	public boolean update(IUpdateContext context) {
 		// retrieve name from business model
 		String businessName = null;
-		boolean marked = false;
+		boolean dominating = false;
+		boolean dominated = false;
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		if (bo instanceof Node) {
 			Node node = (Node) bo;
 			businessName = node.getNodeName();
-			marked = node.isMarked();
+			dominating = node.isDominating();
+			dominated = node.isDominated();
 		}
 
 		// Set name and color in pictogram model
@@ -123,12 +132,15 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 			ContainerShape cs = (ContainerShape) pictogramElement;
 			if (cs.getGraphicsAlgorithm() instanceof Ellipse) {
 				Ellipse ellipse = (Ellipse) cs.getGraphicsAlgorithm();
-				if (!marked) {
-					ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND));
-					ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND));
+				if (dominating) {
+					ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND_DOMINATING));
+					ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND_DOMINATING));
+				} else if (dominated){
+					ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND_DOMINATED));
+					ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND_DOMINATED));
 				} else {
-					ellipse.setForeground(manageColor(AddNodeFeature.NODE_FOREGROUND_MARKED));
-					ellipse.setBackground(manageColor(AddNodeFeature.NODE_BACKGROUND_MARKED));
+					ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND));
+					ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND));
 				}
 			}
 			for (Shape shape : cs.getChildren()) {

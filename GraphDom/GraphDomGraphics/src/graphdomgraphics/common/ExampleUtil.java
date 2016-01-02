@@ -39,6 +39,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.mm.pictograms.PictogramsPackage;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.RGB;
@@ -170,4 +171,10 @@ public class ExampleUtil {
 		}
 	}
 
+	public static boolean equalsColorAndConstant(Color color, IColorConstant constant) {
+
+		return ((color.getBlue() == constant.getBlue()) 
+				&& (color.getRed() == constant.getRed())
+				&& (color.getGreen() == constant.getGreen()));
+	}
 }
