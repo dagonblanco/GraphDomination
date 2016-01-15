@@ -30,11 +30,6 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 
 	@Override
 	public Object[] create(ICreateContext context) {
-
-//		String newClassName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
-//        if (newClassName == null || newClassName.trim().length() == 0) {
-//            return EMPTY;
-//        }
 		
 		Node newNode = GraphdomFactory.eINSTANCE.createNode();
 		
@@ -43,7 +38,6 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 		newNode.setXCoord(context.getX());
 		newNode.setYCoord(context.getY());
 		
-		//getDiagram().eResource().getContents().add(newNode);	
 		ExampleUtil.getRootGraph(getDiagram()).getNodes().add(newNode);
 		
 		addGraphicalRepresentation(context, newNode);

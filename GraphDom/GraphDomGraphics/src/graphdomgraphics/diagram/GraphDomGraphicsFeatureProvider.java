@@ -25,6 +25,7 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import graphdomgraphics.features.AddEdgeConnectionFeature;
 import graphdomgraphics.features.AddNodeFeature;
+import graphdomgraphics.features.ConvexClosureCustomFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
@@ -98,7 +99,8 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 				new MarkNodeCustomFeature(this),
 				new GenerateRandomNodesCustomFeature(this),
 				new GreedyDominationTestCustomFeature(this),
-				new UnmarkAllNodesCustomFeature(this)
+				new UnmarkAllNodesCustomFeature(this),
+				new ConvexClosureCustomFeature(this)
 				};
 	}
 
