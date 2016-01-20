@@ -25,11 +25,12 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import graphdomgraphics.features.AddEdgeConnectionFeature;
 import graphdomgraphics.features.AddNodeFeature;
-import graphdomgraphics.features.ConvexClosureCustomFeature;
+import graphdomgraphics.features.ConvexHullCustomFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
 import graphdomgraphics.features.GenerateRandomNodesCustomFeature;
+import graphdomgraphics.features.GenerateRoundGraphCustomFeature;
 import graphdomgraphics.features.GreedyDominationTestCustomFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
 import graphdomgraphics.features.MarkNodeCustomFeature;
@@ -100,7 +101,8 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 				new GenerateRandomNodesCustomFeature(this),
 				new GreedyDominationTestCustomFeature(this),
 				new UnmarkAllNodesCustomFeature(this),
-				new ConvexClosureCustomFeature(this)
+				new ConvexHullCustomFeature(this),
+				new GenerateRoundGraphCustomFeature(this)
 				};
 	}
 

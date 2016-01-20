@@ -3,48 +3,43 @@
  */
 package graphdomgraphics.features;
 
-import java.util.Random;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
-import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILinkService;
-import org.eclipse.graphiti.services.IPeCreateService;
 
-import graphdom.Graph;
 import graphdom.Edge;
+import graphdom.Graph;
 import graphdom.algorithms.ConvexHullAlgorithm;
-import graphdom.algorithms.GreedyDominationAlgorithm;
 import graphdomgraphics.common.ExampleUtil;
 
 /**
  * @author David
  *
  */
-public class ConvexClosureCustomFeature extends AbstractCustomFeature {
+public class ConvexHullCustomFeature extends AbstractCustomFeature {
 
 	/**
 	 * @param fp
 	 */
-	public ConvexClosureCustomFeature(IFeatureProvider fp) {
+	public ConvexHullCustomFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getName() {
-		return "Convex closure";
+		return "Convex hull";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Apply convex closure to a point cloud";
+		return "Get the convex hull for a point cloud";
 	}
 
 	@Override
