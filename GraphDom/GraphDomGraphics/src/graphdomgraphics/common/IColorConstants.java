@@ -19,5 +19,10 @@ public interface IColorConstants {
 	public IColorConstant NODE_BACKGROUND_DOMINATING = new ColorConstant(248, 188, 189);
 	public IColorConstant NODE_FOREGROUND_DOMINATED = new ColorConstant(168, 168, 168);
 	public IColorConstant NODE_BACKGROUND_DOMINATED = new ColorConstant(188, 188, 188);
+	
+	public IColorConstant EDGE_FOREGROUND = NODE_FOREGROUND;
+	public IColorConstant EDGE_BACKGROUND = NODE_BACKGROUND;
+	public IColorConstant EDGE_FOREGROUND_DOMINATING = NODE_FOREGROUND_DOMINATING;
+	public IColorConstant EDGE_BACKGROUND_DOMINATING = NODE_BACKGROUND_DOMINATING;
 
 }

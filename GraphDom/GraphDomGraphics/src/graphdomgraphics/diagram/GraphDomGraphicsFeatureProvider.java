@@ -19,6 +19,7 @@ import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
@@ -33,9 +34,10 @@ import graphdomgraphics.features.GenerateRandomNodesCustomFeature;
 import graphdomgraphics.features.GenerateRoundGraphCustomFeature;
 import graphdomgraphics.features.GreedyDominationTestCustomFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
-import graphdomgraphics.features.MarkNodeCustomFeature;
+import graphdomgraphics.features.MarkDominatingCustomFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
 import graphdomgraphics.features.UnmarkAllNodesCustomFeature;
+import graphdomgraphics.features.UpdateEdgeFeature;
 import graphdomgraphics.features.UpdateNodeFeature;
 import graphdom.Node;
 import graphdom.Edge;
@@ -97,7 +99,7 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { 
-				new MarkNodeCustomFeature(this),
+				new MarkDominatingCustomFeature(this),
 				new GenerateRandomNodesCustomFeature(this),
 				new GreedyDominationTestCustomFeature(this),
 				new UnmarkAllNodesCustomFeature(this),
@@ -109,10 +111,12 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
-		if (pictogramElement instanceof ContainerShape) {
+		if (pictogramElement instanceof ContainerShape || pictogramElement instanceof Connection) {
 			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 			if (bo instanceof Node) {
 				return new UpdateNodeFeature(this);
+			} else if (bo instanceof Edge){
+				return new UpdateEdgeFeature(this);
 			}
 		}
 		return super.getUpdateFeature(context);

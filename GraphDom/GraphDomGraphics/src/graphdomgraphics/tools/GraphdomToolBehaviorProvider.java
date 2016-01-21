@@ -32,7 +32,7 @@ import graphdomgraphics.common.GraphdomImageProvider;
 
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
-import graphdomgraphics.features.MarkNodeCustomFeature;
+import graphdomgraphics.features.MarkDominatingCustomFeature;
 
 /**
  * @author xIS02028
@@ -40,8 +40,6 @@ import graphdomgraphics.features.MarkNodeCustomFeature;
  */
 public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
-	private static final int MAX_DOMAIN_BUTTONS = 5;
-	private static final int OFFSET = 15;
 
 	/**
 	 * @param diagramTypeProvider
@@ -57,37 +55,14 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		IContextButtonPadData data = super.getContextButtonPad(context);
 		PictogramElement pe = context.getPictogramElement();
 
-		// 1. set the generic context buttons
-		// note, that we do not add 'remove' (just as an example)
+		// set the generic context buttons
+		// we do not add 'remove' (just as an example)
 		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
 
-		// 2. add domain specific context-buttons, which offer all
-		// available create-features
-
-		// create new CreateConnectionContext
-
-		CreateContext cc = new CreateContext();
-
-		cc.setTargetContainer((ContainerShape) pe.eContainer());
-		cc.setX(pe.getGraphicsAlgorithm().getX() + OFFSET);
-		cc.setY(pe.getGraphicsAlgorithm().getY() + OFFSET);
 
 		// create context buttons for all applicable features
 
-//		ICreateFeature[] features = getFeatureProvider().getCreateFeatures();
-//		for (ICreateFeature feature : features) {
-//			if (feature.isAvailable(cc) && feature.canCreate(cc)) {
-//				ContextButtonEntry button = new ContextButtonEntry(feature, cc);
-//
-//				button.setText(feature.getCreateDescription());
-//				button.setIconId(IGraphdomImageConstants.IMG_NEW_NODE);
-//				if (data.getDomainSpecificContextButtons().size() < MAX_DOMAIN_BUTTONS) {
-//					data.getDomainSpecificContextButtons().add(button);
-//				}
-//			}
-//		}
-
-		// 3.a. create new CreateConnectionContext
+		// Create new CreateConnectionContext
 		CreateConnectionContext ccc = new CreateConnectionContext();
 		ccc.setSourcePictogramElement(pe);
 		Anchor anchor = null;
@@ -99,20 +74,13 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		}
 		ccc.setSourceAnchor(anchor);
 
-		// 3.b. create context button and add all applicable features
+		// Create context button with feature
 		ContextButtonEntry button = new ContextButtonEntry(null, context);
 		button.setText("Create connection (and node)");
 		button.setIconId(GraphdomImageProvider.IMG_NEW_NODE);
-		ICreateConnectionFeature[] connectionFeatures = getFeatureProvider().getCreateConnectionFeatures();
-		for (ICreateConnectionFeature feature : connectionFeatures) {
-			if (feature.isAvailable(ccc) && feature.canStartConnection(ccc) && (feature instanceof CreateEdgeConnectionWithNodeFeature))
-				button.addDragAndDropFeature(feature);
-		}
-
-		// 3.c. add context button, if it contains at least one feature
-		if (button.getDragAndDropFeatures().size() > 0) {
-			data.getDomainSpecificContextButtons().add(button);
-		}
+		button.addDragAndDropFeature(new CreateEdgeConnectionWithNodeFeature(getFeatureProvider()));
+		
+		data.getDomainSpecificContextButtons().add(button);
 
 		return data;
 	}
@@ -121,10 +89,10 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	public IContextMenuEntry[] getContextMenu(ICustomContext context) {
 	    // create a sub-menu for all custom features
 	    ContextMenuEntry subMenu = new ContextMenuEntry(null, context);
-	    subMenu.setText("Graphdom");
+	    subMenu.setText("Graphs - ");
 	    subMenu.setDescription("Graphdom features submenu");
 	    // display sub-menu hierarchical or flat
-	    subMenu.setSubmenu(true);
+	    subMenu.setSubmenu(false);
 
 	    // create a menu-entry in the sub-menu for each custom feature
 	    ICustomFeature[] customFeatures = getFeatureProvider().getCustomFeatures(context);
@@ -143,7 +111,7 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	@Override
 	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
 	    ICustomFeature customFeature =
-	        new MarkNodeCustomFeature(getFeatureProvider());
+	        new MarkDominatingCustomFeature(getFeatureProvider());
 	    // canExecute() tests especially if the context contains a node
 	    if (customFeature.canExecute(context)) {
 	        return customFeature;
