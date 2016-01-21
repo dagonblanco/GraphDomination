@@ -3,6 +3,8 @@
  */
 package graphdomgraphics.features;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
@@ -64,6 +66,9 @@ public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 				node.setDominated(false);
 				// and update pictogram
 				for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
+					updatePictogramElement(pe);
+				}
+				for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), new BasicEList<EObject>(node.getConnectedEdges()),true)) {
 					updatePictogramElement(pe);
 				}
 				hasDoneChanges=true;
