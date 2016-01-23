@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphdomgraphics.features;
+package graphdomgraphics.features.custom;
 
 import java.util.Random;
 
@@ -14,8 +14,10 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILinkService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.Node;
+import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
 import graphdom.algorithms.GreedyDominationAlgorithm;
 import graphdomgraphics.common.ExampleUtil;
 
@@ -23,25 +25,25 @@ import graphdomgraphics.common.ExampleUtil;
  * @author David
  *
  */
-public class GreedyDominationTestCustomFeature extends AbstractCustomFeature {
+public class GreedyConnectedDominationCustomFeature extends AbstractCustomFeature {
 
 
 	/**
 	 * @param fp
 	 */
-	public GreedyDominationTestCustomFeature(IFeatureProvider fp) {
+	public GreedyConnectedDominationCustomFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getName() {
-		return "Greedy domination";
+		return "Greedy connected domination";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Apply greedy domination algorithm";
+		return "Apply greedy connected domination algorithm";
 	}
 
 	@Override
@@ -55,7 +57,7 @@ public class GreedyDominationTestCustomFeature extends AbstractCustomFeature {
 		// Access the graph
 		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
 
-		GreedyDominationAlgorithm gda = new GreedyDominationAlgorithm();
+		GreedyConnectedDominationAlgorithm gda = new GreedyConnectedDominationAlgorithm();
 		
 		gda.setInitialGraph(theGraph);
 		
@@ -69,6 +71,11 @@ public class GreedyDominationTestCustomFeature extends AbstractCustomFeature {
 			}
 		}
 		
+		for (Edge edge : theGraph.getEdges()){
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), edge)){
+				updatePictogramElement(pe);	
+			}
+		}
 	}
 
 	@Override

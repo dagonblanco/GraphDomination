@@ -29,6 +29,9 @@ import junit.textui.TestRunner;
  * <ul>
  *   <li>{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}</li>
  *   <li>{@link graphdom.Graph#unmarkAllNodes() <em>Unmark All Nodes</em>}</li>
+ *   <li>{@link graphdom.Graph#removeNode(graphdom.Node) <em>Remove Node</em>}</li>
+ *   <li>{@link graphdom.Graph#isDominated() <em>Is Dominated</em>}</li>
+ *   <li>{@link graphdom.Graph#getDominatingSet() <em>Get Dominating Set</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -125,6 +128,45 @@ public class GraphTest extends TestCase {
 	 * @generated
 	 */
 	public void testUnmarkAllNodes() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Graph#removeNode(graphdom.Node) <em>Remove Node</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Graph#removeNode(graphdom.Node)
+	 * @generated
+	 */
+	public void testRemoveNode__Node() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Graph#isDominated() <em>Is Dominated</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Graph#isDominated()
+	 * @generated
+	 */
+	public void testIsDominated() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Graph#getDominatingSet() <em>Get Dominating Set</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Graph#getDominatingSet()
+	 * @generated
+	 */
+	public void testGetDominatingSet() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

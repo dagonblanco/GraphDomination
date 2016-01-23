@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphdomgraphics.features;
+package graphdomgraphics.features.custom;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package graphdomgraphics.features;
+package graphdomgraphics.features.custom;
 
 import java.util.Random;
 
@@ -11,6 +11,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import graphdom.Node;
 import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.features.CreateNodeFeature;
 
 public class GenerateRandomNodesCustomFeature extends AbstractCustomFeature {
 

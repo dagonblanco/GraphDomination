@@ -32,16 +32,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link graphdom.impl.NodeImpl#getNodeName <em>Node Name</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#getColor <em>Color</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#getConnectedEdges <em>Connected Edges</em>}
- * </li>
- * <li>{@link graphdom.impl.NodeImpl#isDominating <em>Dominating</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#getGrade <em>Grade</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#getGuid <em>Guid</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#getXCoord <em>XCoord</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#getYCoord <em>YCoord</em>}</li>
- * <li>{@link graphdom.impl.NodeImpl#isDominated <em>Dominated</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getNodeName <em>Node Name</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getColor <em>Color</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getConnectedEdges <em>Connected Edges</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#isDominating <em>Dominating</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getGrade <em>Grade</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getGuid <em>Guid</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getXCoord <em>XCoord</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#getYCoord <em>YCoord</em>}</li>
+ *   <li>{@link graphdom.impl.NodeImpl#isDominated <em>Dominated</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,9 +48,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
-	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNodeName()
 	 * @generated
 	 * @ordered
@@ -59,9 +57,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected static final String NODE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getNodeName() <em>Node Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getNodeName() <em>Node Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNodeName()
 	 * @generated
 	 * @ordered
@@ -71,7 +68,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getColor()
 	 * @generated
 	 * @ordered
@@ -81,7 +77,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getColor()
 	 * @generated
 	 * @ordered
@@ -89,10 +84,9 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected String color = COLOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConnectedEdges()
-	 * <em>Connected Edges</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getConnectedEdges() <em>Connected Edges</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getConnectedEdges()
 	 * @generated
 	 * @ordered
@@ -100,9 +94,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected EList<Edge> connectedEdges;
 
 	/**
-	 * The default value of the '{@link #isDominating() <em>Dominating</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isDominating() <em>Dominating</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDominating()
 	 * @generated
 	 * @ordered
@@ -110,9 +103,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected static final boolean DOMINATING_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDominating() <em>Dominating</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isDominating() <em>Dominating</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDominating()
 	 * @generated
 	 * @ordered
@@ -122,7 +114,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The default value of the '{@link #getGrade() <em>Grade</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getGrade()
 	 * @generated
 	 * @ordered
@@ -132,7 +123,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The cached value of the '{@link #getGrade() <em>Grade</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getGrade()
 	 * @generated
 	 * @ordered
@@ -142,7 +132,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The default value of the '{@link #getGuid() <em>Guid</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getGuid()
 	 * @generated
 	 * @ordered
@@ -152,7 +141,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The cached value of the '{@link #getGuid() <em>Guid</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getGuid()
 	 * @generated
 	 * @ordered
@@ -160,9 +148,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected String guid = GUID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getXCoord() <em>XCoord</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getXCoord() <em>XCoord</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getXCoord()
 	 * @generated
 	 * @ordered
@@ -172,7 +159,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The cached value of the '{@link #getXCoord() <em>XCoord</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getXCoord()
 	 * @generated
 	 * @ordered
@@ -180,9 +166,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected int xCoord = XCOORD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getYCoord() <em>YCoord</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getYCoord() <em>YCoord</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getYCoord()
 	 * @generated
 	 * @ordered
@@ -192,7 +177,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	/**
 	 * The cached value of the '{@link #getYCoord() <em>YCoord</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getYCoord()
 	 * @generated
 	 * @ordered
@@ -200,9 +184,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected int yCoord = YCOORD_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDominated() <em>Dominated</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isDominated() <em>Dominated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDominated()
 	 * @generated
 	 * @ordered
@@ -210,9 +193,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected static final boolean DOMINATED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDominated() <em>Dominated</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isDominated() <em>Dominated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDominated()
 	 * @generated
 	 * @ordered
@@ -221,7 +203,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NodeImpl() {
@@ -230,7 +211,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,7 +220,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getNodeName() {
@@ -249,20 +228,17 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNodeName(String newNodeName) {
 		String oldNodeName = nodeName;
 		nodeName = newNodeName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__NODE_NAME, oldNodeName,
-					nodeName));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__NODE_NAME, oldNodeName, nodeName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getColor() {
@@ -271,7 +247,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setColor(String newColor) {
@@ -283,20 +258,17 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Edge> getConnectedEdges() {
 		if (connectedEdges == null) {
-			connectedEdges = new EObjectWithInverseResolvingEList.ManyInverse<Edge>(Edge.class, this,
-					GraphdomPackage.NODE__CONNECTED_EDGES, GraphdomPackage.EDGE__CONNECTED_NODES);
+			connectedEdges = new EObjectWithInverseResolvingEList.ManyInverse<Edge>(Edge.class, this, GraphdomPackage.NODE__CONNECTED_EDGES, GraphdomPackage.EDGE__CONNECTED_NODES);
 		}
 		return connectedEdges;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDominating() {
@@ -348,7 +320,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setGrade(long newGrade) {
@@ -360,7 +331,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getGuid() {
@@ -369,7 +339,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setGuid(String newGuid) {
@@ -381,7 +350,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getXCoord() {
@@ -390,7 +358,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setXCoord(int newXCoord) {
@@ -402,7 +369,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getYCoord() {
@@ -411,7 +377,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setYCoord(int newYCoord) {
@@ -423,7 +388,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDominated() {
@@ -432,15 +396,13 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDominated(boolean newDominated) {
 		boolean oldDominated = dominated;
 		dominated = newDominated;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__DOMINATED, oldDominated,
-					dominated));
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__DOMINATED, oldDominated, dominated));
 	}
 
 	/**
@@ -457,203 +419,196 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		for (Edge edge : this.getConnectedEdges()) {
 			adjacentNodesSet.addAll(edge.getConnectedNodes());
 		}
+		adjacentNodesSet.remove(this);		
 
 		EList<Node> adjacentNodes = new BasicEList<Node>(adjacentNodesSet);
+		
 		return adjacentNodes;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case GraphdomPackage.NODE__CONNECTED_EDGES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConnectedEdges()).basicAdd(otherEnd, msgs);
+			case GraphdomPackage.NODE__CONNECTED_EDGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConnectedEdges()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case GraphdomPackage.NODE__CONNECTED_EDGES:
-			return ((InternalEList<?>) getConnectedEdges()).basicRemove(otherEnd, msgs);
+			case GraphdomPackage.NODE__CONNECTED_EDGES:
+				return ((InternalEList<?>)getConnectedEdges()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case GraphdomPackage.NODE__NODE_NAME:
-			return getNodeName();
-		case GraphdomPackage.NODE__COLOR:
-			return getColor();
-		case GraphdomPackage.NODE__CONNECTED_EDGES:
-			return getConnectedEdges();
-		case GraphdomPackage.NODE__DOMINATING:
-			return isDominating();
-		case GraphdomPackage.NODE__GRADE:
-			return getGrade();
-		case GraphdomPackage.NODE__GUID:
-			return getGuid();
-		case GraphdomPackage.NODE__XCOORD:
-			return getXCoord();
-		case GraphdomPackage.NODE__YCOORD:
-			return getYCoord();
-		case GraphdomPackage.NODE__DOMINATED:
-			return isDominated();
+			case GraphdomPackage.NODE__NODE_NAME:
+				return getNodeName();
+			case GraphdomPackage.NODE__COLOR:
+				return getColor();
+			case GraphdomPackage.NODE__CONNECTED_EDGES:
+				return getConnectedEdges();
+			case GraphdomPackage.NODE__DOMINATING:
+				return isDominating();
+			case GraphdomPackage.NODE__GRADE:
+				return getGrade();
+			case GraphdomPackage.NODE__GUID:
+				return getGuid();
+			case GraphdomPackage.NODE__XCOORD:
+				return getXCoord();
+			case GraphdomPackage.NODE__YCOORD:
+				return getYCoord();
+			case GraphdomPackage.NODE__DOMINATED:
+				return isDominated();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case GraphdomPackage.NODE__NODE_NAME:
-			setNodeName((String) newValue);
-			return;
-		case GraphdomPackage.NODE__COLOR:
-			setColor((String) newValue);
-			return;
-		case GraphdomPackage.NODE__CONNECTED_EDGES:
-			getConnectedEdges().clear();
-			getConnectedEdges().addAll((Collection<? extends Edge>) newValue);
-			return;
-		case GraphdomPackage.NODE__DOMINATING:
-			setDominating((Boolean) newValue);
-			return;
-		case GraphdomPackage.NODE__GRADE:
-			setGrade((Long) newValue);
-			return;
-		case GraphdomPackage.NODE__GUID:
-			setGuid((String) newValue);
-			return;
-		case GraphdomPackage.NODE__XCOORD:
-			setXCoord((Integer) newValue);
-			return;
-		case GraphdomPackage.NODE__YCOORD:
-			setYCoord((Integer) newValue);
-			return;
-		case GraphdomPackage.NODE__DOMINATED:
-			setDominated((Boolean) newValue);
-			return;
+			case GraphdomPackage.NODE__NODE_NAME:
+				setNodeName((String)newValue);
+				return;
+			case GraphdomPackage.NODE__COLOR:
+				setColor((String)newValue);
+				return;
+			case GraphdomPackage.NODE__CONNECTED_EDGES:
+				getConnectedEdges().clear();
+				getConnectedEdges().addAll((Collection<? extends Edge>)newValue);
+				return;
+			case GraphdomPackage.NODE__DOMINATING:
+				setDominating((Boolean)newValue);
+				return;
+			case GraphdomPackage.NODE__GRADE:
+				setGrade((Long)newValue);
+				return;
+			case GraphdomPackage.NODE__GUID:
+				setGuid((String)newValue);
+				return;
+			case GraphdomPackage.NODE__XCOORD:
+				setXCoord((Integer)newValue);
+				return;
+			case GraphdomPackage.NODE__YCOORD:
+				setYCoord((Integer)newValue);
+				return;
+			case GraphdomPackage.NODE__DOMINATED:
+				setDominated((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case GraphdomPackage.NODE__NODE_NAME:
-			setNodeName(NODE_NAME_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__COLOR:
-			setColor(COLOR_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__CONNECTED_EDGES:
-			getConnectedEdges().clear();
-			return;
-		case GraphdomPackage.NODE__DOMINATING:
-			setDominating(DOMINATING_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__GRADE:
-			setGrade(GRADE_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__GUID:
-			setGuid(GUID_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__XCOORD:
-			setXCoord(XCOORD_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__YCOORD:
-			setYCoord(YCOORD_EDEFAULT);
-			return;
-		case GraphdomPackage.NODE__DOMINATED:
-			setDominated(DOMINATED_EDEFAULT);
-			return;
+			case GraphdomPackage.NODE__NODE_NAME:
+				setNodeName(NODE_NAME_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__COLOR:
+				setColor(COLOR_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__CONNECTED_EDGES:
+				getConnectedEdges().clear();
+				return;
+			case GraphdomPackage.NODE__DOMINATING:
+				setDominating(DOMINATING_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__GRADE:
+				setGrade(GRADE_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__GUID:
+				setGuid(GUID_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__XCOORD:
+				setXCoord(XCOORD_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__YCOORD:
+				setYCoord(YCOORD_EDEFAULT);
+				return;
+			case GraphdomPackage.NODE__DOMINATED:
+				setDominated(DOMINATED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case GraphdomPackage.NODE__NODE_NAME:
-			return NODE_NAME_EDEFAULT == null ? nodeName != null : !NODE_NAME_EDEFAULT.equals(nodeName);
-		case GraphdomPackage.NODE__COLOR:
-			return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
-		case GraphdomPackage.NODE__CONNECTED_EDGES:
-			return connectedEdges != null && !connectedEdges.isEmpty();
-		case GraphdomPackage.NODE__DOMINATING:
-			return dominating != DOMINATING_EDEFAULT;
-		case GraphdomPackage.NODE__GRADE:
-			return grade != GRADE_EDEFAULT;
-		case GraphdomPackage.NODE__GUID:
-			return GUID_EDEFAULT == null ? guid != null : !GUID_EDEFAULT.equals(guid);
-		case GraphdomPackage.NODE__XCOORD:
-			return xCoord != XCOORD_EDEFAULT;
-		case GraphdomPackage.NODE__YCOORD:
-			return yCoord != YCOORD_EDEFAULT;
-		case GraphdomPackage.NODE__DOMINATED:
-			return dominated != DOMINATED_EDEFAULT;
+			case GraphdomPackage.NODE__NODE_NAME:
+				return NODE_NAME_EDEFAULT == null ? nodeName != null : !NODE_NAME_EDEFAULT.equals(nodeName);
+			case GraphdomPackage.NODE__COLOR:
+				return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
+			case GraphdomPackage.NODE__CONNECTED_EDGES:
+				return connectedEdges != null && !connectedEdges.isEmpty();
+			case GraphdomPackage.NODE__DOMINATING:
+				return dominating != DOMINATING_EDEFAULT;
+			case GraphdomPackage.NODE__GRADE:
+				return grade != GRADE_EDEFAULT;
+			case GraphdomPackage.NODE__GUID:
+				return GUID_EDEFAULT == null ? guid != null : !GUID_EDEFAULT.equals(guid);
+			case GraphdomPackage.NODE__XCOORD:
+				return xCoord != XCOORD_EDEFAULT;
+			case GraphdomPackage.NODE__YCOORD:
+				return yCoord != YCOORD_EDEFAULT;
+			case GraphdomPackage.NODE__DOMINATED:
+				return dominated != DOMINATED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case GraphdomPackage.NODE___GET_ADJACENT_NODES:
-			return getAdjacentNodes();
+			case GraphdomPackage.NODE___GET_ADJACENT_NODES:
+				return getAdjacentNodes();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nodeName: ");

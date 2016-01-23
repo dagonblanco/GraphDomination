@@ -21,6 +21,11 @@
         <genParameters ecoreParameter="graphdom.ecore#//Graph/findNodeById/id"/>
       </genOperations>
       <genOperations ecoreOperation="graphdom.ecore#//Graph/unmarkAllNodes"/>
+      <genOperations ecoreOperation="graphdom.ecore#//Graph/removeNode">
+        <genParameters ecoreParameter="graphdom.ecore#//Graph/removeNode/node"/>
+      </genOperations>
+      <genOperations ecoreOperation="graphdom.ecore#//Graph/isDominated"/>
+      <genOperations ecoreOperation="graphdom.ecore#//Graph/getDominatingSet"/>
     </genClasses>
     <genClasses ecoreClass="graphdom.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/nodeName"/>
@@ -44,6 +49,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphdom.ecore#//AbstractGraphAlgorithm/initialGraph"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphdom.ecore#//AbstractGraphAlgorithm/processedGraph"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//AbstractGraphAlgorithm/status"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//AbstractGraphAlgorithm/properties"/>
       <genOperations ecoreOperation="graphdom.ecore#//AbstractGraphAlgorithm/runToEnd"/>
       <genOperations ecoreOperation="graphdom.ecore#//AbstractGraphAlgorithm/nextStep"/>
     </genClasses>

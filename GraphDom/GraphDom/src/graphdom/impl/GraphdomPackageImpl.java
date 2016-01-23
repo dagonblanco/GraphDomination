@@ -190,6 +190,33 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getGraph__RemoveNode__Node() {
+		return graphEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getGraph__IsDominated() {
+		return graphEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getGraph__GetDominatingSet() {
+		return graphEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -370,6 +397,15 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractGraphAlgorithm_Properties() {
+		return (EAttribute)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getAbstractGraphAlgorithm__RunToEnd() {
 		return abstractGraphAlgorithmEClass.getEOperations().get(0);
 	}
@@ -427,6 +463,9 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEAttribute(graphEClass, GRAPH__NEXT_NODE_ID);
 		createEOperation(graphEClass, GRAPH___FIND_NODE_BY_ID__STRING);
 		createEOperation(graphEClass, GRAPH___UNMARK_ALL_NODES);
+		createEOperation(graphEClass, GRAPH___REMOVE_NODE__NODE);
+		createEOperation(graphEClass, GRAPH___IS_DOMINATED);
+		createEOperation(graphEClass, GRAPH___GET_DOMINATING_SET);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NODE_NAME);
@@ -450,6 +489,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH);
 		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__PROCESSED_GRAPH);
 		createEAttribute(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__STATUS);
+		createEAttribute(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__PROPERTIES);
 		createEOperation(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM___RUN_TO_END);
 		createEOperation(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM___NEXT_STEP);
 
@@ -498,6 +538,13 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 
 		initEOperation(getGraph__UnmarkAllNodes(), null, "unmarkAllNodes", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getGraph__RemoveNode__Node(), null, "removeNode", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "node", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getGraph__IsDominated(), ecorePackage.getEBoolean(), "isDominated", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getGraph__GetDominatingSet(), this.getNode(), "getDominatingSet", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_NodeName(), ecorePackage.getEString(), "nodeName", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Color(), ecorePackage.getEString(), "color", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -521,6 +568,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEReference(getAbstractGraphAlgorithm_InitialGraph(), this.getGraph(), null, "initialGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractGraphAlgorithm_ProcessedGraph(), this.getGraph(), null, "processedGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractGraphAlgorithm_Status(), this.getAlgorithmStatus(), "status", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractGraphAlgorithm_Properties(), ecorePackage.getEMap(), "properties", null, 0, 1, AbstractGraphAlgorithm.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getAbstractGraphAlgorithm__RunToEnd(), null, "runToEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
 

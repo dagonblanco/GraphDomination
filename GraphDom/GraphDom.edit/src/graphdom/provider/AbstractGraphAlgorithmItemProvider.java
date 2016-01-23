@@ -64,6 +64,7 @@ public class AbstractGraphAlgorithmItemProvider
 			addInitialGraphPropertyDescriptor(object);
 			addProcessedGraphPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
+			addPropertiesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,6 +136,28 @@ public class AbstractGraphAlgorithmItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Properties feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPropertiesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractGraphAlgorithm_properties_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractGraphAlgorithm_properties_feature", "_UI_AbstractGraphAlgorithm_type"),
+				 GraphdomPackage.Literals.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns AbstractGraphAlgorithm.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,6 +197,7 @@ public class AbstractGraphAlgorithmItemProvider
 
 		switch (notification.getFeatureID(AbstractGraphAlgorithm.class)) {
 			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__STATUS:
+			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

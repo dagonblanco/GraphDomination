@@ -12,7 +12,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -205,14 +206,61 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	public void unmarkAllNodes() {
-		
 		for (Node node : getNodes()) {
 		node.setDominated(false);
 		node.setDominating(false);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated not
+	 */
+	public void removeNode(Node node) {
+
+		
+		
+		// Remove referenced edges
+		this.getEdges().removeAll(node.getConnectedEdges());
+		
+		node.getConnectedEdges().clear();
+		
+		// Remove node
+		this.getNodes().remove(node);
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated not
+	 */
+	public boolean isDominated() {
+		for (Node node : this.getNodes()) {
+			if (!node.isDominated() && !node.isDominating()){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated not
+	 */
+	public EList<Node> getDominatingSet() {
+		EList<Node> result = new BasicEList<Node>();
+		for (Node node : this.getNodes()) {
+			if (node.isDominating()){
+				result.add(node);
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -335,6 +383,13 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 			case GraphdomPackage.GRAPH___UNMARK_ALL_NODES:
 				unmarkAllNodes();
 				return null;
+			case GraphdomPackage.GRAPH___REMOVE_NODE__NODE:
+				removeNode((Node)arguments.get(0));
+				return null;
+			case GraphdomPackage.GRAPH___IS_DOMINATED:
+				return isDominated();
+			case GraphdomPackage.GRAPH___GET_DOMINATING_SET:
+				return getDominatingSet();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -1,4 +1,4 @@
-package graphdomgraphics.features;
+package graphdomgraphics.features.custom;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -15,6 +15,8 @@ import org.eclipse.graphiti.services.ILinkService;
 import graphdom.Edge;
 import graphdom.Node;
 import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.features.CreateEdgeConnectionFeature;
+import graphdomgraphics.features.CreateNodeFeature;
 
 public class GenerateRoundGraphCustomFeature extends AbstractCustomFeature {
 

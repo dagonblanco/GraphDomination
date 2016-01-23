@@ -9,6 +9,7 @@ import graphdom.GraphdomPackage;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link graphdom.impl.AbstractGraphAlgorithmImpl#getInitialGraph <em>Initial Graph</em>}</li>
  *   <li>{@link graphdom.impl.AbstractGraphAlgorithmImpl#getProcessedGraph <em>Processed Graph</em>}</li>
  *   <li>{@link graphdom.impl.AbstractGraphAlgorithmImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link graphdom.impl.AbstractGraphAlgorithmImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +76,16 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 	 * @ordered
 	 */
 	protected AlgorithmStatus status = STATUS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected Map properties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,6 +206,27 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map getProperties() {
+		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProperties(Map newProperties) {
+		Map oldProperties = properties;
+		properties = newProperties;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES, oldProperties, properties));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void runToEnd() {
@@ -225,6 +258,8 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 				return basicGetProcessedGraph();
 			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__STATUS:
 				return getStatus();
+			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES:
+				return getProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,6 +280,9 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 				return;
 			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__STATUS:
 				setStatus((AlgorithmStatus)newValue);
+				return;
+			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES:
+				setProperties((Map)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,6 +305,9 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__STATUS:
 				setStatus(STATUS_EDEFAULT);
 				return;
+			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES:
+				setProperties((Map)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -285,6 +326,8 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 				return processedGraph != null;
 			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__STATUS:
 				return status != STATUS_EDEFAULT;
+			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM__PROPERTIES:
+				return properties != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -319,6 +362,8 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (status: ");
 		result.append(status);
+		result.append(", properties: ");
+		result.append(properties);
 		result.append(')');
 		return result.toString();
 	}

@@ -2,6 +2,7 @@
  */
 package graphdom;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link graphdom.AbstractGraphAlgorithm#getInitialGraph <em>Initial Graph</em>}</li>
  *   <li>{@link graphdom.AbstractGraphAlgorithm#getProcessedGraph <em>Processed Graph</em>}</li>
  *   <li>{@link graphdom.AbstractGraphAlgorithm#getStatus <em>Status</em>}</li>
+ *   <li>{@link graphdom.AbstractGraphAlgorithm#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getAbstractGraphAlgorithm()
@@ -103,6 +105,32 @@ public interface AbstractGraphAlgorithm extends EObject {
 	 * @generated
 	 */
 	void setStatus(AlgorithmStatus value);
+
+	/**
+	 * Returns the value of the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Properties</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Properties</em>' attribute.
+	 * @see #setProperties(Map)
+	 * @see graphdom.GraphdomPackage#getAbstractGraphAlgorithm_Properties()
+	 * @model transient="true"
+	 * @generated
+	 */
+	Map getProperties();
+
+	/**
+	 * Sets the value of the '{@link graphdom.AbstractGraphAlgorithm#getProperties <em>Properties</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Properties</em>' attribute.
+	 * @see #getProperties()
+	 * @generated
+	 */
+	void setProperties(Map value);
 
 	/**
 	 * <!-- begin-user-doc -->

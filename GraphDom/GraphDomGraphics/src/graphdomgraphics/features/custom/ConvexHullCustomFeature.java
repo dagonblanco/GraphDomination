@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphdomgraphics.features;
+package graphdomgraphics.features.custom;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -17,6 +17,7 @@ import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.algorithms.ConvexHullAlgorithm;
 import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.features.AddEdgeConnectionFeature;
 
 /**
  * @author David

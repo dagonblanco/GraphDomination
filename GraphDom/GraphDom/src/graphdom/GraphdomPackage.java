@@ -132,13 +132,40 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH___UNMARK_ALL_NODES = 1;
 
 	/**
+	 * The operation id for the '<em>Remove Node</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___REMOVE_NODE__NODE = 2;
+
+	/**
+	 * The operation id for the '<em>Is Dominated</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___IS_DOMINATED = 3;
+
+	/**
+	 * The operation id for the '<em>Get Dominating Set</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___GET_DOMINATING_SET = 4;
+
+	/**
 	 * The number of operations of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 2;
+	int GRAPH_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -361,13 +388,22 @@ public interface GraphdomPackage extends EPackage {
 	int ABSTRACT_GRAPH_ALGORITHM__STATUS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Properties</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_GRAPH_ALGORITHM__PROPERTIES = 3;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Graph Algorithm</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_GRAPH_ALGORITHM_FEATURE_COUNT = 3;
+	int ABSTRACT_GRAPH_ALGORITHM_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Run To End</em>' operation.
@@ -480,6 +516,36 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGraph__UnmarkAllNodes();
+
+	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#removeNode(graphdom.Node) <em>Remove Node</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Remove Node</em>' operation.
+	 * @see graphdom.Graph#removeNode(graphdom.Node)
+	 * @generated
+	 */
+	EOperation getGraph__RemoveNode__Node();
+
+	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#isDominated() <em>Is Dominated</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Dominated</em>' operation.
+	 * @see graphdom.Graph#isDominated()
+	 * @generated
+	 */
+	EOperation getGraph__IsDominated();
+
+	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#getDominatingSet() <em>Get Dominating Set</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Dominating Set</em>' operation.
+	 * @see graphdom.Graph#getDominatingSet()
+	 * @generated
+	 */
+	EOperation getGraph__GetDominatingSet();
 
 	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
@@ -698,6 +764,17 @@ public interface GraphdomPackage extends EPackage {
 	EAttribute getAbstractGraphAlgorithm_Status();
 
 	/**
+	 * Returns the meta object for the attribute '{@link graphdom.AbstractGraphAlgorithm#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Properties</em>'.
+	 * @see graphdom.AbstractGraphAlgorithm#getProperties()
+	 * @see #getAbstractGraphAlgorithm()
+	 * @generated
+	 */
+	EAttribute getAbstractGraphAlgorithm_Properties();
+
+	/**
 	 * Returns the meta object for the '{@link graphdom.AbstractGraphAlgorithm#runToEnd() <em>Run To End</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -807,6 +884,30 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GRAPH___UNMARK_ALL_NODES = eINSTANCE.getGraph__UnmarkAllNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Remove Node</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___REMOVE_NODE__NODE = eINSTANCE.getGraph__RemoveNode__Node();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Dominated</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___IS_DOMINATED = eINSTANCE.getGraph__IsDominated();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Dominating Set</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___GET_DOMINATING_SET = eINSTANCE.getGraph__GetDominatingSet();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -973,6 +1074,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_GRAPH_ALGORITHM__STATUS = eINSTANCE.getAbstractGraphAlgorithm_Status();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_GRAPH_ALGORITHM__PROPERTIES = eINSTANCE.getAbstractGraphAlgorithm_Properties();
 
 		/**
 		 * The meta object literal for the '<em><b>Run To End</b></em>' operation.

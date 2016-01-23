@@ -26,19 +26,20 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import graphdomgraphics.features.AddEdgeConnectionFeature;
 import graphdomgraphics.features.AddNodeFeature;
-import graphdomgraphics.features.ConvexHullCustomFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
-import graphdomgraphics.features.GenerateRandomNodesCustomFeature;
-import graphdomgraphics.features.GenerateRoundGraphCustomFeature;
-import graphdomgraphics.features.GreedyDominationTestCustomFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
-import graphdomgraphics.features.MarkDominatingCustomFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
-import graphdomgraphics.features.UnmarkAllNodesCustomFeature;
 import graphdomgraphics.features.UpdateEdgeFeature;
 import graphdomgraphics.features.UpdateNodeFeature;
+import graphdomgraphics.features.custom.ConvexHullCustomFeature;
+import graphdomgraphics.features.custom.GenerateRandomNodesCustomFeature;
+import graphdomgraphics.features.custom.GenerateRoundGraphCustomFeature;
+import graphdomgraphics.features.custom.GreedyConnectedDominationCustomFeature;
+import graphdomgraphics.features.custom.GreedyDominationCustomFeature;
+import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
+import graphdomgraphics.features.custom.UnmarkAllNodesCustomFeature;
 import graphdom.Node;
 import graphdom.Edge;
 
@@ -100,11 +101,12 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { 
 				new MarkDominatingCustomFeature(this),
-				new GenerateRandomNodesCustomFeature(this),
-				new GreedyDominationTestCustomFeature(this),
 				new UnmarkAllNodesCustomFeature(this),
-				new ConvexHullCustomFeature(this),
-				new GenerateRoundGraphCustomFeature(this)
+				new GenerateRandomNodesCustomFeature(this),
+				new GenerateRoundGraphCustomFeature(this),
+				new GreedyDominationCustomFeature(this),
+				new GreedyConnectedDominationCustomFeature(this),				
+				new ConvexHullCustomFeature(this)				
 				};
 	}
 

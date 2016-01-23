@@ -32,7 +32,7 @@ import graphdomgraphics.common.GraphdomImageProvider;
 
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
-import graphdomgraphics.features.MarkDominatingCustomFeature;
+import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
 
 /**
  * @author xIS02028

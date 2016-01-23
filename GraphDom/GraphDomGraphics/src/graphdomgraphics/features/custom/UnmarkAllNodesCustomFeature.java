@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphdomgraphics.features;
+package graphdomgraphics.features.custom;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
@@ -50,7 +50,7 @@ public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 
 	@Override
 	public void execute(ICustomContext context) {
-		
+
 		// Get the graph
 		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
 
@@ -60,19 +60,25 @@ public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 		// For every node in the graph
 		for (Node node : theGraph.getNodes()) {
 			// If marked...
-			if (node.isDominating() || node.isDominated()) {				
-				//unmark
+			if (node.isDominating() || node.isDominated()) {
+				// unmark
 				node.setDominating(false);
 				node.setDominated(false);
-				// and update pictogram
-				for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
-					updatePictogramElement(pe);
-				}
-				for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), new BasicEList<EObject>(node.getConnectedEdges()),true)) {
-					updatePictogramElement(pe);
-				}
-				hasDoneChanges=true;
+				hasDoneChanges = true;
 			}
+			// and update pictogram
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
+				updatePictogramElement(pe);
+			}
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(),
+					new BasicEList<EObject>(node.getConnectedEdges()), true)) {
+				updatePictogramElement(pe);
+			}
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(),
+					new BasicEList<EObject>(node.getAdjacentNodes()), true)) {
+				updatePictogramElement(pe);
+			}
+
 		}
 	}
 
