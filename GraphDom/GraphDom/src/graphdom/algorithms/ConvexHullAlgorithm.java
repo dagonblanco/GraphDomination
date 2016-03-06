@@ -70,16 +70,7 @@ public class ConvexHullAlgorithm extends AbstractGraphAlgorithmImpl {
 		}
 	}
 
-	private void createEdge(Node source, Node target) {
-		
-		Edge myEdge = GraphdomFactory.eINSTANCE.createEdge();
-        
-        myEdge.getConnectedNodes().add(source);
-        myEdge.getConnectedNodes().add(target);
-        
-        initialGraph.getEdges().add(myEdge);
-		
-	}
+
 
 	@Override
 	public void nextStep() {

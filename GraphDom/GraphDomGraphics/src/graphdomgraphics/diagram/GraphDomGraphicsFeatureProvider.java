@@ -36,6 +36,7 @@ import graphdomgraphics.features.UpdateNodeFeature;
 import graphdomgraphics.features.custom.ConvexHullCustomFeature;
 import graphdomgraphics.features.custom.GenerateRandomNodesCustomFeature;
 import graphdomgraphics.features.custom.GenerateRoundGraphCustomFeature;
+import graphdomgraphics.features.custom.GenerateRoundTriangGraphCustomFeature;
 import graphdomgraphics.features.custom.GreedyConnectedDominationCustomFeature;
 import graphdomgraphics.features.custom.GreedyDominationCustomFeature;
 import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
@@ -106,7 +107,8 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 				new GenerateRoundGraphCustomFeature(this),
 				new GreedyDominationCustomFeature(this),
 				new GreedyConnectedDominationCustomFeature(this),				
-				new ConvexHullCustomFeature(this)				
+				new ConvexHullCustomFeature(this),
+				new GenerateRoundTriangGraphCustomFeature(this)
 				};
 	}
 

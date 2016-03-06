@@ -32,8 +32,7 @@ public class GreedyDominationAlgorithm extends AbstractGraphAlgorithmImpl {
 	}
 
 	@Override
-	public void nextStep() {
-		// TODO Unfinished
+	public void nextStep() {		
 		
 		// Search highest-grade node		
 		Node maxNode = Utils.findHighestGradeNode(workingGraph.getNodes());

@@ -4,8 +4,11 @@ package graphdom.impl;
 
 import graphdom.AbstractGraphAlgorithm;
 import graphdom.AlgorithmStatus;
+import graphdom.Edge;
 import graphdom.Graph;
+import graphdom.GraphdomFactory;
 import graphdom.GraphdomPackage;
+import graphdom.Node;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -366,6 +369,22 @@ public abstract class AbstractGraphAlgorithmImpl extends MinimalEObjectImpl.Cont
 		result.append(properties);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */	
+	protected final void createEdge(Node source, Node target) {
+		
+		Edge myEdge = GraphdomFactory.eINSTANCE.createEdge();
+        
+        myEdge.getConnectedNodes().add(source);
+        myEdge.getConnectedNodes().add(target);
+        
+        initialGraph.getEdges().add(myEdge);
+		
 	}
 
 } //AbstractGraphAlgorithmImpl
