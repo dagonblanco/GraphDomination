@@ -341,13 +341,22 @@ public interface GraphdomPackage extends EPackage {
 	int EDGE_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Flip</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE___FLIP = 0;
+
+	/**
 	 * The number of operations of the '<em>Edge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_OPERATION_COUNT = 0;
+	int EDGE_OPERATION_COUNT = 1;
 
 
 	/**
@@ -721,6 +730,16 @@ public interface GraphdomPackage extends EPackage {
 	EAttribute getEdge_Weight();
 
 	/**
+	 * Returns the meta object for the '{@link graphdom.Edge#flip() <em>Flip</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Flip</em>' operation.
+	 * @see graphdom.Edge#flip()
+	 * @generated
+	 */
+	EOperation getEdge__Flip();
+
+	/**
 	 * Returns the meta object for class '{@link graphdom.AbstractGraphAlgorithm <em>Abstract Graph Algorithm</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1040,6 +1059,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EDGE__WEIGHT = eINSTANCE.getEdge_Weight();
+
+		/**
+		 * The meta object literal for the '<em><b>Flip</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDGE___FLIP = eINSTANCE.getEdge__Flip();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.AbstractGraphAlgorithmImpl <em>Abstract Graph Algorithm</em>}' class.

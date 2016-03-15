@@ -18,7 +18,7 @@ import graphdomgraphics.common.ExampleUtil;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateNodeFeature;
 
-public class GenerateRoundGraphCustomFeature extends AbstractCustomFeature {
+public class GenerateRoundGraphCustomFeature extends GraphdomAbstractCustomFeature {
 
 	private static final int NODE_COUNT_FACTOR = 500;
 
@@ -105,37 +105,6 @@ public class GenerateRoundGraphCustomFeature extends AbstractCustomFeature {
 		hasDoneChanges = nNodes > 0;
 	}
 
-	private Connection createEdge (Node sourceNode, Node targetNode) {
-
-		// Get linkservice to ask for relations between DOs and PEs
-		ILinkService linkserv = Graphiti.getLinkService();
-		
-		// We need the source anchor (from the first connected node)
-		Anchor sourceAnchor = null;
-
-		for (PictogramElement aPe : linkserv.getPictogramElements(getDiagram(), sourceNode)) {
-			if (aPe instanceof ContainerShape) {
-				sourceAnchor = ((ContainerShape) aPe).getAnchors().get(0);
-			}
-		}
-
-		// And the target anchor (from the second connected node)
-		Anchor targetAnchor = null;
-
-		for (PictogramElement aPe : linkserv.getPictogramElements(getDiagram(), targetNode)) {
-			if (aPe instanceof ContainerShape) {
-				targetAnchor = ((ContainerShape) aPe).getAnchors().get(0);
-			}
-		}
-		// Create edge connection between source and target
-		CreateConnectionContext ccc = new CreateConnectionContext();
-
-		ccc.setSourceAnchor(sourceAnchor);
-		ccc.setTargetAnchor(targetAnchor);
-		
-		CreateEdgeConnectionFeature cef = new CreateEdgeConnectionFeature(getFeatureProvider());
-		return cef.create(ccc);
-	}
 	
 	@Override
 	public boolean hasDoneChanges() {

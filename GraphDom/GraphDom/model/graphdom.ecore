@@ -36,6 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dominated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Edge">
+    <eOperations name="flip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectedNodes" ordered="false"
         lowerBound="2" upperBound="2" eType="#//Node" eOpposite="#//Node/connectedEdges"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="marked" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

@@ -6,6 +6,7 @@ import graphdom.Edge;
 import graphdom.GraphdomPackage;
 import graphdom.Node;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -201,6 +202,41 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return 
+	 * @generated NOT
+	 */
+	public boolean flip() {
+		// TODO: implement this method
+
+		if (this.getConnectedNodes().size() != 2) return false;
+
+		Node nodeA = getConnectedNodes().get(0);
+		Node nodeB = getConnectedNodes().get(1);
+		
+		EList<Node> adjacentToA = nodeA.getAdjacentNodes();
+		EList<Node> adjacentToB = nodeB.getAdjacentNodes();
+		
+		adjacentToA.retainAll(adjacentToB);
+		
+		if (adjacentToA.size() != 2) return false;
+		
+		Node nodeC = adjacentToA.get(0);		
+		Node nodeD = adjacentToA.get(1);
+
+		nodeA.getConnectedEdges().remove(this);
+		nodeB.getConnectedEdges().remove(this);
+		//this.connectedNodes.clear();
+		
+		this.connectedNodes.add(nodeC);
+		this.connectedNodes.add(nodeD);
+		
+		return true;
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -315,6 +351,20 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 				return weight != WEIGHT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case GraphdomPackage.EDGE___FLIP:
+				return flip();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

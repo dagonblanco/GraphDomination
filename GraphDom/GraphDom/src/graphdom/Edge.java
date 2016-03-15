@@ -123,4 +123,12 @@ public interface Edge extends EObject {
 	 */
 	void setWeight(int value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean flip();
+
 } // Edge

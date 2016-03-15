@@ -361,6 +361,15 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getEdge__Flip() {
+		return edgeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAbstractGraphAlgorithm() {
 		return abstractGraphAlgorithmEClass;
 	}
@@ -484,6 +493,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEAttribute(edgeEClass, EDGE__MARKED);
 		createEAttribute(edgeEClass, EDGE__GUID);
 		createEAttribute(edgeEClass, EDGE__WEIGHT);
+		createEOperation(edgeEClass, EDGE___FLIP);
 
 		abstractGraphAlgorithmEClass = createEClass(ABSTRACT_GRAPH_ALGORITHM);
 		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH);
@@ -563,6 +573,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEAttribute(getEdge_Marked(), ecorePackage.getEBoolean(), "marked", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Guid(), ecorePackage.getEString(), "guid", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Weight(), ecorePackage.getEInt(), "weight", "0", 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getEdge__Flip(), ecorePackage.getEBoolean(), "flip", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(abstractGraphAlgorithmEClass, AbstractGraphAlgorithm.class, "AbstractGraphAlgorithm", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractGraphAlgorithm_InitialGraph(), this.getGraph(), null, "initialGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
