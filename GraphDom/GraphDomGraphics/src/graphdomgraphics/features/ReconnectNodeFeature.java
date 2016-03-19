@@ -15,11 +15,18 @@
  *******************************************************************************/
 package graphdomgraphics.features;
 
+import java.util.List;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.impl.ReconnectionContext;
 import org.eclipse.graphiti.features.impl.DefaultReconnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 
 import graphdom.Edge;
 import graphdom.Node;
@@ -69,6 +76,26 @@ public class ReconnectNodeFeature extends DefaultReconnectionFeature {
 
 		// Connect new node from target
 		edge.getConnectedNodes().add(newNode);
+
+		List<PictogramElement> peList = null;
+
+		peList = Graphiti.getLinkService().getPictogramElements(getDiagram(),
+				new BasicEList<EObject>(oldNode.getAdjacentNodes()), true);
+
+		peList.addAll(Graphiti.getLinkService().getPictogramElements(getDiagram(),
+				new BasicEList<EObject>(oldNode.getConnectedEdges()), true));
+
+		peList.addAll(Graphiti.getLinkService().getPictogramElements(getDiagram(),
+				new BasicEList<EObject>(newNode.getAdjacentNodes()), true));
+
+		peList.addAll(Graphiti.getLinkService().getPictogramElements(getDiagram(),
+				new BasicEList<EObject>(newNode.getConnectedEdges()), true));
+
+		peList.add(context.getConnection());
+		
+		for (PictogramElement pe : peList) {
+			updatePictogramElement(pe);
+		}
 	}
 
 	/**

@@ -14,17 +14,17 @@ import graphdom.impl.AbstractGraphAlgorithmImpl;
 import graphdom.util.GraphdomAdapterFactory;
 import graphdom.util.Utils;
 
-public class RandomFlipsAlgorithm extends AbstractGraphAlgorithmImpl {
+public class RandomFlipsByNumberAlgorithm extends AbstractGraphAlgorithmImpl {
 
-	int edgeNumber = 0;
-	int flipChance = 50;
-	int flippedEdges = 0;
+	int flipNumber = 10;
+	int flipsDone = 0;
+	int maxRetries = 10;
 	Random rnd = new Random();
 
-	public RandomFlipsAlgorithm(int flipChance) {
+	public RandomFlipsByNumberAlgorithm(int flipNumber) {
 
 		// Overwrite default flip chance
-		this.flipChance = flipChance;
+		this.flipNumber = flipNumber;
 
 	}
 
@@ -34,6 +34,7 @@ public class RandomFlipsAlgorithm extends AbstractGraphAlgorithmImpl {
 		// Set graph to dominate
 		super.setInitialGraph(newInitialGraph);
 
+		maxRetries = getInitialGraph().getEdges().size();
 		// Switch status from uninitialized
 		setStatus(AlgorithmStatus.INPROGRESS);
 	}
@@ -42,19 +43,26 @@ public class RandomFlipsAlgorithm extends AbstractGraphAlgorithmImpl {
 	public void nextStep() {
 
 		// If no more edges left to check, we have finished
-		if (edgeNumber >= getInitialGraph().getEdges().size()) {
+		if (flipsDone >= flipNumber) {
 			setStatus(AlgorithmStatus.ENDED);
 		} else {
 			// Maybe flip me
-			int rand = rnd.nextInt(100);
-			if (rand <= flipChance) {
-				Edge currentEdge = getInitialGraph().getEdges().get(edgeNumber);
+			boolean flipped = false;
+			int retries = 0;
+
+			// Avoid endless loop
+			while (!flipped && (retries < maxRetries)) {
+				// Choose edge
+				int rand = rnd.nextInt(getInitialGraph().getEdges().size());
+				Edge currentEdge = getInitialGraph().getEdges().get(rand);
+
 				if (currentEdge.flip()) {
-					flippedEdges++;
+					flipped = true;
+					flipsDone++;
+				} else {
+					retries++;
 				}
 			}
-
-			edgeNumber++;
 		}
 
 	}

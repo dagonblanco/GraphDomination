@@ -89,10 +89,10 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	public IContextMenuEntry[] getContextMenu(ICustomContext context) {
 	    // create a sub-menu for all custom features
 	    ContextMenuEntry subMenu = new ContextMenuEntry(null, context);
-	    subMenu.setText("Graphs - ");
+	    subMenu.setText("Graphs");
 	    subMenu.setDescription("Graphdom features submenu");
 	    // display sub-menu hierarchical or flat
-	    subMenu.setSubmenu(false);
+	    subMenu.setSubmenu(true);
 
 	    // create a menu-entry in the sub-menu for each custom feature
 	    ICustomFeature[] customFeatures = getFeatureProvider().getCustomFeatures(context);

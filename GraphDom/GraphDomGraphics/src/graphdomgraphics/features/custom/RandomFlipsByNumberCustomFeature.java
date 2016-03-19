@@ -4,30 +4,29 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 
 import graphdom.Graph;
-import graphdom.algorithms.RandomFlipsAlgorithm;
+import graphdom.algorithms.RandomFlipsByNumberAlgorithm;
 import graphdomgraphics.common.ExampleUtil;
 
-public class RandomFlipsCustomFeature extends GraphdomAbstractCustomFeature {
+public class RandomFlipsByNumberCustomFeature extends GraphdomAbstractCustomFeature {
 
+	private static final String TITLE = "Generate random flips by number";
 
-	private static final String TITLE = "Generate random flips";
-
-	private static final String USER_QUESTION = "Enter chance of flipping an edge (0-100):";
+	private static final String USER_QUESTION = "Enter number flips to be done:";
 
 	private boolean hasDoneChanges = false;
 
-	public RandomFlipsCustomFeature(IFeatureProvider fp) {
+	public RandomFlipsByNumberCustomFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
 	@Override
 	public String getName() {
-		return "Generate random flips";
+		return "Generate random flips by number";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Generate random flips over the graph";
+		return "Generate a set number of flips over the graph randomly";
 	}
 
 	@Override
@@ -40,23 +39,23 @@ public class RandomFlipsCustomFeature extends GraphdomAbstractCustomFeature {
 
 		// Ask user number of nodes
 
-		String sChance = ExampleUtil.askString(TITLE, USER_QUESTION, "50");
-		int nChance = 50;
+		String sFlips = ExampleUtil.askString(TITLE, USER_QUESTION, "10");
+		int nFlips = 10;
 		try {
-			nChance = Integer.parseUnsignedInt(sChance);
+			nFlips = Integer.parseUnsignedInt(sFlips);
 		} catch (NumberFormatException e) {
-			nChance = 50;
+			nFlips = 10;
 		}
 
-		hasDoneChanges = nChance > 0;
-		
+		hasDoneChanges = nFlips > 0;
+
 		// Now for the random flips...
-		
+
 		// Access the graph
 		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
 
 		// Instance the related algorithm
-		RandomFlipsAlgorithm rfa = new RandomFlipsAlgorithm(nChance);
+		RandomFlipsByNumberAlgorithm rfa = new RandomFlipsByNumberAlgorithm(nFlips);
 
 		// Initialize the algorithm with the graph
 		rfa.setInitialGraph(theGraph);
@@ -66,9 +65,9 @@ public class RandomFlipsCustomFeature extends GraphdomAbstractCustomFeature {
 
 		// Model is modified now, with new or different edges
 		updateAllEdges();
-		
+
 	}
-	
+
 	@Override
 	public boolean hasDoneChanges() {
 		return hasDoneChanges;

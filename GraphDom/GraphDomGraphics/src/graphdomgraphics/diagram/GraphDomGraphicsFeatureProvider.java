@@ -41,7 +41,8 @@ import graphdomgraphics.features.custom.GenerateRoundTriangGraphCustomFeature;
 import graphdomgraphics.features.custom.GreedyConnectedDominationCustomFeature;
 import graphdomgraphics.features.custom.GreedyDominationCustomFeature;
 import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
-import graphdomgraphics.features.custom.RandomFlipsCustomFeature;
+import graphdomgraphics.features.custom.RandomFlipsByChanceCustomFeature;
+import graphdomgraphics.features.custom.RandomFlipsByNumberCustomFeature;
 import graphdomgraphics.features.custom.UnmarkAllNodesCustomFeature;
 import graphdom.Node;
 import graphdom.Edge;
@@ -112,7 +113,8 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 				new ConvexHullCustomFeature(this),
 				new GenerateRoundTriangGraphCustomFeature(this),
 				new FlipEdgeCustomFeature(this),
-				new RandomFlipsCustomFeature(this)
+				new RandomFlipsByChanceCustomFeature(this),
+				new RandomFlipsByNumberCustomFeature(this)
 				};
 	}
 
