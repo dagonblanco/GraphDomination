@@ -26,15 +26,14 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
+import graphdom.Edge;
 import graphdom.Node;
 
-public class NodeSection extends GFPropertySection implements ITabbedPropertyConstants {
+public class EdgeSection extends GFPropertySection implements ITabbedPropertyConstants {
 
 	private Text nameText;
-	private Text gradeText;
 	private Text connectedNodesText;
 	private Text dominatingText;
-	private Text dominatedText;
 
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -49,23 +48,15 @@ public class NodeSection extends GFPropertySection implements ITabbedPropertyCon
 		gridLayout.makeColumnsEqualWidth = true;
 		composite.setLayout(gridLayout);
 
-		factory.createCLabel(composite, "Name:"); //$NON-NLS-1$
-		nameText = factory.createText(composite, ""); //$NON-NLS-1$
-		nameText.setEditable(false);
-
-		factory.createCLabel(composite, "Grade:"); //$NON-NLS-1$
-		gradeText = factory.createText(composite, ""); //$NON-NLS-1$
-		gradeText.setEditable(false);
+//		factory.createCLabel(composite, "Name:"); //$NON-NLS-1$
+//		nameText = factory.createText(composite, ""); //$NON-NLS-1$
+//		nameText.setEditable(false);
 
 		factory.createCLabel(composite, "Dominating:"); //$NON-NLS-1$
 		dominatingText = factory.createText(composite, ""); //$NON-NLS-1$
 		dominatingText.setEditable(false);
 
-		factory.createCLabel(composite, "Dominated:"); //$NON-NLS-1$
-		dominatedText = factory.createText(composite, ""); //$NON-NLS-1$
-		dominatedText.setEditable(false);
-
-		factory.createCLabel(composite, "Adjacent node list:"); //$NON-NLS-1$
+		factory.createCLabel(composite, "Connected nodes:"); //$NON-NLS-1$
 		connectedNodesText = factory.createText(composite, ""); //$NON-NLS-1$
 		connectedNodesText.setEditable(false);
 
@@ -75,18 +66,15 @@ public class NodeSection extends GFPropertySection implements ITabbedPropertyCon
 	public void refresh() {
 		PictogramElement pe = getSelectedPictogramElement();
 		if (pe != null) {
-			Node theNode = (Node) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			Edge theEdge = (Edge) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			// the filter assured, that it is a Node
-			if (theNode == null)
+			if (theEdge == null)
 				return;
-			String name = theNode.getNodeName();
-			nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-			long grade = theNode.getGrade();
-			gradeText.setText(String.valueOf(grade)); // $NON-NLS-1$
-			dominatedText.setText(String.valueOf(theNode.isDominated()));
-			dominatingText.setText(String.valueOf(theNode.isDominating()));
+//			String name = theEdge.getGuid();
+//			nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+			dominatingText.setText(String.valueOf(theEdge.isMarked()));
 			StringBuffer connected = null;
-			for (Node adjnode : theNode.getAdjacentNodes()) {
+			for (Node adjnode : theEdge.getConnectedNodes()) {
 				if (connected == null) {
 					connected = new StringBuffer(adjnode.getNodeName());
 				} else {
