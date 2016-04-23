@@ -63,8 +63,8 @@ public class GenerateRoundGraphCustomFeature extends GraphdomAbstractCustomFeatu
 			nNodes = 0;
 		}
 
-		int angleIncrement = 360 / nNodes;
-		int circleRadius = BASE_RADIUS + (nNodes * NODE_COUNT_FACTOR / 100);
+		double angleIncrement = 360.0 / nNodes;
+		double circleRadius = BASE_RADIUS + (nNodes * NODE_COUNT_FACTOR / 100);
 		double x = 0;
 		double y = 0;
 
