@@ -39,6 +39,7 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 	private Text nodeCount;
 	private Text edgeCount;
 	private Text dominated;
+	private Text dominatingSet;
 	private Text matrixText;
 
 
@@ -66,14 +67,19 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		factory.createCLabel(composite, "Number of edges:"); //$NON-NLS-1$
 		edgeCount = factory.createText(composite, ""); //$NON-NLS-1$
 		edgeCount.setEditable(false);
-		
-		factory.createCLabel(composite, "Dominated:"); //$NON-NLS-1$
-		dominated = factory.createText(composite, ""); //$NON-NLS-1$
-		dominated.setEditable(false);
 
 		factory.createCLabel(composite, "Matrix:"); //$NON-NLS-1$
 		matrixText = factory.createText(composite, "",SWT.MULTI); //$NON-NLS-1$
 		matrixText.setEditable(false);
+
+		factory.createCLabel(composite, "Dominated:"); //$NON-NLS-1$
+		dominated = factory.createText(composite, ""); //$NON-NLS-1$
+		dominated.setEditable(false);
+
+		factory.createCLabel(composite, "Dominating set:"); //$NON-NLS-1$
+		dominatingSet = factory.createText(composite, ""); //$NON-NLS-1$
+		dominatingSet.setEditable(false);
+		
 
 
 
@@ -114,7 +120,17 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 				matrix.append(nodelist.toString());
 
 			}
-			matrixText.setText(matrix.toString());
+			if (matrix!=null) matrixText.setText(matrix.toString());
+			
+			StringBuffer domSet = null;
+			for (Node theNode : theGraph.getDominatingSet()) {
+				if (domSet == null) {
+					domSet = new StringBuffer(theNode.getNodeName());
+				} else {
+					domSet.append(",").append(theNode.getNodeName());
+				}								
+			}
+			if (domSet!=null) dominatingSet.setText(domSet.toString());
 		}
 	}
 }

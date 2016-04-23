@@ -29,6 +29,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 
 import graphdom.Edge;
+import graphdom.Graph;
 import graphdom.Node;
 
 public class ReconnectNodeFeature extends DefaultReconnectionFeature {
@@ -76,6 +77,8 @@ public class ReconnectNodeFeature extends DefaultReconnectionFeature {
 
 		// Connect new node from target
 		edge.getConnectedNodes().add(newNode);
+		
+		((Graph)edge.eContainer()).checkNodesDomination();
 
 		List<PictogramElement> peList = null;
 

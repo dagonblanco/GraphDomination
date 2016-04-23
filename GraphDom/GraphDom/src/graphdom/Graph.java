@@ -151,4 +151,12 @@ public interface Graph extends EObject {
 	 */
 	EList<Node> getDominatingSet();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void checkNodesDomination();
+
 } // Graph

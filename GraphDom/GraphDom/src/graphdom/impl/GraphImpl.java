@@ -265,6 +265,25 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void checkNodesDomination() {
+		for (Node node : this.getNodes()) {
+			node.setDominated(false);
+		}
+
+		for (Node node : this.getNodes()) {
+			if (node.isDominating()){
+				for (Node dominatedNode : node.getAdjacentNodes()) {
+					dominatedNode.setDominated(true);
+				}
+			}
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -389,6 +408,9 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return isDominated();
 			case GraphdomPackage.GRAPH___GET_DOMINATING_SET:
 				return getDominatingSet();
+			case GraphdomPackage.GRAPH___CHECK_NODES_DOMINATION:
+				checkNodesDomination();
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -159,13 +159,22 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH___GET_DOMINATING_SET = 4;
 
 	/**
+	 * The operation id for the '<em>Check Nodes Domination</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___CHECK_NODES_DOMINATION = 5;
+
+	/**
 	 * The number of operations of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 5;
+	int GRAPH_OPERATION_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -557,6 +566,16 @@ public interface GraphdomPackage extends EPackage {
 	EOperation getGraph__GetDominatingSet();
 
 	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#checkNodesDomination() <em>Check Nodes Domination</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Check Nodes Domination</em>' operation.
+	 * @see graphdom.Graph#checkNodesDomination()
+	 * @generated
+	 */
+	EOperation getGraph__CheckNodesDomination();
+
+	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -927,6 +946,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GRAPH___GET_DOMINATING_SET = eINSTANCE.getGraph__GetDominatingSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Check Nodes Domination</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___CHECK_NODES_DOMINATION = eINSTANCE.getGraph__CheckNodesDomination();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
