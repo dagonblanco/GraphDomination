@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<es.upm.fi.dma.graphdom:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:es.upm.fi.dma.graphdom="http://es/upm/fi/dma/graphdom" graphName="SavedTestGraph">
-  <nodes nodeName="TestNode1" connectedEdges="//@edges.0"/>
-  <nodes nodeName="TestNode2" connectedEdges="//@edges.0"/>
-  <edges connectedNodes="//@nodes.0 //@nodes.1"/>
-</es.upm.fi.dma.graphdom:Graph>

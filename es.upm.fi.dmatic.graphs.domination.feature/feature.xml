@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="es.upm.fi.dmatic.graphs.domination.feature"
+      label="Graph Domination Framework"
+      version="1.0.0.qualifier"
+      provider-name="David Gonzalo Blanco">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.graphiti.feature" version="0.13.0.qualifier" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="es.upm.fi.dmatic.graphs.domination"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="es.upm.fi.dmatic.graphs.domination.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="es.upm.fi.dmatic.graphs.domination.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="es.upm.fi.dmatic.graphs.domination.graphics"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="es.upm.fi.dmatic.graphs.domination.views"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
