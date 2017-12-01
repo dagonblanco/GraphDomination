@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/es.upm.fi.dmatic.graphs.domination.feature_1.0.0.qualifier.jar" id="es.upm.fi.dmatic.graphs.domination.feature" version="1.0.0.qualifier">
+      <category name="es.upm.fi.dmatic.graphs.domination"/>
+   </feature>
+   <category-def name="es.upm.fi.dmatic.graphs.domination" label="Graphs Domination Framework">
+      <description>
+         This feature provides a simple framework to experiment with domination in graphs.
+      </description>
+   </category-def>
+   <repository-reference location="http://download.eclipse.org/releases/oxygen" enabled="true" />
+</site>

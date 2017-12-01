@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Graph Domination IDE" uid="es.upm.fi.dmatic.graphs.domination.product" id="GraphDomGraphics.GraphDomGraphics" application="org.eclipse.ui.ide.workbench" version="0.1" useFeatures="true" includeLaunchers="true">
+<product name="Graph Domination IDE" uid="es.upm.fi.dmatic.graphs.domination.product" id="es.upm.fi.dmatic.graphs.domination.graphics.GraphDomGraphics" application="org.eclipse.ui.ide.workbench" version="0.1" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <text>
@@ -59,7 +59,7 @@ Facultad de Informática, Universidad Politécnica de Madrid
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
-      <property name="perspective" value="GraphDom" />
+      <property name="perspective" value="GraphDomPerspective" />
    </configurations>
 
    <preferencesInfo>

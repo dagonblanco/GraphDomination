@@ -153,7 +153,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.eclipse.ui.ide.workbench"
-            name="GraphDom">
+            name="Graph Domination IDE">
          <property
                name="aboutText"
                value="GraphDom - Dominación en Grafos&#x0A;&#x0A;TFC&#x0A;&#x0A;Autor: David Gonzalo Blanco&#x0A;Tutor: Gregorio Hernández&#x0A;&#x0A;Facultad de Informática, Universidad Politécnica de Madrid">
@@ -172,7 +172,7 @@
          </property>
          <property
                name="appName"
-               value="GraphDom">
+               value="Graph Domination IDE">
          </property>
          <property
                name="preferenceCustomization"

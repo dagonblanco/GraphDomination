@@ -114,8 +114,7 @@ public class ExampleUtil {
 	}
 
 	public static EObject getDiagramDO(final Diagram d) {
-		// TODO: ¿Y esto?
-		return null;
+		return getRootGraph(d);
 	}
 
 	public static void saveToModelFile(final EObject obj, final Diagram d) throws CoreException, IOException {
