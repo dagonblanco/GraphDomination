@@ -4,35 +4,35 @@
 package graphdomgraphics.tools;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
-import org.eclipse.graphiti.features.ICreateConnectionFeature;
-import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
 import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
-import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
-import org.eclipse.graphiti.mm.pictograms.ContainerShape;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.tb.ContextButtonEntry;
-import org.eclipse.graphiti.tb.ContextEntryHelper;
 import org.eclipse.graphiti.tb.ContextMenuEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
-import org.eclipse.graphiti.tb.IContextButtonEntry;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
 
-import graphdom.Node;
 import graphdomgraphics.common.GraphdomImageProvider;
-
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
-import graphdomgraphics.features.CreateNodeFeature;
+import graphdomgraphics.features.custom.ConvexHullCustomFeature;
+import graphdomgraphics.features.custom.FlipEdgeCustomFeature;
+import graphdomgraphics.features.custom.GenerateRandomNodesCustomFeature;
+import graphdomgraphics.features.custom.GenerateRoundGraphCustomFeature;
+import graphdomgraphics.features.custom.GenerateRoundTriangGraphCustomFeature;
+import graphdomgraphics.features.custom.GreedyConnectedDominationCustomFeature;
+import graphdomgraphics.features.custom.GreedyDominationCustomFeature;
 import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
+import graphdomgraphics.features.custom.RandomFlipsByChanceCustomFeature;
+import graphdomgraphics.features.custom.RandomFlipsByNumberCustomFeature;
+import graphdomgraphics.features.custom.UnmarkAllNodesCustomFeature;
 
 /**
  * @author xIS02028
@@ -84,28 +84,53 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 		return data;
 	}
-	
+
 	@Override
 	public IContextMenuEntry[] getContextMenu(ICustomContext context) {
-	    // create a sub-menu for all custom features
-	    ContextMenuEntry subMenu = new ContextMenuEntry(null, context);
-	    subMenu.setText("Graphs");
-	    subMenu.setDescription("Graphdom features submenu");
-	    // display sub-menu hierarchical or flat
-	    subMenu.setSubmenu(true);
 
-	    // create a menu-entry in the sub-menu for each custom feature
-	    ICustomFeature[] customFeatures = getFeatureProvider().getCustomFeatures(context);
-	    for (int i = 0; i < customFeatures.length; i++) {
-	         ICustomFeature customFeature = customFeatures[i];
-	         if (customFeature.isAvailable(context)) {
-	             ContextMenuEntry menuEntry = new ContextMenuEntry(customFeature, context);
-	             subMenu.add(menuEntry);
-	         }
-	     }
+		// create a sub-menu for each group of custom features
 
-	     IContextMenuEntry ret[] = new IContextMenuEntry[] { subMenu };
-	     return ret;
+		ContextMenuEntry subMenuGraphGeneration = new ContextMenuEntry(null, context);
+		subMenuGraphGeneration.setText("Generation");
+		subMenuGraphGeneration.setDescription("Graph generation submenu");
+		// display sub-menu hierarchical or flat
+		subMenuGraphGeneration.setSubmenu(true);
+
+		ContextMenuEntry subMenuSelectedObject = new ContextMenuEntry(null, context);
+		subMenuSelectedObject.setText("Selected object");
+		subMenuSelectedObject.setDescription("Selected object actions submenu");
+		// display sub-menu hierarchical or flat
+		subMenuSelectedObject.setSubmenu(true);
+
+		ContextMenuEntry subMenuAlgorithms = new ContextMenuEntry(null, context);
+		subMenuAlgorithms.setText("Algorithms");
+		subMenuAlgorithms.setDescription("Domination algorithms submenu");
+		// display sub-menu hierarchical or flat
+		subMenuAlgorithms.setSubmenu(true);
+
+		subMenuAlgorithms.add(new ContextMenuEntry(new UnmarkAllNodesCustomFeature(getFeatureProvider()), context));
+		subMenuAlgorithms.add(new ContextMenuEntry(new GreedyDominationCustomFeature(getFeatureProvider()), context));
+		subMenuAlgorithms
+				.add(new ContextMenuEntry(new GreedyConnectedDominationCustomFeature(getFeatureProvider()), context));
+
+		subMenuSelectedObject.add(new ContextMenuEntry(new MarkDominatingCustomFeature(getFeatureProvider()), context));
+		subMenuSelectedObject.add(new ContextMenuEntry(new FlipEdgeCustomFeature(getFeatureProvider()), context));
+
+		subMenuGraphGeneration
+				.add(new ContextMenuEntry(new GenerateRandomNodesCustomFeature(getFeatureProvider()), context));
+		subMenuGraphGeneration.add(new ContextMenuEntry(new ConvexHullCustomFeature(getFeatureProvider()), context));
+		subMenuGraphGeneration
+				.add(new ContextMenuEntry(new GenerateRoundGraphCustomFeature(getFeatureProvider()), context));
+		subMenuGraphGeneration
+				.add(new ContextMenuEntry(new GenerateRoundTriangGraphCustomFeature(getFeatureProvider()), context));
+		subMenuGraphGeneration
+				.add(new ContextMenuEntry(new RandomFlipsByChanceCustomFeature(getFeatureProvider()), context));
+		subMenuGraphGeneration
+				.add(new ContextMenuEntry(new RandomFlipsByNumberCustomFeature(getFeatureProvider()), context));
+
+		IContextMenuEntry ret[] = new IContextMenuEntry[] { subMenuSelectedObject, subMenuGraphGeneration,
+				subMenuAlgorithms };
+		return ret;
 	}
 	
 	@Override
@@ -118,5 +143,18 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	    }
 	 
 	    return super.getDoubleClickFeature(context);
+	}
+
+	@Override
+	public ICustomFeature getCommandFeature(CustomContext context, String hint) {
+
+		ICustomFeature[] customFeatures = getFeatureProvider().getCustomFeatures(context);
+		for (int i = 0; i < customFeatures.length; i++) {
+			ICustomFeature customFeature = customFeatures[i];
+			if (customFeature.isAvailable(context) && customFeature.getClass().getSimpleName().equals(hint)) {
+				return customFeature;
+			}
+		}
+		return super.getCommandFeature(context, hint);
 	}
 }

@@ -13,9 +13,10 @@
    <extension
          point="org.eclipse.graphiti.ui.diagramTypeProviders">
       <diagramTypeProvider
-            name="GraphDomGraphics Diagram"
             class="graphdomgraphics.diagram.GraphDomGraphicsDiagramTypeProvider"
-            id="GraphDomGraphics.GraphDomGraphicsDiagramTypeProvider">
+            context="es.upm.fi.dmatic.graphs.domination"
+            id="GraphDomGraphics.GraphDomGraphicsDiagramTypeProvider"
+            name="GraphDomGraphics Diagram">
          <diagramType
                id="GraphDomGraphics.GraphDomGraphicsDiagramType">
          </diagramType>
@@ -28,6 +29,7 @@
 	<extension
 		point = "org.eclipse.ui.newWizards">
 		<wizard
+        canFinishEarly="false"
         class="graphdomgraphics.ui.CreateGraphdomProjectWizard"
         finalPerspective="GraphDomPerspective"
         id="graphdomgraphics.ui.CreateSampleProjectWizard"
@@ -40,7 +42,8 @@
         class="graphdomgraphics.ui.CreateDiagramWizard"
         finalPerspective="GraphDomPerspective"
         id="graphdomgraphics.ui.CreateDiagramWizard"
-        name="%wizard.name.0">
+        name="%wizard.name.0"
+        project="false">
      <description>
         %wizard.description.0
      </description>
@@ -48,6 +51,12 @@
            class="org.eclipse.core.resources.IContainer">
      </selection>
 		</wizard>
+  <primaryWizard
+        id="graphdomgraphics.ui.CreateSampleProjectWizard">
+  </primaryWizard>
+  <primaryWizard
+        id="graphdomgraphics.ui.CreateDiagramWizard">
+  </primaryWizard>
 	</extension>
   
 <extension
@@ -175,9 +184,162 @@
                value="Graph Domination IDE">
          </property>
          <property
+               name="perspective"
+               value="GraphDomPerspective">
+         </property>
+         <property
+               name="aboutImage"
+               value="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_256.png">
+         </property>
+         <property
+               name="windowImages"
+               value="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_16.png,/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_32.png,/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_48.png,/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_256.png">
+         </property>
+         <property
                name="preferenceCustomization"
                value="plugin_customization.ini">
          </property>
       </product>
    </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard
+            type="new"
+            wizardId="graphdomgraphics.ui.CreateSampleProjectWizard">
+         <enablement></enablement>
+      </commonWizard>
+      <commonWizard
+            type="new"
+            wizardId="graphdomgraphics.ui.CreateDiagramWizard">
+         <enablement></enablement>
+      </commonWizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               label="graphs toolbar"
+               id="graphsToolbar">
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:graphsToolbar">
+         <command
+               commandId="org.eclipse.graphiti.ui.featureExecutionCommand"
+               icon="icons/shrink.png"
+               label="Unmark All"
+               style="push"
+               tooltip="Unmark all nodes">
+            <parameter
+                  name="org.eclipse.graphiti.ui.featureHint"
+                  value="UnmarkAllNodesCustomFeature">
+            </parameter>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeContexts">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <equals
+                           value="es.upm.fi.dmatic.graphs.domination">
+                     </equals>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.graphiti.ui.featureExecutionCommand"
+               icon="icons/expand.png"
+               label="Generate Triangled Graph"
+               style="push"
+               tooltip="Generate Triangled Graph">
+            <parameter
+                  name="org.eclipse.graphiti.ui.featureHint"
+                  value="GenerateRoundTriangGraphCustomFeature">
+            </parameter>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeContexts">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <equals
+                           value="es.upm.fi.dmatic.graphs.domination">
+                     </equals>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=file">
+         <menu
+               id="graphsMenu"
+               label="Graphs">
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:graphsMenu">
+         <command
+               commandId="org.eclipse.graphiti.ui.featureExecutionCommand"
+               label="Unmark All"
+               style="push"
+               tooltip="Unmark all nodes">
+            <parameter
+                  name="org.eclipse.graphiti.ui.featureHint"
+                  value="UnmarkAllNodesCustomFeature">
+            </parameter>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeContexts">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <equals
+                           value="es.upm.fi.dmatic.graphs.domination">
+                     </equals>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.graphiti.ui.featureExecutionCommand"
+               label="Generate Triangled Graph"
+               style="push"
+               tooltip="Generate Triangled Graph">
+            <parameter
+                  name="org.eclipse.graphiti.ui.featureHint"
+                  value="GenerateRoundTriangGraphCustomFeature">
+            </parameter>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeContexts">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <equals
+                           value="es.upm.fi.dmatic.graphs.domination">
+                     </equals>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="es.upm.fi.dmatic.graphs.domination"
+            name="Graph Domination Framework context"
+            parentId="org.eclipse.graphiti.ui.diagramEditor">
+      </context>
+   </extension>   
 </plugin>

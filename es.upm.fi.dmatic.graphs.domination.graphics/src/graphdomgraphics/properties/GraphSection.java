@@ -20,9 +20,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -54,10 +51,11 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		composite = new Composite(parent, SWT.NONE);
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
-		gridLayout.makeColumnsEqualWidth = true;
+		gridLayout.makeColumnsEqualWidth = false;
 		composite.setLayout(gridLayout);
 		
 		GridData defaultGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+		GridData multiLineGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 5);
 
 //		factory.createCLabel(composite, "Name:"); //$NON-NLS-1$
 //		nameText = factory.createText(composite, ""); //$NON-NLS-1$
@@ -73,23 +71,21 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		edgeCount.setEditable(false);
 		edgeCount.setLayoutData(defaultGridData);
 
-		factory.createCLabel(composite, "Matrix:"); //$NON-NLS-1$
-		matrixText = factory.createText(composite, "",SWT.MULTI | SWT.BORDER | SWT.V_SCROLL); //$NON-NLS-1$
-		matrixText.setEditable(false);
-		matrixText.setLayoutData(defaultGridData);
-
 		factory.createCLabel(composite, "Dominated:"); //$NON-NLS-1$
 		dominated = factory.createText(composite, ""); //$NON-NLS-1$
 		dominated.setEditable(false);
 		dominated.setLayoutData(defaultGridData);
 
 		factory.createCLabel(composite, "Dominating set:"); //$NON-NLS-1$
-		dominatingSet = factory.createText(composite, "",SWT.MULTI | SWT.BORDER | SWT.V_SCROLL); //$NON-NLS-1$
+		dominatingSet = factory.createText(composite, "", SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL); //$NON-NLS-1$
 		dominatingSet.setEditable(false);
 		dominatingSet.setLayoutData(defaultGridData);
+
 		
-
-
+		factory.createCLabel(composite, "Adjacency matrix:"); //$NON-NLS-1$
+		matrixText = factory.createText(composite, "", SWT.MULTI | SWT.BORDER | SWT.V_SCROLL); //$NON-NLS-1$
+		matrixText.setEditable(false);
+		matrixText.setLayoutData(multiLineGridData);
 
 	}
 
@@ -108,32 +104,34 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 			edgeCount.setText(String.valueOf(theGraph.getEdges().size()));
 			dominated.setText(String.valueOf(theGraph.isDominated()));
 			
-			StringBuffer matrix = null;
+			StringBuilder matrix = null;
 			for (Node theNode : theGraph.getNodes()) {
 				if (matrix == null) {
-					matrix = new StringBuffer(theNode.getNodeName()).append("-->");
+					matrix = new StringBuilder(theNode.getNodeName()).append("-->");
 				} else {
 					matrix.append(System.lineSeparator()).append(theNode.getNodeName()).append("-->");
 				}
 				
-				StringBuffer nodelist = null;
+				StringBuilder nodelist = null;
 				for (Node adjnode : theNode.getAdjacentNodes()) {
 					if (nodelist == null) {
-						nodelist = new StringBuffer(adjnode.getNodeName());
+						nodelist = new StringBuilder(adjnode.getNodeName());
 					} else {
 						nodelist.append(",").append(adjnode.getNodeName());
 					}
 
 				}
-				matrix.append(nodelist.toString());
+				matrix.append(nodelist == null ? "" : nodelist.toString());
 
 			}
-			if (matrix!=null) matrixText.setText(matrix.toString());
+			if (matrix!=null) {
+				matrixText.setText(matrix.toString());
+			}
 			
-			StringBuffer domSet = null;
+			StringBuilder domSet = null;
 			for (Node theNode : theGraph.getDominatingSet()) {
 				if (domSet == null) {
-					domSet = new StringBuffer(theNode.getNodeName());
+					domSet = new StringBuilder(theNode.getNodeName());
 				} else {
 					domSet.append(",").append(theNode.getNodeName());
 				}								

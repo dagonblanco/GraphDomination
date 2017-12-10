@@ -49,11 +49,4 @@
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
-         id="es.upm.fi.dmatic.graphs.domination.views"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
 </feature>

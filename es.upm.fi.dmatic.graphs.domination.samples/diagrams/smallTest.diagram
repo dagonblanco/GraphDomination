@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:es.upm.fi.dma.graphdom="http://es/upm/fi/dma/graphdom" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="GraphDomGraphics" name="smallTest" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.0/@link /0/@children.1/@link /0/@children.1/@children.0/@link /0/@connections.0/@link /0/@children.2/@link /0/@children.2/@children.0/@link /0/@connections.1/@link /0/@connections.2/@link" version="0.13.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link businessObjects="/1"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="1" transparency="0.0" width="20" height="20" x="520" y="260"/>
+      <link businessObjects="_qyWm0MFkEeWN66SMtkr8Aw"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.0" incomingConnections="/0/@connections.2"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0" width="20" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="4"/>
+        <link businessObjects="_qyWm0MFkEeWN66SMtkr8Aw"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="1" transparency="0.0" width="20" height="20" x="658" y="298"/>
+      <link businessObjects="_2gNVEMFkEeWN66SMtkr8Aw"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.1" incomingConnections="/0/@connections.0"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0" width="20" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="9"/>
+        <link businessObjects="_2gNVEMFkEeWN66SMtkr8Aw"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="1" transparency="0.0" width="20" height="20" x="542" y="364"/>
+      <link businessObjects="_2uTbcMFkEeWN66SMtkr8Aw"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.2" incomingConnections="/0/@connections.1"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.2" lineWidth="1" filled="false" transparency="0.0" width="20" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="10"/>
+        <link businessObjects="_2uTbcMFkEeWN66SMtkr8Aw"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.1/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" background="/0/@colors.2" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+      <link businessObjects="/1/@edges.4"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.1/@anchors.0" end="/0/@children.2/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" background="/0/@colors.2" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+      <link businessObjects="/1/@edges.5"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.2/@anchors.0" end="/0/@children.0/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" background="/0/@colors.2" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0"/>
+      <link businessObjects="/1/@edges.6"/>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors/>
+    <colors green="153" blue="255"/>
+    <colors red="255"/>
+    <colors green="255"/>
+    <fonts name="Arial" size="8" bold="true"/>
+  </pi:Diagram>
+  <es.upm.fi.dma.graphdom:Graph nextNodeId="15">
+    <nodes nodeName="4" connectedEdges="/1/@edges.3 /1/@edges.4 /1/@edges.6" guid="_qyWm0MFkEeWN66SMtkr8Aw" xCoord="520" yCoord="260"/>
+    <nodes nodeName="9" connectedEdges="/1/@edges.4 /1/@edges.5" guid="_2gNVEMFkEeWN66SMtkr8Aw" xCoord="658" yCoord="298"/>
+    <nodes nodeName="10" connectedEdges="/1/@edges.5 /1/@edges.6" guid="_2uTbcMFkEeWN66SMtkr8Aw" xCoord="542" yCoord="364"/>
+    <edges/>
+    <edges/>
+    <edges/>
+    <edges connectedNodes="_qyWm0MFkEeWN66SMtkr8Aw"/>
+    <edges connectedNodes="_qyWm0MFkEeWN66SMtkr8Aw _2gNVEMFkEeWN66SMtkr8Aw"/>
+    <edges connectedNodes="_2gNVEMFkEeWN66SMtkr8Aw _2uTbcMFkEeWN66SMtkr8Aw"/>
+    <edges connectedNodes="_2uTbcMFkEeWN66SMtkr8Aw _qyWm0MFkEeWN66SMtkr8Aw"/>
+  </es.upm.fi.dma.graphdom:Graph>
+</xmi:XMI>

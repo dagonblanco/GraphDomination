@@ -94,7 +94,7 @@ public class NodeSection extends GFPropertySection implements ITabbedPropertyCon
 				}
 
 			}
-			connectedNodesText.setText(connected.toString());
+			connectedNodesText.setText(connected == null ? "" : connected.toString());
 		}
 	}
 }
