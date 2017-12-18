@@ -2,14 +2,15 @@
  */
 package graphdom.util;
 
-import graphdom.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import graphdom.Edge;
+import graphdom.Graph;
+import graphdom.GraphdomPackage;
+import graphdom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,10 +81,6 @@ public class GraphdomAdapterFactory extends AdapterFactoryImpl {
 				return createEdgeAdapter();
 			}
 			@Override
-			public Adapter caseAbstractGraphAlgorithm(AbstractGraphAlgorithm object) {
-				return createAbstractGraphAlgorithmAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -142,20 +139,6 @@ public class GraphdomAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEdgeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link graphdom.AbstractGraphAlgorithm <em>Abstract Graph Algorithm</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see graphdom.AbstractGraphAlgorithm
-	 * @generated
-	 */
-	public Adapter createAbstractGraphAlgorithmAdapter() {
 		return null;
 	}
 

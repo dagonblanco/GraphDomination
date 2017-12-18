@@ -3,9 +3,7 @@
 package graphdom.impl;
 
 import graphdom.*;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -71,35 +69,6 @@ public class GraphdomFactoryImpl extends EFactoryImpl implements GraphdomFactory
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case GraphdomPackage.ALGORITHM_STATUS:
-				return createAlgorithmStatusFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case GraphdomPackage.ALGORITHM_STATUS:
-				return convertAlgorithmStatusToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Graph createGraph() {
 		GraphImpl graph = new GraphImpl();
 		return graph;
@@ -110,6 +79,7 @@ public class GraphdomFactoryImpl extends EFactoryImpl implements GraphdomFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Node createNode() {
 		NodeImpl node = new NodeImpl();
 		return node;
@@ -120,6 +90,7 @@ public class GraphdomFactoryImpl extends EFactoryImpl implements GraphdomFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Edge createEdge() {
 		EdgeImpl edge = new EdgeImpl();
 		return edge;
@@ -130,26 +101,7 @@ public class GraphdomFactoryImpl extends EFactoryImpl implements GraphdomFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AlgorithmStatus createAlgorithmStatusFromString(EDataType eDataType, String initialValue) {
-		AlgorithmStatus result = AlgorithmStatus.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertAlgorithmStatusToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public GraphdomPackage getGraphdomPackage() {
 		return (GraphdomPackage)getEPackage();
 	}

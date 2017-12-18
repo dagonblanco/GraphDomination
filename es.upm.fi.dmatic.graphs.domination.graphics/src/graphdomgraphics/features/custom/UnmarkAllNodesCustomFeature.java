@@ -14,8 +14,7 @@ import org.eclipse.graphiti.services.ILinkService;
 
 import graphdom.Graph;
 import graphdom.Node;
-import graphdom.util.Utils;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 /**
  * @author David
@@ -28,7 +27,6 @@ public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 	 */
 	public UnmarkAllNodesCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	private boolean hasDoneChanges = false;
@@ -52,7 +50,7 @@ public class UnmarkAllNodesCustomFeature extends AbstractCustomFeature {
 	public void execute(ICustomContext context) {
 
 		// Get the graph
-		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
 		// Get the linkservice
 		ILinkService linkserv = Graphiti.getLinkService();

@@ -2,12 +2,14 @@
  */
 package graphdom.util;
 
-import graphdom.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
+
+import graphdom.Edge;
+import graphdom.Graph;
+import graphdom.GraphdomPackage;
+import graphdom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,12 +86,6 @@ public class GraphdomSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GraphdomPackage.ABSTRACT_GRAPH_ALGORITHM: {
-				AbstractGraphAlgorithm abstractGraphAlgorithm = (AbstractGraphAlgorithm)theEObject;
-				T result = caseAbstractGraphAlgorithm(abstractGraphAlgorithm);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -139,20 +135,6 @@ public class GraphdomSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Graph Algorithm</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Graph Algorithm</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractGraphAlgorithm(AbstractGraphAlgorithm object) {
-		return null;
-	}
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.

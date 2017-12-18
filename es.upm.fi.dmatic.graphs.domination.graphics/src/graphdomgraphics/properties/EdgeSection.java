@@ -31,7 +31,6 @@ import graphdom.Node;
 
 public class EdgeSection extends GFPropertySection implements ITabbedPropertyConstants {
 
-	private Text nameText;
 	private Text connectedNodesText;
 	private Text dominatingText;
 

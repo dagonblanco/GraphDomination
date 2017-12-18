@@ -7,12 +7,11 @@ import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import graphdom.Edge;
 import graphdom.GraphdomFactory;
 import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
 		implements ICreateConnectionFeature {
@@ -61,8 +60,7 @@ public class CreateEdgeConnectionFeature extends AbstractCreateConnectionFeature
             newConnection =
                 (Connection) getFeatureProvider().addIfPossible(addContext);
             
-            //getDiagram().eResource().getContents().add(myEdge);
-            ExampleUtil.getRootGraph(getDiagram()).getEdges().add(myEdge);
+            GraphUtil.getRootGraph(getDiagram()).getEdges().add(myEdge);
         }
         
 		return newConnection;

@@ -8,18 +8,13 @@ import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
-import org.eclipse.graphiti.mm.algorithms.Ellipse;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
-import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Color;
 import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import graphdom.Edge;
-import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.common.IColorConstants;
 
 /**
@@ -33,7 +28,6 @@ public class UpdateEdgeFeature extends AbstractUpdateFeature {
 	 */
 	public UpdateEdgeFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -86,8 +80,8 @@ public class UpdateEdgeFeature extends AbstractUpdateFeature {
 		// update needed
 
 		boolean markChanged = (
-				(dominating && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.EDGE_FOREGROUND_DOMINATING))
-				||(!dominating && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.EDGE_FOREGROUND))
+				(dominating && !GraphUtil.equalsColorAndConstant(pictogramColor, IColorConstants.EDGE_FOREGROUND_DOMINATING))
+				||(!dominating && !GraphUtil.equalsColorAndConstant(pictogramColor, IColorConstants.EDGE_FOREGROUND))
 				);
 		if (markChanged) {
 			return Reason.createTrueReason("Domination state has changed");

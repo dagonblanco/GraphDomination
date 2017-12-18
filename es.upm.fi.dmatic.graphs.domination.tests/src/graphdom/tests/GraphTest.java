@@ -107,7 +107,7 @@ public class GraphTest extends TestCase {
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
-	
+
 	/**
 	 * Tests the '{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -186,78 +186,74 @@ public class GraphTest extends TestCase {
 		fail();
 	}
 
-	public void testLoad() throws Exception{
+	public void testLoad() throws Exception {
 		// Initialize the model
-	    GraphdomPackage.eINSTANCE.eClass();
-	    
-	    // Register the XMI resource factory for the .graphdom extension
+		GraphdomPackage.eINSTANCE.eClass();
 
-	    Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-	    Map<String, Object> m = reg.getExtensionToFactoryMap();
-	    m.put("graphdom", new XMIResourceFactoryImpl());
+		// Register the XMI resource factory for the .graphdom extension
 
-	    // Obtain a new resource set
-	    ResourceSet resSet = new ResourceSetImpl();
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("graphdom", new XMIResourceFactoryImpl());
 
-	    // Get the resource
-	    Resource resource = resSet.getResource(URI
-	        //.createURI("file:///D:/EclipseModelling/runtime-GraphDomRCP/SecondGraph.graphdom"), true);
-	    		.createURI("graphs/SimpleTestGraph.graphdom"), true);
-	    // Get the first model element and cast it to the right type, in my
-	    // example everything is hierarchical included in this first node
-	    Graph myGraph = (Graph) resource.getContents().get(0);
-	    assertNotNull(myGraph);
-		
-	}
-	
-	public void testSave() throws Exception{
-		// Initialize the model
-	    GraphdomPackage.eINSTANCE.eClass();
-	    // Retrieve the default factory singleton
-	    GraphdomFactory factory = GraphdomFactory.eINSTANCE;
+		// Obtain a new resource set
+		ResourceSet resSet = new ResourceSetImpl();
 
-	    // create the content of the model via this program
-	    Graph myGraph = factory.createGraph();
-	    Node node1 = factory.createNode();
-	    Node node2 = factory.createNode();
-	    Edge edge1 = factory.createEdge();
-	    
-	    myGraph.setGraphName("SavedTestGraph");
-	    
-	    node1.setNodeName("TestNode1");
-	    node2.setNodeName("TestNode2");
-	    
-	    edge1.getConnectedNodes().add(node1);
-	    edge1.getConnectedNodes().add(node2);
-	    
-	    myGraph.getNodes().add(node1);
-	    myGraph.getNodes().add(node2);
-	    myGraph.getEdges().add(edge1);
-	    
-	    // As of here we preparing to save the model content
-
-	    // Register the XMI resource factory for the .graphdom extension
-
-	    Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-	    Map<String, Object> m = reg.getExtensionToFactoryMap();
-	    m.put("graphdom", new XMIResourceFactoryImpl());
-
-	    // Obtain a new resource set
-	    ResourceSet resSet = new ResourceSetImpl();
-
-	    // create a resource
-	    Resource resource = resSet.createResource(URI
-	        .createURI("graphs/SavedTestGraph.graphdom"));
-	    // Get the first model element and cast it to the right type, in my
-	    // example everything is hierarchical included in this first node
-	    resource.getContents().add(myGraph);
-
-	    // now save the content.
-	    resource.save(Collections.EMPTY_MAP);
+		// Get the resource
+		Resource resource = resSet.getResource(URI
+				//.createURI("file:///D:/EclipseModelling/runtime-GraphDomRCP/SecondGraph.graphdom"), true);
+				.createURI("graphs/SimpleTestGraph.graphdom"), true);
+		// Get the first model element and cast it to the right type, in my
+		// example everything is hierarchical included in this first node
+		Graph myGraph = (Graph) resource.getContents().get(0);
+		assertNotNull(myGraph);
 
 	}
-		
-	
-	
+
+	public void testSave() throws Exception {
+		// Initialize the model
+		GraphdomPackage.eINSTANCE.eClass();
+		// Retrieve the default factory singleton
+		GraphdomFactory factory = GraphdomFactory.eINSTANCE;
+
+		// create the content of the model via this program
+		Graph myGraph = factory.createGraph();
+		Node node1 = factory.createNode();
+		Node node2 = factory.createNode();
+		Edge edge1 = factory.createEdge();
+
+		myGraph.setGraphName("SavedTestGraph");
+
+		node1.setNodeName("TestNode1");
+		node2.setNodeName("TestNode2");
+
+		edge1.getConnectedNodes().add(node1);
+		edge1.getConnectedNodes().add(node2);
+
+		myGraph.getNodes().add(node1);
+		myGraph.getNodes().add(node2);
+		myGraph.getEdges().add(edge1);
+
+		// As of here we preparing to save the model content
+
+		// Register the XMI resource factory for the .graphdom extension
+
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("graphdom", new XMIResourceFactoryImpl());
+
+		// Obtain a new resource set
+		ResourceSet resSet = new ResourceSetImpl();
+
+		// create a resource
+		Resource resource = resSet.createResource(URI.createURI("graphs/SavedTestGraph.graphdom"));
+		// Get the first model element and cast it to the right type, in my
+		// example everything is hierarchical included in this first node
+		resource.getContents().add(myGraph);
+
+		// now save the content.
+		resource.save(Collections.EMPTY_MAP);
+
+	}
 
 } //GraphTest

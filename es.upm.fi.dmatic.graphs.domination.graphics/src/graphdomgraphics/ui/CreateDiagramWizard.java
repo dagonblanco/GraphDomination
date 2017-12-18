@@ -41,7 +41,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
-import graphdomgraphics.common.ExamplesCommonPlugin;
+import graphdomgraphics.common.GraphdomAbstractUIPlugin;
 import graphdomgraphics.common.FileService;
 import graphdomgraphics.common.Messages;
 
@@ -111,7 +111,7 @@ public class CreateDiagramWizard extends BasicNewResourceWizard {
 
 		if (project == null || !project.isAccessible()) {
 			String error = Messages.CreateDiagramWizard_NoProjectFoundError;
-			IStatus status = new Status(IStatus.ERROR, ExamplesCommonPlugin.getID(), error);
+			IStatus status = new Status(IStatus.ERROR, GraphdomAbstractUIPlugin.getID(), error);
 			ErrorDialog.openError(getShell(), Messages.CreateDiagramWizard_NoProjectFoundErrorTitle, null, status);
 			return false;
 		}
@@ -160,7 +160,7 @@ public class CreateDiagramWizard extends BasicNewResourceWizard {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(editorInput, editorID);
 		} catch (PartInitException e) {
 			String error = Messages.CreateDiagramWizard_OpeningEditorError;
-			IStatus status = new Status(IStatus.ERROR, ExamplesCommonPlugin.getID(), error, e);
+			IStatus status = new Status(IStatus.ERROR, GraphdomAbstractUIPlugin.getID(), error, e);
 			ErrorDialog.openError(getShell(), Messages.CreateDiagramWizard_ErrorOccuredTitle, null, status);
 			return false;
 		}

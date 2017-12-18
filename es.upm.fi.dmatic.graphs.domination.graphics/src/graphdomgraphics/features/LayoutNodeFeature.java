@@ -24,7 +24,6 @@ public class LayoutNodeFeature extends AbstractLayoutFeature implements
 
 	@Override
 	public boolean canLayout(ILayoutContext context) {
-		// TODO: check for right domain object instances below
 		return context.getPictogramElement() instanceof ContainerShape  && getBusinessObjectForPictogramElement(context.getPictogramElement()) instanceof Node ;
 	}
 
@@ -37,7 +36,7 @@ public class LayoutNodeFeature extends AbstractLayoutFeature implements
 			if (outerGraphicsAlgorithm instanceof RoundedRectangle) {
 				RoundedRectangle roundedRectangle = (RoundedRectangle) outerGraphicsAlgorithm;
 				EList<Shape> children = containerShape.getChildren();
-				if (children.size() > 0) {
+				if (!children.isEmpty()) {
 					Shape shape = children.get(0);
 					GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
 					if (graphicsAlgorithm instanceof Text) {

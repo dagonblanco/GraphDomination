@@ -101,7 +101,7 @@ public class GraphdomExample {
 			}
 		}
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * Prints diagnostics with indentation.

@@ -5,7 +5,7 @@ import org.eclipse.graphiti.features.context.ICustomContext;
 
 import graphdom.Graph;
 import graphdom.algorithms.RandomFlipsByNumberAlgorithm;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 public class RandomFlipsByNumberCustomFeature extends GraphdomAbstractCustomFeature {
 
@@ -39,7 +39,7 @@ public class RandomFlipsByNumberCustomFeature extends GraphdomAbstractCustomFeat
 
 		// Ask user number of nodes
 
-		String sFlips = ExampleUtil.askString(TITLE, USER_QUESTION, "10");
+		String sFlips = GraphUtil.askString(TITLE, USER_QUESTION, "10");
 		int nFlips = 10;
 		try {
 			nFlips = Integer.parseUnsignedInt(sFlips);
@@ -52,13 +52,10 @@ public class RandomFlipsByNumberCustomFeature extends GraphdomAbstractCustomFeat
 		// Now for the random flips...
 
 		// Access the graph
-		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
 		// Instance the related algorithm
-		RandomFlipsByNumberAlgorithm rfa = new RandomFlipsByNumberAlgorithm(nFlips);
-
-		// Initialize the algorithm with the graph
-		rfa.setInitialGraph(theGraph);
+		RandomFlipsByNumberAlgorithm rfa = new RandomFlipsByNumberAlgorithm(theGraph, nFlips);
 
 		// Run the algorithm to the end
 		rfa.runToEnd();

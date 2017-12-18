@@ -2,7 +2,6 @@
  */
 package graphdom.presentation;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -56,7 +55,6 @@ import graphdom.GraphdomFactory;
 import graphdom.GraphdomPackage;
 import graphdom.provider.GraphdomEditPlugin;
 
-
 import java.io.File;
 
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -66,7 +64,6 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
-
 
 /**
  * This is a simple wizard for creating a new model file.
@@ -81,8 +78,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(GraphdomEditorPlugin.INSTANCE.getString("_UI_GraphdomEditorFilenameExtensions").split("\\s*,\\s*")));
+	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(GraphdomEditorPlugin.INSTANCE.getString("_UI_GraphdomEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -90,8 +86,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String FORMATTED_FILE_EXTENSIONS =
-		GraphdomEditorPlugin.INSTANCE.getString("_UI_GraphdomEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+	public static final String FORMATTED_FILE_EXTENSIONS = GraphdomEditorPlugin.INSTANCE.getString("_UI_GraphdomEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -147,6 +142,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
@@ -165,9 +161,9 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 			initialObjectNames = new ArrayList<String>();
 			for (EClassifier eClassifier : graphdomPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass)eClassifier;
+					EClass eClass = (EClass) eClassifier;
 					if (!eClass.isAbstract()) {
-						if (eClass.getName().equalsIgnoreCase("Graph")){
+						if (eClass.getName().equalsIgnoreCase("Graph")) {
 							initialObjectNames.add(eClass.getName());
 						}
 					}
@@ -215,6 +211,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 			// Do the work within an operation.
 			//
 			IRunnableWithProgress operation = new IRunnableWithProgress() {
+				@Override
 				public void run(IProgressMonitor progressMonitor) {
 						try {
 							// Create a resource set
@@ -307,6 +304,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
@@ -427,8 +425,8 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected ModifyListener validator =
-			new ModifyListener() {
+		protected ModifyListener validator = new ModifyListener() {
+				@Override
 				public void modifyText(ModifyEvent e) {
 					setPageComplete(validatePage());
 				}
@@ -522,7 +520,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 				encodingField.clearSelection();
 				fileField.selectAll();
 				fileField.setFocus();
-		}		
+		}
 
 		/**
 		 * Returns the label for the specified type name.
@@ -562,7 +560,7 @@ public class GraphdomModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-		@Override
+	@Override
 	public void addPages() {
 		initialObjectCreationPage = new GraphdomModelWizardInitialObjectCreationPage("Whatever2");
 		initialObjectCreationPage.setTitle(GraphdomEditorPlugin.INSTANCE.getString("_UI_GraphdomModelWizard_label"));

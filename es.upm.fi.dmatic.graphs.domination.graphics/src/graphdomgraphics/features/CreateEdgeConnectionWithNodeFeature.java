@@ -14,7 +14,7 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import graphdom.Edge;
 import graphdom.GraphdomFactory;
 import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 public class CreateEdgeConnectionWithNodeFeature extends AbstractCreateConnectionFeature
 		implements ICreateConnectionFeature {
@@ -63,12 +63,12 @@ public class CreateEdgeConnectionWithNodeFeature extends AbstractCreateConnectio
 			// Create target node (domain object)
 
 			target = GraphdomFactory.eINSTANCE.createNode();
-			target.setNodeName(String.valueOf(ExampleUtil.getRootGraph(getDiagram()).getNextNodeId()));
+			target.setNodeName(String.valueOf(GraphUtil.getRootGraph(getDiagram()).getNextNodeId()));
 			target.setGuid(EcoreUtil.generateUUID());
 			target.setXCoord(context.getTargetLocation().getX());
 			target.setYCoord(context.getTargetLocation().getY());
 
-			ExampleUtil.getRootGraph(getDiagram()).getNodes().add(target);
+			GraphUtil.getRootGraph(getDiagram()).getNodes().add(target);
 			
 			// Create shape
 			AddContext ac = new AddContext();
@@ -89,7 +89,7 @@ public class CreateEdgeConnectionWithNodeFeature extends AbstractCreateConnectio
 			newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
 
 			// Add Edge to Diagram
-			ExampleUtil.getRootGraph(getDiagram()).getEdges().add(myEdge);
+			GraphUtil.getRootGraph(getDiagram()).getEdges().add(myEdge);
 		}
 
 		return newConnection;

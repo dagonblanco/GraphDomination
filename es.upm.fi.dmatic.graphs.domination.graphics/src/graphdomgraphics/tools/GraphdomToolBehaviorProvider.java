@@ -46,7 +46,6 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	 */
 	public GraphdomToolBehaviorProvider(IDiagramTypeProvider diagramTypeProvider) {
 		super(diagramTypeProvider);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

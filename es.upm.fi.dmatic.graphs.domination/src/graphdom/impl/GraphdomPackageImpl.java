@@ -2,22 +2,18 @@
  */
 package graphdom.impl;
 
-import graphdom.AbstractGraphAlgorithm;
-import graphdom.AlgorithmStatus;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.GraphdomFactory;
 import graphdom.GraphdomPackage;
 import graphdom.Node;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,20 +42,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * @generated
 	 */
 	private EClass edgeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractGraphAlgorithmEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum algorithmStatusEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -127,6 +109,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGraph() {
 		return graphEClass;
 	}
@@ -136,6 +119,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGraph_GraphName() {
 		return (EAttribute)graphEClass.getEStructuralFeatures().get(0);
 	}
@@ -145,6 +129,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraph_Nodes() {
 		return (EReference)graphEClass.getEStructuralFeatures().get(1);
 	}
@@ -154,6 +139,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraph_Edges() {
 		return (EReference)graphEClass.getEStructuralFeatures().get(2);
 	}
@@ -163,6 +149,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGraph_NextNodeId() {
 		return (EAttribute)graphEClass.getEStructuralFeatures().get(3);
 	}
@@ -172,15 +159,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGraph_AssignedAlgorithm() {
-		return (EReference)graphEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EOperation getGraph__FindNodeById__String() {
 		return graphEClass.getEOperations().get(0);
 	}
@@ -190,6 +169,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getGraph__UnmarkAllNodes() {
 		return graphEClass.getEOperations().get(1);
 	}
@@ -199,6 +179,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getGraph__RemoveNode__Node() {
 		return graphEClass.getEOperations().get(2);
 	}
@@ -208,6 +189,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getGraph__IsDominated() {
 		return graphEClass.getEOperations().get(3);
 	}
@@ -217,6 +199,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getGraph__GetDominatingSet() {
 		return graphEClass.getEOperations().get(4);
 	}
@@ -226,6 +209,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getGraph__CheckNodesDomination() {
 		return graphEClass.getEOperations().get(5);
 	}
@@ -235,6 +219,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -244,6 +229,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_NodeName() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(0);
 	}
@@ -253,6 +239,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Color() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
 	}
@@ -262,6 +249,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNode_ConnectedEdges() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
 	}
@@ -271,6 +259,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Dominating() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
 	}
@@ -280,6 +269,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Grade() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
 	}
@@ -289,6 +279,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Guid() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(5);
 	}
@@ -298,6 +289,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_XCoord() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(6);
 	}
@@ -307,6 +299,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_YCoord() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(7);
 	}
@@ -316,6 +309,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Dominated() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(8);
 	}
@@ -325,6 +319,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getNode__GetAdjacentNodes() {
 		return nodeEClass.getEOperations().get(0);
 	}
@@ -334,6 +329,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEdge() {
 		return edgeEClass;
 	}
@@ -343,6 +339,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEdge_ConnectedNodes() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(0);
 	}
@@ -352,6 +349,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEdge_Marked() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(1);
 	}
@@ -361,6 +359,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEdge_Guid() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(2);
 	}
@@ -370,6 +369,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEdge_Weight() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(3);
 	}
@@ -379,6 +379,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getEdge__Flip() {
 		return edgeEClass.getEOperations().get(0);
 	}
@@ -388,69 +389,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractGraphAlgorithm() {
-		return abstractGraphAlgorithmEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractGraphAlgorithm_InitialGraph() {
-		return (EReference)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAbstractGraphAlgorithm_ProcessedGraph() {
-		return (EReference)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractGraphAlgorithm_Status() {
-		return (EAttribute)abstractGraphAlgorithmEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAbstractGraphAlgorithm__RunToEnd() {
-		return abstractGraphAlgorithmEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAbstractGraphAlgorithm__NextStep() {
-		return abstractGraphAlgorithmEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getAlgorithmStatus() {
-		return algorithmStatusEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public GraphdomFactory getGraphdomFactory() {
 		return (GraphdomFactory)getEFactoryInstance();
 	}
@@ -479,7 +418,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEReference(graphEClass, GRAPH__NODES);
 		createEReference(graphEClass, GRAPH__EDGES);
 		createEAttribute(graphEClass, GRAPH__NEXT_NODE_ID);
-		createEReference(graphEClass, GRAPH__ASSIGNED_ALGORITHM);
 		createEOperation(graphEClass, GRAPH___FIND_NODE_BY_ID__STRING);
 		createEOperation(graphEClass, GRAPH___UNMARK_ALL_NODES);
 		createEOperation(graphEClass, GRAPH___REMOVE_NODE__NODE);
@@ -505,16 +443,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEAttribute(edgeEClass, EDGE__GUID);
 		createEAttribute(edgeEClass, EDGE__WEIGHT);
 		createEOperation(edgeEClass, EDGE___FLIP);
-
-		abstractGraphAlgorithmEClass = createEClass(ABSTRACT_GRAPH_ALGORITHM);
-		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH);
-		createEReference(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__PROCESSED_GRAPH);
-		createEAttribute(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM__STATUS);
-		createEOperation(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM___RUN_TO_END);
-		createEOperation(abstractGraphAlgorithmEClass, ABSTRACT_GRAPH_ALGORITHM___NEXT_STEP);
-
-		// Create enums
-		algorithmStatusEEnum = createEEnum(ALGORITHM_STATUS);
 	}
 
 	/**
@@ -552,7 +480,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEReference(getGraph_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Edges(), this.getEdge(), null, "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraph_NextNodeId(), ecorePackage.getEInt(), "nextNodeId", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraph_AssignedAlgorithm(), this.getAbstractGraphAlgorithm(), null, "assignedAlgorithm", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getGraph__FindNodeById__String(), this.getNode(), "findNodeById", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "id", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -588,21 +515,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEAttribute(getEdge_Weight(), ecorePackage.getEInt(), "weight", "0", 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getEdge__Flip(), ecorePackage.getEBoolean(), "flip", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(abstractGraphAlgorithmEClass, AbstractGraphAlgorithm.class, "AbstractGraphAlgorithm", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractGraphAlgorithm_InitialGraph(), this.getGraph(), null, "initialGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractGraphAlgorithm_ProcessedGraph(), this.getGraph(), null, "processedGraph", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAbstractGraphAlgorithm_Status(), this.getAlgorithmStatus(), "status", null, 0, 1, AbstractGraphAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getAbstractGraphAlgorithm__RunToEnd(), null, "runToEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getAbstractGraphAlgorithm__NextStep(), null, "nextStep", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(algorithmStatusEEnum, AlgorithmStatus.class, "AlgorithmStatus");
-		addEEnumLiteral(algorithmStatusEEnum, AlgorithmStatus.UNINITIALIZED);
-		addEEnumLiteral(algorithmStatusEEnum, AlgorithmStatus.INPROGRESS);
-		addEEnumLiteral(algorithmStatusEEnum, AlgorithmStatus.ENDED);
 
 		// Create resource
 		createResource(eNS_URI);

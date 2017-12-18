@@ -5,7 +5,6 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.algorithms.Ellipse;
-import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -17,7 +16,7 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
 import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.common.IColorConstants;
 
 public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
@@ -29,14 +28,10 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 
 	@Override
 	public boolean canAdd(IAddContext context) {
-		// check if user wants to add a Node
-		if (context.getNewObject() instanceof Node) {
-			// check if user wants to add to a diagram
-			if (context.getTargetContainer() instanceof Diagram) {
-				return true;
-			}
-		}
-		return false;
+		// check if user wants to add a Node and
+		// check if user wants to add to a diagram
+
+		return ((context.getNewObject() instanceof Node) && (context.getTargetContainer() instanceof Diagram));
 	}
 
 	@Override
@@ -72,7 +67,7 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 		// if added node has no resource we add it to the resource
 		// of the diagram
 		if (addedNode.eResource() == null) {
-			ExampleUtil.getRootGraph(getDiagram()).getNodes().add(addedNode);
+			GraphUtil.getRootGraph(getDiagram()).getNodes().add(addedNode);
 
 		}
 		// create link and wire it
@@ -92,18 +87,7 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 		// create link and wire it
 		link(shape, addedNode);
 
-		// Shape shape = peCreateService.createShape(containerShape, false);
-		// Text text = gaService.createText(shape, "Node");
-		// text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-		// text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-		// gaService.setLocationAndSize(text, 0, 0, context.getWidth(),
-		// context.getHeight());
-
 		peCreateService.createChopboxAnchor(containerShape);
-
-		// TODO: enable the link to the domain object
-		// Object addedDomainObject = context.getNewObject();
-		// link(containerShape, addedDomainObject);
 
 		return containerShape;
 	}

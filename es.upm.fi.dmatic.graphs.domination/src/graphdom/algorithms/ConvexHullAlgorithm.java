@@ -1,24 +1,17 @@
 package graphdom.algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Stack;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import graphdom.AlgorithmStatus;
-import graphdom.Edge;
 import graphdom.Graph;
-import graphdom.GraphdomFactory;
 import graphdom.Node;
-import graphdom.impl.AbstractGraphAlgorithmImpl;
-import graphdom.util.Utils;
 
-public class ConvexHullAlgorithm extends AbstractGraphAlgorithmImpl {
+public class ConvexHullAlgorithm extends AbstractAlgorithm {
 
 	//Graph workingGraph = null;
 	Stack<Node> hull = new Stack<Node>();
@@ -27,16 +20,13 @@ public class ConvexHullAlgorithm extends AbstractGraphAlgorithmImpl {
 	Node startNode = null;
 	int nodeInProcess = 0;
 
-	
-	@Override
-	public void setInitialGraph(Graph newInitialGraph) {
+	public ConvexHullAlgorithm(Graph graph) {
 		
-		// Set graph to dominate
-		super.setInitialGraph(newInitialGraph);
+		super(graph);
 		
 		// Get a working copy so we can delete nodes and change stuff
 		//workingGraph = (Graph) EcoreUtil.copy(newInitialGraph);
-		sortedNodes = new ArrayList<Node>(initialGraph.getNodes());
+		sortedNodes = new ArrayList<Node>(graph.getNodes());
 		
 		if (sortedNodes.size() >= 3) {
 		
@@ -137,7 +127,8 @@ public class ConvexHullAlgorithm extends AbstractGraphAlgorithmImpl {
     
  // compare other points relative to polar angle (between 0 and 2pi) they make with the start Node
     private class PolarOrder implements Comparator<Node> {
-        public int compare(Node q1, Node q2) {
+        @Override
+		public int compare(Node q1, Node q2) {
             int dx1 = q1.getXCoord() - startNode.getXCoord();
             int dy1 = q1.getYCoord() - startNode.getYCoord();
             int dx2 = q2.getXCoord() - startNode.getXCoord();

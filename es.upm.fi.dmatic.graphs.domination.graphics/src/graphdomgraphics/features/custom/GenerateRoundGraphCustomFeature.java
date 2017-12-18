@@ -2,20 +2,10 @@ package graphdomgraphics.features.custom;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
-import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
-import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.mm.pictograms.Anchor;
-import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.graphiti.mm.pictograms.ContainerShape;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.ILinkService;
 
-import graphdom.Edge;
 import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
-import graphdomgraphics.features.CreateEdgeConnectionFeature;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.CreateNodeFeature;
 
 public class GenerateRoundGraphCustomFeature extends GraphdomAbstractCustomFeature {
@@ -32,7 +22,6 @@ public class GenerateRoundGraphCustomFeature extends GraphdomAbstractCustomFeatu
 
 	public GenerateRoundGraphCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -55,7 +44,7 @@ public class GenerateRoundGraphCustomFeature extends GraphdomAbstractCustomFeatu
 
 		// Ask user number of nodes
 
-		String numberOfNodes = ExampleUtil.askString(TITLE, USER_QUESTION, "10");
+		String numberOfNodes = GraphUtil.askString(TITLE, USER_QUESTION, "10");
 		int nNodes = 0;
 		try {
 			nNodes = Integer.parseUnsignedInt(numberOfNodes);

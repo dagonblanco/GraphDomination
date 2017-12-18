@@ -18,6 +18,7 @@ package graphdomgraphics.properties;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
@@ -35,13 +36,19 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import graphdom.Graph;
+import graphdom.algorithms.AlgorithmStatus;
 import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
 import graphdom.algorithms.GreedyDominationAlgorithm;
+import graphdomgraphics.features.UpdateGraphFeature;
 
 public class AlgorithmSection extends GFPropertySection implements ITabbedPropertyConstants {
 
 	Graph theGraph;
 	CCombo algorithmCombo;
+	private Button buttonInit;
+	private Button buttonNext;
+	private Button buttonEnd;
+	private AlgorithmStatus status;
 
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -68,10 +75,15 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 		algorithmCombo.add("Greedy domination");
 		algorithmCombo.add("Greedy connecteddomination");
 
-		Button buttonInit = factory.createButton(composite, "Initialize", SWT.PUSH);
-		buttonInit.setLayoutData(defaultGridData);
+		status = (theGraph != null && theGraph.getAlgorithm() != null
+				? theGraph.getAlgorithm().getStatus()
+				: AlgorithmStatus.UNINITIALIZED);
+		
+		buttonInit = factory.createButton(composite, "Initialize", SWT.PUSH);
+		buttonInit.setLayoutData(defaultGridData);		
 		buttonInit.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent event) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(theGraph);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -81,49 +93,60 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 							return;
 						switch (algorithmCombo.getSelectionIndex()) {
 						case 0:
-							theGraph.setAssignedAlgorithm(new GreedyDominationAlgorithm());
+							theGraph.setAlgorithm(new GreedyDominationAlgorithm(theGraph));
 							break;
 						case 1:
-							theGraph.setAssignedAlgorithm(new GreedyConnectedDominationAlgorithm());
+							theGraph.setAlgorithm(new GreedyConnectedDominationAlgorithm(theGraph));
 							break;
 						default:
 							break;
 						}
-						theGraph.getAssignedAlgorithm().setInitialGraph(theGraph);
+						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
+								.execute(new CustomContext());
+						refresh();
+
 					}
 				});
 
 			}
 		});
 
-		Button buttonNext = factory.createButton(composite, "Next Step", SWT.PUSH);
+		buttonNext = factory.createButton(composite, "Next Step", SWT.PUSH);
 		buttonNext.setLayoutData(defaultGridData);
 		buttonNext.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent event) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(theGraph);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						theGraph.getAssignedAlgorithm().nextStep();
-						
+						theGraph.getAlgorithm().nextStep();
+						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
+								.execute(new CustomContext());
+						refresh();
+
 					}
 				});
 
 			}
 		});
 
-		Button buttonEnd = factory.createButton(composite, "Run to End", SWT.PUSH);
+		buttonEnd = factory.createButton(composite, "Run to End", SWT.PUSH);
 		buttonEnd.setLayoutData(defaultGridData);
 		buttonEnd.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent event) {
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(theGraph);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						theGraph.getAssignedAlgorithm().runToEnd();;
-						
+						theGraph.getAlgorithm().runToEnd();
+						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
+								.execute(new CustomContext());
+						refresh();
+
 					}
 				});
 
@@ -134,14 +157,20 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 
 	@Override
 	public void refresh() {
+		status = (theGraph != null && theGraph.getAlgorithm() != null ? theGraph.getAlgorithm().getStatus()
+				: AlgorithmStatus.UNINITIALIZED);
+
+		buttonInit.setEnabled(true);
+		buttonNext.setEnabled(status.equals(AlgorithmStatus.INPROGRESS));
+		buttonEnd.setEnabled(status.equals(AlgorithmStatus.INPROGRESS));
+
 		PictogramElement pe = getSelectedPictogramElement();
 		if (pe != null) {
 			theGraph = (Graph) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
 			// the filter assured, that it is a Node
-			if (theGraph == null)
+			if (theGraph == null) {
 				return;
-
-			theGraph.getAssignedAlgorithm();
+			}
 		}
 	}
 }

@@ -16,7 +16,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.common.IColorConstants;
 
 /**
@@ -30,7 +30,6 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 	 */
 	public UpdateNodeFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -92,9 +91,9 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 				|| (pictogramName != null && !pictogramName.equals(businessName)));
 
 		boolean markChanged = (
-				(dominating && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATING))
-				||(!dominating && dominated && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATED))
-				||(!dominating && !dominated && !ExampleUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND))
+				(dominating && !GraphUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATING))
+				||(!dominating && dominated && !GraphUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND_DOMINATED))
+				||(!dominating && !dominated && !GraphUtil.equalsColorAndConstant(pictogramColor, IColorConstants.NODE_FOREGROUND))
 				);
 		if (updateNameNeeded) {
 			return Reason.createTrueReason("Name is out of date");
@@ -114,11 +113,14 @@ public class UpdateNodeFeature extends AbstractUpdateFeature {
 	 */
 	@Override
 	public boolean update(IUpdateContext context) {
+
+		PictogramElement pictogramElement = context.getPictogramElement();
+
 		// retrieve name from business model
 		String businessName = null;
 		boolean dominating = false;
 		boolean dominated = false;
-		PictogramElement pictogramElement = context.getPictogramElement();
+
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 		if (bo instanceof Node) {
 			Node node = (Node) bo;

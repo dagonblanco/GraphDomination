@@ -127,7 +127,6 @@ public class GraphItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GraphdomPackage.Literals.GRAPH__NODES);
 			childrenFeatures.add(GraphdomPackage.Literals.GRAPH__EDGES);
-			childrenFeatures.add(GraphdomPackage.Literals.GRAPH__ASSIGNED_ALGORITHM);
 		}
 		return childrenFeatures;
 	}
@@ -189,7 +188,6 @@ public class GraphItemProvider
 				return;
 			case GraphdomPackage.GRAPH__NODES:
 			case GraphdomPackage.GRAPH__EDGES:
-			case GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

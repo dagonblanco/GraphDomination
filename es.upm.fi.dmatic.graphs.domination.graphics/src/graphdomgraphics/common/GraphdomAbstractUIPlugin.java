@@ -21,7 +21,6 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdapterManager;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -29,15 +28,15 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-public class ExamplesCommonPlugin extends AbstractUIPlugin {
+public class GraphdomAbstractUIPlugin extends AbstractUIPlugin {
 
-	private static ExamplesCommonPlugin _plugin;
+	private static GraphdomAbstractUIPlugin _plugin;
 
 
 	/**
 	 * Creates the Plugin and caches its default instance.
 	 */
-	public ExamplesCommonPlugin() {
+	public GraphdomAbstractUIPlugin() {
 		_plugin = this;
 	}
 
@@ -69,7 +68,7 @@ public class ExamplesCommonPlugin extends AbstractUIPlugin {
 	 * 
 	 * @return the default
 	 */
-	public static ExamplesCommonPlugin getDefault() {
+	public static GraphdomAbstractUIPlugin getDefault() {
 		return _plugin;
 	}
 

@@ -3,14 +3,11 @@ package graphdomgraphics.features.custom;
 import java.util.Random;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-import graphdom.Node;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.CreateNodeFeature;
 
 public class GenerateRandomNodesCustomFeature extends AbstractCustomFeature {
@@ -23,7 +20,6 @@ public class GenerateRandomNodesCustomFeature extends AbstractCustomFeature {
 
 	public GenerateRandomNodesCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -46,7 +42,7 @@ public class GenerateRandomNodesCustomFeature extends AbstractCustomFeature {
 
 		// Ask user number of nodes
 
-		String numberOfNodes = ExampleUtil.askString(TITLE, USER_QUESTION, "30");
+		String numberOfNodes = GraphUtil.askString(TITLE, USER_QUESTION, "30");
 		int nNodes = 0;
 		try {
 			nNodes = Integer.parseUnsignedInt(numberOfNodes);

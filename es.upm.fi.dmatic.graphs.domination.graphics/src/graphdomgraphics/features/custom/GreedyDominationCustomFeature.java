@@ -3,22 +3,18 @@
  */
 package graphdomgraphics.features.custom;
 
-import java.util.Random;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
-import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILinkService;
-import org.eclipse.graphiti.services.IPeCreateService;
 
 import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.Node;
 import graphdom.algorithms.GreedyDominationAlgorithm;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 /**
  * @author David
@@ -32,7 +28,6 @@ public class GreedyDominationCustomFeature extends AbstractCustomFeature {
 	 */
 	public GreedyDominationCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -54,11 +49,9 @@ public class GreedyDominationCustomFeature extends AbstractCustomFeature {
 	public void execute(ICustomContext context) {
 
 		// Access the graph
-		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
-		GreedyDominationAlgorithm gda = new GreedyDominationAlgorithm();
-		
-		gda.setInitialGraph(theGraph);
+		GreedyDominationAlgorithm gda = new GreedyDominationAlgorithm(theGraph);
 		
 		gda.runToEnd();
 		

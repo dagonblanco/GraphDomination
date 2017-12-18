@@ -28,7 +28,6 @@ public class MarkDominatingCustomFeature extends AbstractCustomFeature {
 	 */
 	public MarkDominatingCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	private boolean hasDoneChanges = false;

@@ -1,7 +1,6 @@
 package graphdomgraphics.features.custom;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
@@ -15,8 +14,7 @@ import org.eclipse.graphiti.services.ILinkService;
 import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.Node;
-import graphdom.algorithms.ConvexHullAlgorithm;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.AddEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 
@@ -24,7 +22,6 @@ public abstract class GraphdomAbstractCustomFeature extends AbstractCustomFeatur
 
 	public GraphdomAbstractCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	protected final Connection createEdge(Node sourceNode, Node targetNode) {
@@ -62,7 +59,7 @@ public abstract class GraphdomAbstractCustomFeature extends AbstractCustomFeatur
 	protected final void updateEdges() {
 
 		// Access the graph
-		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
 		// Model is modified now, with new edges
 
@@ -125,7 +122,7 @@ public abstract class GraphdomAbstractCustomFeature extends AbstractCustomFeatur
 	protected final void updateAllEdges() {
 
 		// Access the graph
-		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
 		// Model is modified now, with new edges
 

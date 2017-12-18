@@ -3,8 +3,9 @@
 package graphdom;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
+
+import graphdom.algorithms.GraphAlgorithm;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link graphdom.Graph#getNodes <em>Nodes</em>}</li>
  *   <li>{@link graphdom.Graph#getEdges <em>Edges</em>}</li>
  *   <li>{@link graphdom.Graph#getNextNodeId <em>Next Node Id</em>}</li>
- *   <li>{@link graphdom.Graph#getAssignedAlgorithm <em>Assigned Algorithm</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getGraph()
@@ -112,38 +112,6 @@ public interface Graph extends EObject {
 	 */
 	void setNextNodeId(int value);
 
-	/**
-	 * Returns the value of the '<em><b>Assigned Algorithm</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Assigned Algorithm</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Assigned Algorithm</em>' containment reference.
-	 * @see #setAssignedAlgorithm(AbstractGraphAlgorithm)
-	 * @see graphdom.GraphdomPackage#getGraph_AssignedAlgorithm()
-	 * @model containment="true"
-	 * @generated
-	 */
-	AbstractGraphAlgorithm getAssignedAlgorithm();
-
-	/**
-	 * Sets the value of the '{@link graphdom.Graph#getAssignedAlgorithm <em>Assigned Algorithm</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Assigned Algorithm</em>' containment reference.
-	 * @see #getAssignedAlgorithm()
-	 * @generated
-	 */
-	void setAssignedAlgorithm(AbstractGraphAlgorithm value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
 	Node findNodeById(String id);
 
 	/**
@@ -185,5 +153,9 @@ public interface Graph extends EObject {
 	 * @generated
 	 */
 	void checkNodesDomination();
+
+	GraphAlgorithm getAlgorithm();
+
+	void setAlgorithm(GraphAlgorithm algorithm);
 
 } // Graph

@@ -22,7 +22,7 @@ public final class GraphdomEditorPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public static final GraphdomEditorPlugin INSTANCE = new GraphdomEditorPlugin();
-	
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public final class GraphdomEditorPlugin extends EMFPlugin {
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
-	
+
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public final class GraphdomEditorPlugin extends EMFPlugin {
 	public static Implementation getPlugin() {
 		return plugin;
 	}
-	
+
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->

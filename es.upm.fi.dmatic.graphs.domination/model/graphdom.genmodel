@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/GraphDom/src" creationSubmenus="true" modelPluginID="GraphDom"
-    modelName="Graphdom" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/es.upm.fi.dmatic.graphs.domination/src" creationSubmenus="true"
+    editDirectory="/es.upm.fi.dmatic.graphs.domination.edit/src" editorDirectory="/es.upm.fi.dmatic.graphs.domination.editor/src"
+    modelPluginID="es.upm.fi.dmatic.graphs.domination" modelName="Graphdom" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     language="" interfaceNamePattern="" operationReflection="true" runtimePlatform="RCP"
-    importOrganizing="true">
+    importOrganizing="true" cleanup="true">
   <foreignModel>graphdom.ecore</foreignModel>
   <genPackages prefix="Graphdom" disposableProviderFactory="true" ecorePackage="graphdom.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="graphdom.ecore#//AlgorithmStatus">
-      <genEnumLiterals ecoreEnumLiteral="graphdom.ecore#//AlgorithmStatus/UNINITIALIZED"/>
-      <genEnumLiterals ecoreEnumLiteral="graphdom.ecore#//AlgorithmStatus/INPROGRESS"/>
-      <genEnumLiterals ecoreEnumLiteral="graphdom.ecore#//AlgorithmStatus/ENDED"/>
-    </genEnums>
     <genClasses ecoreClass="graphdom.ecore#//Graph">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Graph/graphName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphdom.ecore#//Graph/nodes"/>
@@ -26,6 +22,7 @@
       </genOperations>
       <genOperations ecoreOperation="graphdom.ecore#//Graph/isDominated"/>
       <genOperations ecoreOperation="graphdom.ecore#//Graph/getDominatingSet"/>
+      <genOperations ecoreOperation="graphdom.ecore#//Graph/checkNodesDomination"/>
     </genClasses>
     <genClasses ecoreClass="graphdom.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/nodeName"/>
@@ -44,14 +41,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Edge/marked"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Edge/guid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Edge/weight"/>
-    </genClasses>
-    <genClasses ecoreClass="graphdom.ecore#//AbstractGraphAlgorithm">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphdom.ecore#//AbstractGraphAlgorithm/initialGraph"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphdom.ecore#//AbstractGraphAlgorithm/processedGraph"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//AbstractGraphAlgorithm/status"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//AbstractGraphAlgorithm/properties"/>
-      <genOperations ecoreOperation="graphdom.ecore#//AbstractGraphAlgorithm/runToEnd"/>
-      <genOperations ecoreOperation="graphdom.ecore#//AbstractGraphAlgorithm/nextStep"/>
+      <genOperations ecoreOperation="graphdom.ecore#//Edge/flip"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

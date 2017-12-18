@@ -33,7 +33,6 @@ import graphdom.Node;
 
 public class GraphSection extends GFPropertySection implements ITabbedPropertyConstants {
 
-	private Text nameText;
 	private Text nodeCount;
 	private Text edgeCount;
 	private Text dominated;
@@ -57,9 +56,6 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		GridData defaultGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
 		GridData multiLineGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 5);
 
-//		factory.createCLabel(composite, "Name:"); //$NON-NLS-1$
-//		nameText = factory.createText(composite, ""); //$NON-NLS-1$
-//		nameText.setEditable(false);
 
 		factory.createCLabel(composite, "Number of nodes:"); //$NON-NLS-1$
 		nodeCount = factory.createText(composite, ""); //$NON-NLS-1$
@@ -97,46 +93,55 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 			// the filter assured, that it is a Node
 			if (theGraph == null)
 				return;
-//			String name = theGraph.getGraphName();
-//			nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-			
+
 			nodeCount.setText(String.valueOf(theGraph.getNodes().size()));
 			edgeCount.setText(String.valueOf(theGraph.getEdges().size()));
 			dominated.setText(String.valueOf(theGraph.isDominated()));
 			
-			StringBuilder matrix = null;
-			for (Node theNode : theGraph.getNodes()) {
-				if (matrix == null) {
-					matrix = new StringBuilder(theNode.getNodeName()).append("-->");
-				} else {
-					matrix.append(System.lineSeparator()).append(theNode.getNodeName()).append("-->");
-				}
-				
-				StringBuilder nodelist = null;
-				for (Node adjnode : theNode.getAdjacentNodes()) {
-					if (nodelist == null) {
-						nodelist = new StringBuilder(adjnode.getNodeName());
-					} else {
-						nodelist.append(",").append(adjnode.getNodeName());
-					}
-
-				}
-				matrix.append(nodelist == null ? "" : nodelist.toString());
-
-			}
+			StringBuilder matrix = calculateAdjacencyMatrix(theGraph);
 			if (matrix!=null) {
 				matrixText.setText(matrix.toString());
 			}
 			
-			StringBuilder domSet = null;
-			for (Node theNode : theGraph.getDominatingSet()) {
-				if (domSet == null) {
-					domSet = new StringBuilder(theNode.getNodeName());
-				} else {
-					domSet.append(",").append(theNode.getNodeName());
-				}								
-			}
+			StringBuilder domSet = calculateDominatingSet(theGraph);
 			if (domSet!=null) dominatingSet.setText(domSet.toString());
 		}
+	}
+
+	private StringBuilder calculateDominatingSet(Graph theGraph) {
+		StringBuilder domSet = null;
+		for (Node theNode : theGraph.getDominatingSet()) {
+			if (domSet == null) {
+				domSet = new StringBuilder(theNode.getNodeName());
+			} else {
+				domSet.append(",").append(theNode.getNodeName());
+			}								
+		}
+		return domSet;
+	}
+
+	private StringBuilder calculateAdjacencyMatrix(Graph theGraph) {
+
+		StringBuilder matrix = null;
+		for (Node theNode : theGraph.getNodes()) {
+			if (matrix == null) {
+				matrix = new StringBuilder(theNode.getNodeName()).append("-->");
+			} else {
+				matrix.append(System.lineSeparator()).append(theNode.getNodeName()).append("-->");
+			}
+			
+			StringBuilder nodelist = null;
+			for (Node adjnode : theNode.getAdjacentNodes()) {
+				if (nodelist == null) {
+					nodelist = new StringBuilder(adjnode.getNodeName());
+				} else {
+					nodelist.append(",").append(adjnode.getNodeName());
+				}
+
+			}
+			matrix.append(nodelist == null ? "" : nodelist.toString());
+
+		}
+		return matrix;
 	}
 }

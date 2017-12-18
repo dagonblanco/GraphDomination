@@ -4,7 +4,6 @@ package graphdom;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -105,22 +104,13 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH__NEXT_NODE_ID = 3;
 
 	/**
-	 * The feature id for the '<em><b>Assigned Algorithm</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__ASSIGNED_ALGORITHM = 4;
-
-	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = 5;
+	int GRAPH_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Find Node By Id</em>' operation.
@@ -378,90 +368,6 @@ public interface GraphdomPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link graphdom.impl.AbstractGraphAlgorithmImpl <em>Abstract Graph Algorithm</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see graphdom.impl.AbstractGraphAlgorithmImpl
-	 * @see graphdom.impl.GraphdomPackageImpl#getAbstractGraphAlgorithm()
-	 * @generated
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM = 3;
-
-	/**
-	 * The feature id for the '<em><b>Initial Graph</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH = 0;
-
-	/**
-	 * The feature id for the '<em><b>Processed Graph</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM__PROCESSED_GRAPH = 1;
-
-	/**
-	 * The feature id for the '<em><b>Status</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM__STATUS = 2;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Graph Algorithm</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM_FEATURE_COUNT = 3;
-
-	/**
-	 * The operation id for the '<em>Run To End</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM___RUN_TO_END = 0;
-
-	/**
-	 * The operation id for the '<em>Next Step</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM___NEXT_STEP = 1;
-
-	/**
-	 * The number of operations of the '<em>Abstract Graph Algorithm</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_GRAPH_ALGORITHM_OPERATION_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link graphdom.AlgorithmStatus <em>Algorithm Status</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see graphdom.AlgorithmStatus
-	 * @see graphdom.impl.GraphdomPackageImpl#getAlgorithmStatus()
-	 * @generated
-	 */
-	int ALGORITHM_STATUS = 4;
-
-
-	/**
 	 * Returns the meta object for class '{@link graphdom.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,17 +420,6 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGraph_NextNodeId();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link graphdom.Graph#getAssignedAlgorithm <em>Assigned Algorithm</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Assigned Algorithm</em>'.
-	 * @see graphdom.Graph#getAssignedAlgorithm()
-	 * @see #getGraph()
-	 * @generated
-	 */
-	EReference getGraph_AssignedAlgorithm();
 
 	/**
 	 * Returns the meta object for the '{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}' operation.
@@ -770,79 +665,6 @@ public interface GraphdomPackage extends EPackage {
 	EOperation getEdge__Flip();
 
 	/**
-	 * Returns the meta object for class '{@link graphdom.AbstractGraphAlgorithm <em>Abstract Graph Algorithm</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Abstract Graph Algorithm</em>'.
-	 * @see graphdom.AbstractGraphAlgorithm
-	 * @generated
-	 */
-	EClass getAbstractGraphAlgorithm();
-
-	/**
-	 * Returns the meta object for the reference '{@link graphdom.AbstractGraphAlgorithm#getInitialGraph <em>Initial Graph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Initial Graph</em>'.
-	 * @see graphdom.AbstractGraphAlgorithm#getInitialGraph()
-	 * @see #getAbstractGraphAlgorithm()
-	 * @generated
-	 */
-	EReference getAbstractGraphAlgorithm_InitialGraph();
-
-	/**
-	 * Returns the meta object for the reference '{@link graphdom.AbstractGraphAlgorithm#getProcessedGraph <em>Processed Graph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Processed Graph</em>'.
-	 * @see graphdom.AbstractGraphAlgorithm#getProcessedGraph()
-	 * @see #getAbstractGraphAlgorithm()
-	 * @generated
-	 */
-	EReference getAbstractGraphAlgorithm_ProcessedGraph();
-
-	/**
-	 * Returns the meta object for the attribute '{@link graphdom.AbstractGraphAlgorithm#getStatus <em>Status</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Status</em>'.
-	 * @see graphdom.AbstractGraphAlgorithm#getStatus()
-	 * @see #getAbstractGraphAlgorithm()
-	 * @generated
-	 */
-	EAttribute getAbstractGraphAlgorithm_Status();
-
-	/**
-	 * Returns the meta object for the '{@link graphdom.AbstractGraphAlgorithm#runToEnd() <em>Run To End</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Run To End</em>' operation.
-	 * @see graphdom.AbstractGraphAlgorithm#runToEnd()
-	 * @generated
-	 */
-	EOperation getAbstractGraphAlgorithm__RunToEnd();
-
-	/**
-	 * Returns the meta object for the '{@link graphdom.AbstractGraphAlgorithm#nextStep() <em>Next Step</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Next Step</em>' operation.
-	 * @see graphdom.AbstractGraphAlgorithm#nextStep()
-	 * @generated
-	 */
-	EOperation getAbstractGraphAlgorithm__NextStep();
-
-	/**
-	 * Returns the meta object for enum '{@link graphdom.AlgorithmStatus <em>Algorithm Status</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Algorithm Status</em>'.
-	 * @see graphdom.AlgorithmStatus
-	 * @generated
-	 */
-	EEnum getAlgorithmStatus();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -906,14 +728,6 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GRAPH__NEXT_NODE_ID = eINSTANCE.getGraph_NextNodeId();
-
-		/**
-		 * The meta object literal for the '<em><b>Assigned Algorithm</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPH__ASSIGNED_ALGORITHM = eINSTANCE.getGraph_AssignedAlgorithm();
 
 		/**
 		 * The meta object literal for the '<em><b>Find Node By Id</b></em>' operation.
@@ -1102,66 +916,6 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EDGE___FLIP = eINSTANCE.getEdge__Flip();
-
-		/**
-		 * The meta object literal for the '{@link graphdom.impl.AbstractGraphAlgorithmImpl <em>Abstract Graph Algorithm</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see graphdom.impl.AbstractGraphAlgorithmImpl
-		 * @see graphdom.impl.GraphdomPackageImpl#getAbstractGraphAlgorithm()
-		 * @generated
-		 */
-		EClass ABSTRACT_GRAPH_ALGORITHM = eINSTANCE.getAbstractGraphAlgorithm();
-
-		/**
-		 * The meta object literal for the '<em><b>Initial Graph</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPH_ALGORITHM__INITIAL_GRAPH = eINSTANCE.getAbstractGraphAlgorithm_InitialGraph();
-
-		/**
-		 * The meta object literal for the '<em><b>Processed Graph</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_GRAPH_ALGORITHM__PROCESSED_GRAPH = eINSTANCE.getAbstractGraphAlgorithm_ProcessedGraph();
-
-		/**
-		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ABSTRACT_GRAPH_ALGORITHM__STATUS = eINSTANCE.getAbstractGraphAlgorithm_Status();
-
-		/**
-		 * The meta object literal for the '<em><b>Run To End</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ABSTRACT_GRAPH_ALGORITHM___RUN_TO_END = eINSTANCE.getAbstractGraphAlgorithm__RunToEnd();
-
-		/**
-		 * The meta object literal for the '<em><b>Next Step</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ABSTRACT_GRAPH_ALGORITHM___NEXT_STEP = eINSTANCE.getAbstractGraphAlgorithm__NextStep();
-
-		/**
-		 * The meta object literal for the '{@link graphdom.AlgorithmStatus <em>Algorithm Status</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see graphdom.AlgorithmStatus
-		 * @see graphdom.impl.GraphdomPackageImpl#getAlgorithmStatus()
-		 * @generated
-		 */
-		EEnum ALGORITHM_STATUS = eINSTANCE.getAlgorithmStatus();
 
 	}
 

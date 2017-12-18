@@ -4,10 +4,8 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
-import org.eclipse.graphiti.features.IDirectEditingInfo;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
-import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
@@ -15,7 +13,6 @@ import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
-import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
@@ -24,6 +21,8 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
+import graphdom.Edge;
+import graphdom.Node;
 import graphdomgraphics.features.AddEdgeConnectionFeature;
 import graphdomgraphics.features.AddNodeFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
@@ -32,6 +31,7 @@ import graphdomgraphics.features.CreateNodeFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
 import graphdomgraphics.features.UpdateEdgeFeature;
+import graphdomgraphics.features.UpdateGraphFeature;
 import graphdomgraphics.features.UpdateNodeFeature;
 import graphdomgraphics.features.custom.ConvexHullCustomFeature;
 import graphdomgraphics.features.custom.FlipEdgeCustomFeature;
@@ -44,8 +44,6 @@ import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
 import graphdomgraphics.features.custom.RandomFlipsByChanceCustomFeature;
 import graphdomgraphics.features.custom.RandomFlipsByNumberCustomFeature;
 import graphdomgraphics.features.custom.UnmarkAllNodesCustomFeature;
-import graphdom.Node;
-import graphdom.Edge;
 
 public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 
@@ -129,7 +127,9 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 				return new UpdateEdgeFeature(this);
 			}
 		}
-		return super.getUpdateFeature(context);
+
+		return new UpdateGraphFeature(this);
+
 	}
 
 }

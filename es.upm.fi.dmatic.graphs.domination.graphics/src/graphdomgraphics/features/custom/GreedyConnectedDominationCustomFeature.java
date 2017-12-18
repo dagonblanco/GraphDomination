@@ -3,23 +3,18 @@
  */
 package graphdomgraphics.features.custom;
 
-import java.util.Random;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
-import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.ILinkService;
-import org.eclipse.graphiti.services.IPeCreateService;
 
 import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.Node;
 import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
-import graphdom.algorithms.GreedyDominationAlgorithm;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 /**
  * @author David
@@ -33,7 +28,6 @@ public class GreedyConnectedDominationCustomFeature extends AbstractCustomFeatur
 	 */
 	public GreedyConnectedDominationCustomFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -55,11 +49,9 @@ public class GreedyConnectedDominationCustomFeature extends AbstractCustomFeatur
 	public void execute(ICustomContext context) {
 
 		// Access the graph
-		Graph theGraph = ExampleUtil.getRootGraph(getDiagram());
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
-		GreedyConnectedDominationAlgorithm gda = new GreedyConnectedDominationAlgorithm();
-		
-		gda.setInitialGraph(theGraph);
+		GreedyConnectedDominationAlgorithm gda = new GreedyConnectedDominationAlgorithm(theGraph);
 		
 		gda.runToEnd();
 		

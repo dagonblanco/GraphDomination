@@ -19,8 +19,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
         eType="#//Edge" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nextNodeId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedAlgorithm" eType="#//AbstractGraphAlgorithm"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node">
     <eOperations name="getAdjacentNodes" upperBound="-1" eType="#//Node"/>
@@ -47,17 +45,5 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractGraphAlgorithm" abstract="true">
-    <eOperations name="runToEnd"/>
-    <eOperations name="nextStep"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="initialGraph" eType="#//Graph"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="processedGraph" eType="#//Graph"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//AlgorithmStatus"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="AlgorithmStatus">
-    <eLiterals name="UNINITIALIZED"/>
-    <eLiterals name="INPROGRESS" value="1"/>
-    <eLiterals name="ENDED" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

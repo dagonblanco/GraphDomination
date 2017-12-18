@@ -47,7 +47,6 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import graphdom.presentation.GraphdomEditorPlugin;
 
-
 /**
  * Customized {@link WorkbenchAdvisor} for the RCP application.
  * <!-- begin-user-doc -->
@@ -61,7 +60,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final String[] FILE_EXTENSION_FILTERS = GraphdomEditor.FILE_EXTENSION_FILTERS.toArray(new String[0]); 
+	private static final String[] FILE_EXTENSION_FILTERS = GraphdomEditor.FILE_EXTENSION_FILTERS.toArray(new String[0]);
 
 	/**
 	 * This looks up a string in the plugin's plugin.properties file.
@@ -96,6 +95,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Object start(IApplicationContext context) throws Exception {
 			WorkbenchAdvisor workbenchAdvisor = new GraphdomEditorAdvisor();
 			Display display = PlatformUI.createDisplay();
@@ -119,6 +119,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void stop() {
 			// Do nothing.
 		}
@@ -145,6 +146,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void createInitialLayout(IPageLayout layout) {
 			layout.setEditorAreaVisible(true);
 			layout.addPerspectiveShortcut(ID_PERSPECTIVE);
@@ -156,7 +158,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			bottonRight.addView(IPageLayout.ID_PROP_SHEET);
 		}
 	}
-	
+
 	/**
 	 * RCP's window advisor
 	 * <!-- begin-user-doc -->
@@ -173,7 +175,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		public WindowAdvisor(IWorkbenchWindowConfigurer configurer) {
 			super(configurer);
 		}
-		
+
 		/**
 		 * @see org.eclipse.ui.application.WorkbenchWindowAdvisor#preWindowOpen()
 		 * <!-- begin-user-doc -->
@@ -188,7 +190,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			configurer.setShowStatusLine(true);
 			configurer.setTitle(getString("_UI_Application_title"));
 		}
-		
+
 		/**
 		 * @see org.eclipse.ui.application.WorkbenchWindowAdvisor#createActionBarAdvisor(org.eclipse.ui.application.IActionBarConfigurer)
 		 * <!-- begin-user-doc -->
@@ -217,7 +219,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		public WindowActionBarAdvisor(IActionBarConfigurer configurer) {
 			super(configurer);
 		}
-		
+
 		/**
 		 * @see org.eclipse.ui.application.ActionBarAdvisor#fillMenuBar(org.eclipse.jface.action.IMenuManager)
 		 * <!-- begin-user-doc -->
@@ -233,7 +235,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			menuBar.add(createWindowMenu(window));
 			menuBar.add(createHelpMenu(window));					
 		}
-		
+
 		/**
 		 * Creates the 'File' menu.
 		 * <!-- begin-user-doc -->
@@ -296,7 +298,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			menu.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 			return menu;
 		}
-	
+
 		/**
 		 * Creates the 'Window' menu.
 		 * <!-- begin-user-doc -->
@@ -313,7 +315,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 	
 			return menu;
 		}
-	
+
 		/**
 		 * Creates the 'Help' menu.
 		 * <!-- begin-user-doc -->
@@ -330,7 +332,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			menu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 			return menu;
 		}
-		
+
 		/**
 		 * Adds the specified action to the given menu and also registers the action with the
 		 * action bar configurer, in order to activate its key binding.
@@ -343,7 +345,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			getActionBarConfigurer().registerGlobalAction(action);
 		}
 	}
-	
+
 	/**
 	 * About action for the RCP application.
 	 * <!-- begin-user-doc -->
@@ -357,12 +359,13 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void run(IAction action) {
 			MessageDialog.openInformation(getWindow().getShell(), getString("_UI_About_title"),
 			getString("_UI_About_text"));
 		}
 	}
-	
+
 	/**
 	 * Open action for the objects from the Graphdom model.
 	 * <!-- begin-user-doc -->
@@ -376,6 +379,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void run(IAction action) {
 			String[] filePaths = openFilePathDialog(getWindow().getShell(), SWT.OPEN, null);
 			if (filePaths.length > 0) {
@@ -383,7 +387,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			}
 		}
 	}
-	
+
 	/**
 	 * Open URI action for the objects from the Graphdom model.
 	 * <!-- begin-user-doc -->
@@ -397,6 +401,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void run(IAction action) {
 			LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(getWindow().getShell());
 			if (Window.OK == loadResourceDialog.open()) {
@@ -406,7 +411,7 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 			}
 		}
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -421,7 +426,8 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static String[] openFilePathDialog(Shell shell, int style, String[] fileExtensionFilters, boolean includeGroupFilter, boolean includeAllFilter, boolean addExtension) {
+	public static String[] openFilePathDialog(Shell shell, int style, String[] fileExtensionFilters,
+			boolean includeGroupFilter, boolean includeAllFilter, boolean addExtension) {
 		FileDialog fileDialog = new FileDialog(shell, style);
 		if (fileExtensionFilters == null) {
 			fileExtensionFilters = FILE_EXTENSION_FILTERS;
@@ -527,14 +533,14 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#getInitialWindowPerspectiveId()
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-		@Override
+	@Override
 	public String getInitialWindowPerspectiveId() {
 		return Perspective.ID_PERSPECTIVE;
 	}
@@ -545,19 +551,19 @@ public final class GraphdomEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-		@Override
+	@Override
 	public void initialize(IWorkbenchConfigurer configurer) {
 		super.initialize(configurer);
 		configurer.setSaveAndRestore(true);
 	}
-	
+
 	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#createWorkbenchWindowAdvisor(org.eclipse.ui.application.IWorkbenchWindowConfigurer)
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-		@Override
+	@Override
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
 		return new WindowAdvisor(configurer);
 	}

@@ -18,7 +18,6 @@ package graphdomgraphics.features;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
@@ -58,7 +57,6 @@ public class ReconnectNodeFeature extends DefaultReconnectionFeature {
 
 	@Override
 	public void preReconnect(IReconnectionContext context) {
-		// TODO Auto-generated method stub
 		super.preReconnect(context);
 	}
 

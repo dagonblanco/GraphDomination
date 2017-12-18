@@ -9,16 +9,11 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 
 import graphdom.GraphdomFactory;
 import graphdom.Node;
-import graphdom.util.Utils;
-import graphdomgraphics.common.ExampleUtil;
+import graphdomgraphics.common.GraphUtil;
 
 public class CreateNodeFeature extends AbstractCreateFeature implements
 		ICreateFeature {
 	   
-	private static final String TITLE = "Create node";
-	   
-	private static final String USER_QUESTION = "Enter new node name";
-	    
 	public CreateNodeFeature(IFeatureProvider fp) {
 		super(fp, "Node", "Creates a new Node");
 	}
@@ -33,12 +28,12 @@ public class CreateNodeFeature extends AbstractCreateFeature implements
 		
 		Node newNode = GraphdomFactory.eINSTANCE.createNode();
 		
-		newNode.setNodeName(String.valueOf(ExampleUtil.getRootGraph(getDiagram()).getNextNodeId()));
+		newNode.setNodeName(String.valueOf(GraphUtil.getRootGraph(getDiagram()).getNextNodeId()));
 		newNode.setGuid(EcoreUtil.generateUUID());
 		newNode.setXCoord(context.getX());
 		newNode.setYCoord(context.getY());
 		
-		ExampleUtil.getRootGraph(getDiagram()).getNodes().add(newNode);
+		GraphUtil.getRootGraph(getDiagram()).getNodes().add(newNode);
 		
 		addGraphicalRepresentation(context, newNode);
 		

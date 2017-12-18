@@ -1,65 +1,44 @@
 /**
  */
-package graphdom;
+package graphdom.algorithms;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Enumerator;
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Algorithm Status</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
- * @see graphdom.GraphdomPackage#getAlgorithmStatus()
- * @model
- * @generated
  */
-public enum AlgorithmStatus implements Enumerator {
+public enum AlgorithmStatus {
 	/**
 	 * The '<em><b>UNINITIALIZED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNINITIALIZED_VALUE
-	 * @generated
-	 * @ordered
 	 */
-	UNINITIALIZED(0, "UNINITIALIZED", "UNINITIALIZED"),
+	UNINITIALIZED(0, "UNINITIALIZED", "Uninitialized"),
 
 	/**
 	 * The '<em><b>INPROGRESS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INPROGRESS_VALUE
-	 * @generated
-	 * @ordered
+	 * 
 	 */
-	INPROGRESS(1, "INPROGRESS", "INPROGRESS"),
+	INPROGRESS(1, "INPROGRESS", "In progress"),
 
 	/**
 	 * The '<em><b>ENDED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENDED_VALUE
-	 * @generated
-	 * @ordered
 	 */
-	ENDED(2, "ENDED", "ENDED");
+	ENDED(2, "ENDED", "Ended");
+
+	/**
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private AlgorithmStatus(int value, String name, String literal) {
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
 	/**
 	 * The '<em><b>UNINITIALIZED</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UNINITIALIZED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNINITIALIZED
-	 * @model
-	 * @generated
-	 * @ordered
 	 */
 	public static final int UNINITIALIZED_VALUE = 0;
 
@@ -187,18 +166,6 @@ public enum AlgorithmStatus implements Enumerator {
 	 * @generated
 	 */
 	private final String literal;
-
-	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private AlgorithmStatus(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
 
 	/**
 	 * <!-- begin-user-doc -->

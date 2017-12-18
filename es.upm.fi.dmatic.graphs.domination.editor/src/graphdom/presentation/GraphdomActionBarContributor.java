@@ -54,9 +54,8 @@ import org.eclipse.ui.PartInitException;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GraphdomActionBarContributor
-	extends EditingDomainActionBarContributor
-	implements ISelectionChangedListener {
+public class GraphdomActionBarContributor extends EditingDomainActionBarContributor
+		implements ISelectionChangedListener {
 	/**
 	 * Action to create objects from the Graphdom model.
 	 * <!-- begin-user-doc -->
@@ -70,6 +69,7 @@ public class GraphdomActionBarContributor
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public void run(IAction action) {
 			GraphdomModelWizard wizard = new GraphdomModelWizard();
 			wizard.init(getWindow().getWorkbench(), StructuredSelection.EMPTY);
@@ -100,8 +100,7 @@ public class GraphdomActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction =
-		new Action(GraphdomEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+	protected IAction showPropertiesViewAction = new Action(GraphdomEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 			@Override
 			public void run() {
 				try {
@@ -120,8 +119,7 @@ public class GraphdomActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IAction refreshViewerAction =
-		new Action(GraphdomEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+	protected IAction refreshViewerAction = new Action(GraphdomEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 			@Override
 			public boolean isEnabled() {
 				return activeEditorPart instanceof IViewerProvider;
@@ -245,7 +243,8 @@ public class GraphdomActionBarContributor
 		//
 		submenuManager.addMenuListener
 			(new IMenuListener() {
-				 public void menuAboutToShow(IMenuManager menuManager) {
+				 @Override
+				public void menuAboutToShow(IMenuManager menuManager) {
 					 menuManager.updateAll(true);
 				 }
 			 });
@@ -292,6 +291,7 @@ public class GraphdomActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
@@ -381,7 +381,8 @@ public class GraphdomActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
+			String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
@@ -393,7 +394,7 @@ public class GraphdomActionBarContributor
 			}
 		}
 	}
-		
+
 	/**
 	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
@@ -462,7 +463,8 @@ public class GraphdomActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions,
+			String contributionID) {
 		if (submenuActions != null) {
 			for (Map.Entry<String, Collection<IAction>> entry : submenuActions.entrySet()) {
 				MenuManager submenuManager = new MenuManager(entry.getKey());

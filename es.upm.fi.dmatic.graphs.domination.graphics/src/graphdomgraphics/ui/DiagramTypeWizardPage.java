@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-import graphdomgraphics.common.ExamplesCommonPlugin;
+import graphdomgraphics.common.GraphdomAbstractUIPlugin;
 import graphdomgraphics.common.Messages;
 
 public class DiagramTypeWizardPage extends AbstractWizardPage implements ITextProvider {
@@ -80,7 +80,7 @@ public class DiagramTypeWizardPage extends AbstractWizardPage implements ITextPr
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				IDialogSettings dialogSettings = ExamplesCommonPlugin.getDefault().getDialogSettings();
+				IDialogSettings dialogSettings = GraphdomAbstractUIPlugin.getDefault().getDialogSettings();
 				dialogSettings.put(SELECTED_TYPE, comboBox.getText());
 			}
 		});

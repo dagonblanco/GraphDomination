@@ -2,12 +2,6 @@
  */
 package graphdom.impl;
 
-import graphdom.AbstractGraphAlgorithm;
-import graphdom.Edge;
-import graphdom.Graph;
-import graphdom.GraphdomPackage;
-import graphdom.Node;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
@@ -15,15 +9,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import graphdom.Edge;
+import graphdom.Graph;
+import graphdom.GraphdomPackage;
+import graphdom.Node;
+import graphdom.algorithms.GraphAlgorithm;
+import graphdom.algorithms.NullAlgorithm;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link graphdom.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link graphdom.impl.GraphImpl#getEdges <em>Edges</em>}</li>
  *   <li>{@link graphdom.impl.GraphImpl#getNextNodeId <em>Next Node Id</em>}</li>
- *   <li>{@link graphdom.impl.GraphImpl#getAssignedAlgorithm <em>Assigned Algorithm</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,15 +100,17 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 */
 	protected int nextNodeId = NEXT_NODE_ID_EDEFAULT;
 
-	/**
-	 * The cached value of the '{@link #getAssignedAlgorithm() <em>Assigned Algorithm</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAssignedAlgorithm()
-	 * @generated
-	 * @ordered
-	 */
-	protected AbstractGraphAlgorithm assignedAlgorithm;
+	protected GraphAlgorithm algorithm = new NullAlgorithm();
+	
+	@Override
+	public GraphAlgorithm getAlgorithm() {
+		return algorithm;
+	}
+
+	@Override
+	public void setAlgorithm(GraphAlgorithm algorithm) {
+		this.algorithm = algorithm;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,6 +136,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGraphName() {
 		return graphName;
 	}
@@ -146,6 +146,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGraphName(String newGraphName) {
 		String oldGraphName = graphName;
 		graphName = newGraphName;
@@ -158,6 +159,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Node> getNodes() {
 		if (nodes == null) {
 			nodes = new EObjectContainmentEList<Node>(Node.class, this, GraphdomPackage.GRAPH__NODES);
@@ -170,6 +172,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Edge> getEdges() {
 		if (edges == null) {
 			edges = new EObjectContainmentEList<Edge>(Edge.class, this, GraphdomPackage.GRAPH__EDGES);
@@ -182,6 +185,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public int getNextNodeId() {
 		return nextNodeId++;
 	}
@@ -191,6 +195,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNextNodeId(int newNextNodeId) {
 		int oldNextNodeId = nextNodeId;
 		nextNodeId = newNextNodeId;
@@ -201,51 +206,9 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AbstractGraphAlgorithm getAssignedAlgorithm() {
-		return assignedAlgorithm;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAssignedAlgorithm(AbstractGraphAlgorithm newAssignedAlgorithm, NotificationChain msgs) {
-		AbstractGraphAlgorithm oldAssignedAlgorithm = assignedAlgorithm;
-		assignedAlgorithm = newAssignedAlgorithm;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM, oldAssignedAlgorithm, newAssignedAlgorithm);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAssignedAlgorithm(AbstractGraphAlgorithm newAssignedAlgorithm) {
-		if (newAssignedAlgorithm != assignedAlgorithm) {
-			NotificationChain msgs = null;
-			if (assignedAlgorithm != null)
-				msgs = ((InternalEObject)assignedAlgorithm).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM, null, msgs);
-			if (newAssignedAlgorithm != null)
-				msgs = ((InternalEObject)newAssignedAlgorithm).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM, null, msgs);
-			msgs = basicSetAssignedAlgorithm(newAssignedAlgorithm, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM, newAssignedAlgorithm, newAssignedAlgorithm));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Node findNodeById(String id) {
 
 		for (Node node : getNodes()) {
@@ -262,6 +225,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated not
 	 */
+	@Override
 	public void unmarkAllNodes() {
 		for (Node node : getNodes()) {
 		node.setDominated(false);
@@ -274,6 +238,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated not
 	 */
+	@Override
 	public void removeNode(Node node) {
 
 		
@@ -293,6 +258,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated not
 	 */
+	@Override
 	public boolean isDominated() {
 		for (Node node : this.getNodes()) {
 			if (!node.isDominated() && !node.isDominating()){
@@ -307,6 +273,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated not
 	 */
+	@Override
 	public EList<Node> getDominatingSet() {
 		EList<Node> result = new BasicEList<Node>();
 		for (Node node : this.getNodes()) {
@@ -322,6 +289,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void checkNodesDomination() {
 		for (Node node : this.getNodes()) {
 			node.setDominated(false);
@@ -348,8 +316,6 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
 			case GraphdomPackage.GRAPH__EDGES:
 				return ((InternalEList<?>)getEdges()).basicRemove(otherEnd, msgs);
-			case GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM:
-				return basicSetAssignedAlgorithm(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -370,8 +336,6 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return getEdges();
 			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
 				return getNextNodeId();
-			case GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM:
-				return getAssignedAlgorithm();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -399,9 +363,6 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
 				setNextNodeId((Integer)newValue);
 				return;
-			case GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM:
-				setAssignedAlgorithm((AbstractGraphAlgorithm)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -426,9 +387,6 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
 				setNextNodeId(NEXT_NODE_ID_EDEFAULT);
 				return;
-			case GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM:
-				setAssignedAlgorithm((AbstractGraphAlgorithm)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -449,8 +407,6 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return edges != null && !edges.isEmpty();
 			case GraphdomPackage.GRAPH__NEXT_NODE_ID:
 				return nextNodeId != NEXT_NODE_ID_EDEFAULT;
-			case GraphdomPackage.GRAPH__ASSIGNED_ALGORITHM:
-				return assignedAlgorithm != null;
 		}
 		return super.eIsSet(featureID);
 	}
