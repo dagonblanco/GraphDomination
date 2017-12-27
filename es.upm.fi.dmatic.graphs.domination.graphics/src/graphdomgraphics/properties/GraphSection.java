@@ -17,7 +17,6 @@ package graphdomgraphics.properties;
 
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -30,6 +29,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import graphdom.Graph;
 import graphdom.Node;
+import graphdomgraphics.common.GraphUtil;
 
 public class GraphSection extends GFPropertySection implements ITabbedPropertyConstants {
 
@@ -89,14 +89,18 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 	public void refresh() {
 		PictogramElement pe = getSelectedPictogramElement();
 		if (pe != null) {
-			Graph theGraph = (Graph) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			// Graph theGraph = (Graph)
+			// Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+			Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 			// the filter assured, that it is a Node
 			if (theGraph == null)
 				return;
 
 			nodeCount.setText(String.valueOf(theGraph.getNodes().size()));
 			edgeCount.setText(String.valueOf(theGraph.getEdges().size()));
-			dominated.setText(String.valueOf(theGraph.isDominated()));
+			
+			StringBuilder dominatedValue = calculateDominatedVariations(theGraph);
+			dominated.setText(dominatedValue.toString());
 			
 			StringBuilder matrix = calculateAdjacencyMatrix(theGraph);
 			if (matrix!=null) {
@@ -106,6 +110,14 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 			StringBuilder domSet = calculateDominatingSet(theGraph);
 			if (domSet!=null) dominatingSet.setText(domSet.toString());
 		}
+	}
+
+	private StringBuilder calculateDominatedVariations(Graph theGraph) {
+		StringBuilder dominatedValue = new StringBuilder();
+		dominatedValue.append(String.valueOf(theGraph.isDominated()))
+				.append(theGraph.isTotallyDominated() ? " (Total)" : "")
+				.append(theGraph.isIndependentlyDominated() ? " (Independent)" : "");
+		return dominatedValue;
 	}
 
 	private StringBuilder calculateDominatingSet(Graph theGraph) {

@@ -154,6 +154,22 @@ public interface Graph extends EObject {
 	 */
 	void checkNodesDomination();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isTotallyDominated();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isIndependentlyDominated();
+
 	GraphAlgorithm getAlgorithm();
 
 	void setAlgorithm(GraphAlgorithm algorithm);

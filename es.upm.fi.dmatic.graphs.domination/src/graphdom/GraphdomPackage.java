@@ -167,13 +167,31 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH___CHECK_NODES_DOMINATION = 5;
 
 	/**
+	 * The operation id for the '<em>Is Totally Dominated</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___IS_TOTALLY_DOMINATED = 6;
+
+	/**
+	 * The operation id for the '<em>Is Independently Dominated</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___IS_INDEPENDENTLY_DOMINATED = 7;
+
+	/**
 	 * The number of operations of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 6;
+	int GRAPH_OPERATION_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -482,6 +500,26 @@ public interface GraphdomPackage extends EPackage {
 	EOperation getGraph__CheckNodesDomination();
 
 	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#isTotallyDominated() <em>Is Totally Dominated</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Totally Dominated</em>' operation.
+	 * @see graphdom.Graph#isTotallyDominated()
+	 * @generated
+	 */
+	EOperation getGraph__IsTotallyDominated();
+
+	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#isIndependentlyDominated() <em>Is Independently Dominated</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Independently Dominated</em>' operation.
+	 * @see graphdom.Graph#isIndependentlyDominated()
+	 * @generated
+	 */
+	EOperation getGraph__IsIndependentlyDominated();
+
+	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -776,6 +814,22 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GRAPH___CHECK_NODES_DOMINATION = eINSTANCE.getGraph__CheckNodesDomination();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Totally Dominated</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___IS_TOTALLY_DOMINATED = eINSTANCE.getGraph__IsTotallyDominated();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Independently Dominated</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___IS_INDEPENDENTLY_DOMINATED = eINSTANCE.getGraph__IsIndependentlyDominated();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.

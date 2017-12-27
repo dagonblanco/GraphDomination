@@ -305,6 +305,38 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated not
+	 */
+	@Override
+	public boolean isTotallyDominated() {
+		for (Node node : this.getNodes()) {
+			// All nodes must be dominated (even dominating ones!!!)
+			if (!node.isDominated()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated not
+	 */
+	@Override
+	public boolean isIndependentlyDominated() {
+		for (Node node : this.getNodes()) {
+			// All nodes must be dominated except for dominating ones
+			if (!((!node.isDominated() && node.isDominating()) || (node.isDominated() && !node.isDominating()))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -434,6 +466,10 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 			case GraphdomPackage.GRAPH___CHECK_NODES_DOMINATION:
 				checkNodesDomination();
 				return null;
+			case GraphdomPackage.GRAPH___IS_TOTALLY_DOMINATED:
+				return isTotallyDominated();
+			case GraphdomPackage.GRAPH___IS_INDEPENDENTLY_DOMINATED:
+				return isIndependentlyDominated();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
