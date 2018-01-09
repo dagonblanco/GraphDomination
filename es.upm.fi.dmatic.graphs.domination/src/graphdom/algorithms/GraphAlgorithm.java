@@ -25,4 +25,8 @@ public interface GraphAlgorithm {
 	 */
 	void nextStep();
 
+	default String getName() {
+		return this.getClass().getSimpleName();
+	}
+
 } // AbstractGraphAlgorithm
