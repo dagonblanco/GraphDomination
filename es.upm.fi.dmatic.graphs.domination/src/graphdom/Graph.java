@@ -170,6 +170,14 @@ public interface Graph extends EObject {
 	 */
 	boolean isIndependentlyDominated();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	boolean isConnectedDomination();
+
 	GraphAlgorithm getAlgorithm();
 
 	void setAlgorithm(GraphAlgorithm algorithm);

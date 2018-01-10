@@ -116,7 +116,8 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		StringBuilder dominatedValue = new StringBuilder();
 		dominatedValue.append(String.valueOf(theGraph.isDominated()))
 				.append(theGraph.isTotallyDominated() ? " (Total)" : "")
-				.append(theGraph.isIndependentlyDominated() ? " (Independent)" : "");
+				.append(theGraph.isIndependentlyDominated() ? " (Independent)" : "")
+				.append(theGraph.isConnectedDomination() ? " (Connected)" : "");
 		return dominatedValue;
 	}
 

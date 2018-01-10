@@ -240,6 +240,16 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * @generated
 	 */
 	@Override
+	public EOperation getGraph__IsConnectedDomination() {
+		return graphEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -446,6 +456,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEOperation(graphEClass, GRAPH___CHECK_NODES_DOMINATION);
 		createEOperation(graphEClass, GRAPH___IS_TOTALLY_DOMINATED);
 		createEOperation(graphEClass, GRAPH___IS_INDEPENDENTLY_DOMINATED);
+		createEOperation(graphEClass, GRAPH___IS_CONNECTED_DOMINATION);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NODE_NAME);
@@ -520,6 +531,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEOperation(getGraph__IsTotallyDominated(), ecorePackage.getEBoolean(), "isTotallyDominated", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getGraph__IsIndependentlyDominated(), ecorePackage.getEBoolean(), "isIndependentlyDominated", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getGraph__IsConnectedDomination(), ecorePackage.getEBoolean(), "isConnectedDomination", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_NodeName(), ecorePackage.getEString(), "nodeName", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

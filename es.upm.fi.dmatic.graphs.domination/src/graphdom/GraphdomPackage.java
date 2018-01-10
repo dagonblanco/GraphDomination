@@ -185,13 +185,22 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH___IS_INDEPENDENTLY_DOMINATED = 7;
 
 	/**
+	 * The operation id for the '<em>Is Connected Domination</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___IS_CONNECTED_DOMINATION = 8;
+
+	/**
 	 * The number of operations of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 8;
+	int GRAPH_OPERATION_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -520,6 +529,16 @@ public interface GraphdomPackage extends EPackage {
 	EOperation getGraph__IsIndependentlyDominated();
 
 	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#isConnectedDomination() <em>Is Connected Domination</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Connected Domination</em>' operation.
+	 * @see graphdom.Graph#isConnectedDomination()
+	 * @generated
+	 */
+	EOperation getGraph__IsConnectedDomination();
+
+	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -830,6 +849,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GRAPH___IS_INDEPENDENTLY_DOMINATED = eINSTANCE.getGraph__IsIndependentlyDominated();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Connected Domination</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___IS_CONNECTED_DOMINATION = eINSTANCE.getGraph__IsConnectedDomination();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.

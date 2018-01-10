@@ -6,7 +6,7 @@ import graphdom.Node;
 
 public class Utils {
 
-	/*
+	/**
 	 * Finds the node with most neighbours
 	 */
 
@@ -21,7 +21,7 @@ public class Utils {
 		return maxNode;
 	}
 
-	/*
+	/**
 	 * Finds the dominated node with most neighbours
 	 */
 
@@ -36,7 +36,7 @@ public class Utils {
 		return maxNode;
 	}
 
-	/*
+	/**
 	 * Find the node with most undominated neighbours
 	 */
 
@@ -49,6 +49,13 @@ public class Utils {
 		}
 		return maxNode;
 	}
+
+	/**
+	 * Find the number of undominated adjacent nodes of a given node
+	 * 
+	 * @param node
+	 * @return
+	 */
 
 	public static int findUndominatedGrade(Node node) {
 

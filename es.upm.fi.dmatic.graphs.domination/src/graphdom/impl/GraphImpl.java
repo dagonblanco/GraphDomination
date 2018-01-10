@@ -4,6 +4,7 @@ package graphdom.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -337,6 +338,54 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public boolean isConnectedDomination() {
+
+		if (!isDominated()) {
+			return false;
+		}
+
+		// All dominating nodes go to unvisited
+		HashSet<Node> unvisited = new HashSet<Node>();		
+		unvisited.addAll(this.getDominatingSet());
+
+		// toVisit is empty set
+		EList<Node> toVisit = new BasicEList<Node>();
+
+		// Get first node...
+		Node firstNode = this.getDominatingSet().get(0);
+		// ... and add it to the toVisit list
+		toVisit.add(firstNode);
+		
+		// While there are unvisited nodes (i.e. the graph may not be connected)
+		while (!unvisited.isEmpty()) {
+			
+			// If no more nodes to visit, then it's not connected
+			if (toVisit.isEmpty()) {
+				return false;
+			} else {
+				// Get first to visit (removing from the list)
+				Node visiting = toVisit.remove(0);
+				// Remove it from unvisited
+				unvisited.remove(visiting);
+				// Add every adjacent unvisited dominating node (if not already added)
+				for (Node node : visiting.getAdjacentNodes()) {
+					if (node.isDominating() && unvisited.contains(node) && !toVisit.contains(node)) {
+						toVisit.add(node);
+					}
+				}
+			}
+		}
+
+		// If all have been visited, it's a connected graph
+		return true;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -470,6 +519,8 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				return isTotallyDominated();
 			case GraphdomPackage.GRAPH___IS_INDEPENDENTLY_DOMINATED:
 				return isIndependentlyDominated();
+			case GraphdomPackage.GRAPH___IS_CONNECTED_DOMINATION:
+				return isConnectedDomination();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

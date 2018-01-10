@@ -17,7 +17,7 @@ import graphdomgraphics.common.GraphUtil;
 public class GenericAlgorithmCustomFeature extends GraphdomAbstractCustomFeature {
 
 	private GraphAlgorithm algorithm;
-	private Class algorithmClass;
+	private Class<? extends GraphAlgorithm> algorithmClass;
 
 	public GenericAlgorithmCustomFeature(IFeatureProvider fp) {
 		super(fp);
@@ -28,9 +28,16 @@ public class GenericAlgorithmCustomFeature extends GraphdomAbstractCustomFeature
 		this.algorithm = algorithm;
 	}
 
-	public GenericAlgorithmCustomFeature(IFeatureProvider fp, Class algorithmClass) {
+	public GenericAlgorithmCustomFeature(IFeatureProvider fp, Class<? extends GraphAlgorithm> algorithmClass) {
 		super(fp);
 		this.algorithmClass = algorithmClass;
+		try {
+			this.algorithm = algorithmClass.newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public GraphAlgorithm getAlgorithm() {
@@ -41,11 +48,11 @@ public class GenericAlgorithmCustomFeature extends GraphdomAbstractCustomFeature
 		this.algorithm = algorithm;
 	}
 
-	public Class getAlgorithmClass() {
+	public Class<? extends GraphAlgorithm> getAlgorithmClass() {
 		return algorithmClass;
 	}
 
-	public void setAlgorithmClass(Class algorithmClass) {
+	public void setAlgorithmClass(Class<? extends GraphAlgorithm> algorithmClass) {
 		this.algorithmClass = algorithmClass;
 	}
 
@@ -73,7 +80,7 @@ public class GenericAlgorithmCustomFeature extends GraphdomAbstractCustomFeature
 		if (algorithm == null) {
 			// Instantiate the algorithm
 			try {
-				algorithm = (GraphAlgorithm) algorithmClass.getConstructor(Graph.class).newInstance(theGraph);
+				algorithm = algorithmClass.getConstructor(Graph.class).newInstance(theGraph);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				// TODO Auto-generated catch block
@@ -81,7 +88,7 @@ public class GenericAlgorithmCustomFeature extends GraphdomAbstractCustomFeature
 			}
 		}
 
-
+		algorithm.initialize(theGraph);
 		algorithm.runToEnd();
 
 		ILinkService linkserv = Graphiti.getLinkService();

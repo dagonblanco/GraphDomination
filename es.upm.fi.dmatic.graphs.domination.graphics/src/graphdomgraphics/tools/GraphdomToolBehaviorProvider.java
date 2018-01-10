@@ -20,7 +20,7 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
 
-import graphdom.algorithms.GreedyCompleteDominationAlgorithm;
+import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdomgraphics.common.GraphdomImageProvider;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.custom.ConvexHullCustomFeature;
@@ -114,7 +114,7 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		subMenuAlgorithms
 				.add(new ContextMenuEntry(new GreedyConnectedDominationCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms.add(new ContextMenuEntry(
-				new GenericAlgorithmCustomFeature(getFeatureProvider(), GreedyCompleteDominationAlgorithm.class),
+				new GenericAlgorithmCustomFeature(getFeatureProvider(), GreedyTotalDominationAlgorithm.class),
 				context));
 
 		subMenuSelectedObject.add(new ContextMenuEntry(new MarkDominatingCustomFeature(getFeatureProvider()), context));

@@ -2,6 +2,8 @@
  */
 package graphdom.algorithms;
 
+import graphdom.Graph;
+
 //TODO Documentar interfaz
 /**
  */
@@ -13,15 +15,17 @@ public interface GraphAlgorithm {
 	AlgorithmStatus getStatus();
 
 	/**
-	 * Sets the value of the '{@link graphdom.algorithms.GraphAlgorithm#getStatus <em>Status</em>}' attribute.
+	 * Sets the value of the '<em>Status</em>' attribute.
 	 */
 	void setStatus(AlgorithmStatus value);
 
 	/**
+	 * Run the algorithm to the end
 	 */
 	void runToEnd();
 
 	/**
+	 * Run a single step of the algorithm
 	 */
 	void nextStep();
 
@@ -29,4 +33,8 @@ public interface GraphAlgorithm {
 		return this.getClass().getSimpleName();
 	}
 
-} // AbstractGraphAlgorithm
+	default void initialize(Graph graph) {
+		// Do nothing by default
+	}
+
+}

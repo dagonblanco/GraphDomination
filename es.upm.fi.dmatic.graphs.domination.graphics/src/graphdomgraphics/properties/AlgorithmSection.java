@@ -39,6 +39,7 @@ import graphdom.Graph;
 import graphdom.algorithms.AlgorithmStatus;
 import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
 import graphdom.algorithms.GreedyDominationAlgorithm;
+import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdomgraphics.features.UpdateGraphFeature;
 
 public class AlgorithmSection extends GFPropertySection implements ITabbedPropertyConstants {
@@ -73,7 +74,9 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 		algorithmCombo = factory.createCCombo(composite);
 		algorithmCombo.setLayoutData(spanGridData);
 		algorithmCombo.add("Greedy domination");
-		algorithmCombo.add("Greedy connecteddomination");
+		algorithmCombo.add("Greedy connected domination");
+		algorithmCombo.add("Greedy total domination");
+
 
 		status = (theGraph != null && theGraph.getAlgorithm() != null
 				? theGraph.getAlgorithm().getStatus()
@@ -97,6 +100,9 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 							break;
 						case 1:
 							theGraph.setAlgorithm(new GreedyConnectedDominationAlgorithm(theGraph));
+							break;
+						case 2:
+							theGraph.setAlgorithm(new GreedyTotalDominationAlgorithm(theGraph));
 							break;
 						default:
 							break;
