@@ -107,6 +107,9 @@ public class MarkDominatingCustomFeature extends AbstractCustomFeature {
 			for (PictogramElement pe : peList) {
 				updatePictogramElement(pe);
 			}
+			
+			// Update selection
+			getDiagramBehavior().getDiagramContainer().selectPictogramElements(new PictogramElement[] {});
 		}
 	}
 

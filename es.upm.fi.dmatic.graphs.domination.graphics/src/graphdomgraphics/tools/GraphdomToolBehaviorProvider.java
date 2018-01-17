@@ -20,6 +20,7 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
 
+import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdomgraphics.common.GraphdomImageProvider;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.custom.ConvexHullCustomFeature;
@@ -27,6 +28,7 @@ import graphdomgraphics.features.custom.FlipEdgeCustomFeature;
 import graphdomgraphics.features.custom.GenerateRandomNodesCustomFeature;
 import graphdomgraphics.features.custom.GenerateRoundGraphCustomFeature;
 import graphdomgraphics.features.custom.GenerateRoundTriangGraphCustomFeature;
+import graphdomgraphics.features.custom.GenericAlgorithmCustomFeature;
 import graphdomgraphics.features.custom.GreedyConnectedDominationCustomFeature;
 import graphdomgraphics.features.custom.GreedyDominationCustomFeature;
 import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
@@ -111,6 +113,9 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		subMenuAlgorithms.add(new ContextMenuEntry(new GreedyDominationCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms
 				.add(new ContextMenuEntry(new GreedyConnectedDominationCustomFeature(getFeatureProvider()), context));
+		subMenuAlgorithms.add(new ContextMenuEntry(
+				new GenericAlgorithmCustomFeature(getFeatureProvider(), GreedyTotalDominationAlgorithm.class),
+				context));
 
 		subMenuSelectedObject.add(new ContextMenuEntry(new MarkDominatingCustomFeature(getFeatureProvider()), context));
 		subMenuSelectedObject.add(new ContextMenuEntry(new FlipEdgeCustomFeature(getFeatureProvider()), context));

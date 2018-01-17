@@ -80,4 +80,12 @@ public abstract class AbstractAlgorithm implements GraphAlgorithm {
 
 	}
 
+	@Override
+	public void initialize(Graph graph) {
+		this.graph = graph;
+		if (graph != null) {
+			// Switch status from uninitialized
+			setStatus(AlgorithmStatus.INPROGRESS);
+		}
+	}
 } //AbstractGraphAlgorithmImpl

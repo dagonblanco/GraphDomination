@@ -23,7 +23,9 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.editor.IDiagramContainerUI;
 import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
 
+import graphdom.Edge;
 import graphdom.Graph;
+import graphdom.Node;
 
 /**
  * Filters out all other object than {@link EReference}s that get selected in
@@ -34,9 +36,6 @@ public class GraphFilter extends AbstractPropertySectionFilter {
 	@Override
 	protected boolean accept(PictogramElement pe) {
 		EObject bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-		if (bo instanceof Graph) {
-			return true;
-		}
-		return false;
+		return bo instanceof Graph || bo instanceof Node || bo instanceof Edge;
 	}
 }
