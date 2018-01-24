@@ -96,6 +96,12 @@
          id="graphiti.main.tab"
          label="%propertyTab.label">
    </propertyTab>
+   <propertyTab
+         afterTab="graphiti.algorithm.tab"
+         category="Graphdom"
+         id="graphiti.statistics.tab"
+         label="%propertyTab.label.statistics">
+   </propertyTab>
    </propertyTabs>
 </extension>
      
@@ -126,6 +132,12 @@
               filter="graphdomgraphics.properties.EdgeFilter"
               id="graphiti.edge.section"
               tab="graphiti.edge.tab">
+        </propertySection>
+        <propertySection
+              class="graphdomgraphics.properties.StatisticsSection"
+              filter="graphdomgraphics.properties.GraphFilter"
+              id="graphiti.statistics.section"
+              tab="graphiti.statistics.tab">
         </propertySection>
     </propertySections>
 </extension>

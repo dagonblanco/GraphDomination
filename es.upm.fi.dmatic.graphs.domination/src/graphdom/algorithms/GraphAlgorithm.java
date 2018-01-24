@@ -37,4 +37,15 @@ public interface GraphAlgorithm {
 		// Do nothing by default
 	}
 
+	/**
+	 * Run statistics on the graph algorithm
+	 * 
+	 * @param statisticsInfo
+	 * @return
+	 */
+	default StatisticsResults runStatistics(StatisticsInfo statisticsInfo) {
+		// Do nothing by default
+		return new StatisticsResults();
+	};
+
 }
