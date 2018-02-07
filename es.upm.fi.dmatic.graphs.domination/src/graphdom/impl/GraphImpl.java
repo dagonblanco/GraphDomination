@@ -312,6 +312,11 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 */
 	@Override
 	public boolean isTotallyDominated() {
+
+		if (!isDominated() || this.getNodes().isEmpty()) {
+			return false;
+		}
+
 		for (Node node : this.getNodes()) {
 			// All nodes must be dominated (even dominating ones!!!)
 			if (!node.isDominated()) {
@@ -328,6 +333,11 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 */
 	@Override
 	public boolean isIndependentlyDominated() {
+
+		if (!isDominated() || this.getNodes().isEmpty()) {
+			return false;
+		}
+
 		for (Node node : this.getNodes()) {
 			// All nodes must be dominated except for dominating ones
 			if (!((!node.isDominated() && node.isDominating()) || (node.isDominated() && !node.isDominating()))) {
@@ -345,7 +355,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	@Override
 	public boolean isConnectedDomination() {
 
-		if (!isDominated()) {
+		if (!isDominated() || this.getNodes().isEmpty()) {
 			return false;
 		}
 

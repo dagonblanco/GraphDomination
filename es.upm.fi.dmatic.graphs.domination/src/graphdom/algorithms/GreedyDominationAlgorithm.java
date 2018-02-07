@@ -15,15 +15,8 @@ public class GreedyDominationAlgorithm extends AbstractAlgorithm {
 	
 	public GreedyDominationAlgorithm(Graph graph) {
 		super(graph);
-		
-		// Unmark all of its nodes, so we can mark the dominating ones
-		getGraph().unmarkAllNodes();
-		
-		// Get a working copy so we can delete nodes and change stuff
-		workingGraph = EcoreUtil.copy(graph);
-		
-		// Switch status from uninitialized
-		setStatus(AlgorithmStatus.INPROGRESS);
+		initialize(graph);
+
 	}
 
 	@Override
@@ -53,4 +46,16 @@ public class GreedyDominationAlgorithm extends AbstractAlgorithm {
 		// Step ended
 	}
 
+	@Override
+	public void initialize(Graph graph) {
+		super.initialize(graph);
+		// Unmark all of its nodes, so we can mark the dominating ones
+		getGraph().unmarkAllNodes();
+
+		// Get a working copy so we can delete nodes and change stuff
+		workingGraph = EcoreUtil.copy(graph);
+
+		// Switch status from uninitialized
+		setStatus(AlgorithmStatus.INPROGRESS);
+	}
 }
