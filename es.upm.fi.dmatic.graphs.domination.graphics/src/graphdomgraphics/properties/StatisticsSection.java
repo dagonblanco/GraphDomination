@@ -19,8 +19,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.features.context.impl.CustomContext;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -43,6 +41,7 @@ import graphdom.algorithms.GreedyDominationAlgorithm;
 import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdom.algorithms.StatisticsInfo;
 import graphdom.algorithms.StatisticsResults;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.UpdateGraphFeature;
 
 public class StatisticsSection extends GFPropertySection implements ITabbedPropertyConstants {
@@ -166,15 +165,8 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 	@Override
 	public void refresh() {
 
+		theGraph = GraphUtil.getRootGraph(getDiagram());
 		buttonRun.setEnabled(true);
 
-		PictogramElement pe = getSelectedPictogramElement();
-		if (pe != null) {
-			theGraph = (Graph) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			// the filter assured, that it is a Node
-			if (theGraph == null) {
-				return;
-			}
-		}
 	}
 }

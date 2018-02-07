@@ -47,10 +47,6 @@ public class EdgeSection extends GFPropertySection implements ITabbedPropertyCon
 		gridLayout.makeColumnsEqualWidth = true;
 		composite.setLayout(gridLayout);
 
-//		factory.createCLabel(composite, "Name:"); //$NON-NLS-1$
-//		nameText = factory.createText(composite, ""); //$NON-NLS-1$
-//		nameText.setEditable(false);
-
 		factory.createCLabel(composite, "Dominating:"); //$NON-NLS-1$
 		dominatingText = factory.createText(composite, ""); //$NON-NLS-1$
 		dominatingText.setEditable(false);
@@ -69,8 +65,6 @@ public class EdgeSection extends GFPropertySection implements ITabbedPropertyCon
 			// the filter assured, that it is a Node
 			if (theEdge == null)
 				return;
-//			String name = theEdge.getGuid();
-//			nameText.setText(name == null ? "" : name); //$NON-NLS-1$
 			dominatingText.setText(String.valueOf(theEdge.isMarked()));
 			StringBuffer connected = null;
 			for (Node adjnode : theEdge.getConnectedNodes()) {

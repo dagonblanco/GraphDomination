@@ -98,10 +98,10 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		subMenuGraphGeneration.setSubmenu(true);
 
 		ContextMenuEntry subMenuSelectedObject = new ContextMenuEntry(null, context);
-		subMenuSelectedObject.setText("Selected object");
+		subMenuSelectedObject.setText("");
 		subMenuSelectedObject.setDescription("Selected object actions submenu");
 		// display sub-menu hierarchical or flat
-		subMenuSelectedObject.setSubmenu(true);
+		subMenuSelectedObject.setSubmenu(false);
 
 		ContextMenuEntry subMenuAlgorithms = new ContextMenuEntry(null, context);
 		subMenuAlgorithms.setText("Algorithms");

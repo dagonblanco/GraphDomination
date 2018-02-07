@@ -19,8 +19,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.features.context.impl.CustomContext;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -40,6 +38,7 @@ import graphdom.algorithms.AlgorithmStatus;
 import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
 import graphdom.algorithms.GreedyDominationAlgorithm;
 import graphdom.algorithms.GreedyTotalDominationAlgorithm;
+import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.UpdateGraphFeature;
 
 public class AlgorithmSection extends GFPropertySection implements ITabbedPropertyConstants {
@@ -164,20 +163,14 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 
 	@Override
 	public void refresh() {
+
+		theGraph = GraphUtil.getRootGraph(getDiagram());
+
 		status = (theGraph != null && theGraph.getAlgorithm() != null ? theGraph.getAlgorithm().getStatus()
 				: AlgorithmStatus.UNINITIALIZED);
 
 		buttonInit.setEnabled(true);
 		buttonNext.setEnabled(status.equals(AlgorithmStatus.INPROGRESS));
 		buttonEnd.setEnabled(status.equals(AlgorithmStatus.INPROGRESS));
-
-		PictogramElement pe = getSelectedPictogramElement();
-		if (pe != null) {
-			theGraph = (Graph) Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-			// the filter assured, that it is a Node
-			if (theGraph == null) {
-				return;
-			}
-		}
 	}
 }

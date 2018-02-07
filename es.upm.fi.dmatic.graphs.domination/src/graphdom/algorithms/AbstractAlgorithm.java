@@ -119,9 +119,11 @@ public abstract class AbstractAlgorithm implements GraphAlgorithm {
 			// Extract information and add to results
 			int dominatingSetSize = currentGraph.getDominatingSet().size();
 			if (dominatingSetSize > maxDominationNumber) {
+				// Found max
 				maxDominationNumber = dominatingSetSize;
 			}
 			if (dominatingSetSize < minDominationNumber) {
+				// Found min
 				minDominationNumber = dominatingSetSize;
 			}
 			sumOfDominationNumbers += dominatingSetSize;
