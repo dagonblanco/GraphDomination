@@ -16,6 +16,7 @@
 package graphdomgraphics.properties;
 
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.swt.SWT;
@@ -144,7 +145,10 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 			}
 			
 			StringBuilder nodelist = null;
-			for (Node adjnode : theNode.getAdjacentNodes()) {
+			EList<Node> adjacentNodes = theNode.getAdjacentNodes();
+
+			adjacentNodes.sort((node1, node2) -> node1.getNodeName().compareTo(node2.getNodeName()));
+			for (Node adjnode : adjacentNodes) {
 				if (nodelist == null) {
 					nodelist = new StringBuilder(adjnode.getNodeName());
 				} else {
@@ -157,4 +161,5 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		}
 		return matrix;
 	}
+
 }
