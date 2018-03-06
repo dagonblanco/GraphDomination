@@ -147,7 +147,8 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 			StringBuilder nodelist = null;
 			EList<Node> adjacentNodes = theNode.getAdjacentNodes();
 
-			adjacentNodes.sort((node1, node2) -> node1.getNodeName().compareTo(node2.getNodeName()));
+			adjacentNodes.sort(
+					(node1, node2) -> Integer.parseInt(node1.getNodeName()) - Integer.parseInt(node2.getNodeName()));
 			for (Node adjnode : adjacentNodes) {
 				if (nodelist == null) {
 					nodelist = new StringBuilder(adjnode.getNodeName());
