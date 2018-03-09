@@ -109,7 +109,6 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		// display sub-menu hierarchical or flat
 		subMenuAlgorithms.setSubmenu(true);
 
-		subMenuAlgorithms.add(new ContextMenuEntry(new UnmarkAllNodesCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms.add(new ContextMenuEntry(new GreedyDominationCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms
 				.add(new ContextMenuEntry(new GreedyConnectedDominationCustomFeature(getFeatureProvider()), context));
@@ -119,6 +118,7 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
 		subMenuSelectedObject.add(new ContextMenuEntry(new MarkDominatingCustomFeature(getFeatureProvider()), context));
 		subMenuSelectedObject.add(new ContextMenuEntry(new FlipEdgeCustomFeature(getFeatureProvider()), context));
+		subMenuSelectedObject.add(new ContextMenuEntry(new UnmarkAllNodesCustomFeature(getFeatureProvider()), context));
 
 		subMenuGraphGeneration
 				.add(new ContextMenuEntry(new GenerateRandomNodesCustomFeature(getFeatureProvider()), context));

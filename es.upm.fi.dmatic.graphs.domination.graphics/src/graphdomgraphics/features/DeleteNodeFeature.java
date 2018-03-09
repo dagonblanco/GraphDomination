@@ -10,8 +10,13 @@ import org.eclipse.graphiti.features.context.impl.MultiDeleteInfo;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.features.DefaultDeleteFeature;
+
+import graphdom.Graph;
+import graphdom.Node;
+import graphdomgraphics.common.GraphUtil;
 
 public class DeleteNodeFeature extends DefaultDeleteFeature {
 
@@ -41,5 +46,23 @@ public class DeleteNodeFeature extends DefaultDeleteFeature {
 					deleteFeature.delete(ctx);
 			}
 		}
+	}
+
+	@Override
+	public void delete(IDeleteContext context) {
+
+		// Access the graph
+		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
+
+		PictogramElement pe = context.getPictogramElement();
+		Object[] businessObjectsForPictogramElement = getAllBusinessObjectsForPictogramElement(pe);
+
+		for (Object bo : businessObjectsForPictogramElement) {
+			if (bo instanceof Node) {
+				theGraph.removeNode((Node) bo);
+			}
+		}
+
+		super.delete(context);
 	}
 }

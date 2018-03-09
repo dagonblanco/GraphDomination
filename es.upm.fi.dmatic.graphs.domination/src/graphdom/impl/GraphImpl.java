@@ -5,6 +5,7 @@ package graphdom.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.PriorityQueue;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -103,6 +104,8 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 
 	protected GraphAlgorithm algorithm = new NullAlgorithm();
 	
+	protected PriorityQueue<Integer> freeNodeIds = null;
+	
 	@Override
 	public GraphAlgorithm getAlgorithm() {
 		return algorithm;
@@ -188,7 +191,33 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 */
 	@Override
 	public int getNextNodeId() {
-		return nextNodeId++;
+
+		if (freeNodeIds == null) {
+			initializeFreeNodeIds();
+		}
+
+		return (freeNodeIds.isEmpty() ? this.getNodes().size() : freeNodeIds.poll());
+	}
+
+	private void initializeFreeNodeIds() {
+		int highestNodeId = 0;
+
+		// Get highest node name
+		for (Node node : getNodes()) {
+			int nodeName = Integer.parseInt(node.getNodeName());
+			if (nodeName > highestNodeId)
+				highestNodeId = nodeName;
+		}
+
+		// Create queue and add each unused name
+		freeNodeIds = new PriorityQueue<>();
+		for (int i = 0; i < highestNodeId; i++) {
+				freeNodeIds.add(i);
+		}
+
+		for (Node node : getNodes()) {
+			freeNodeIds.remove(Integer.parseInt(node.getNodeName()));
+		}
 	}
 
 	/**
@@ -242,16 +271,21 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	@Override
 	public void removeNode(Node node) {
 
+		if (freeNodeIds == null)
+			initializeFreeNodeIds();
+
+		freeNodeIds.add(Integer.parseInt(node.getNodeName()));
 		
-		
-		// Remove referenced edges
-		this.getEdges().removeAll(node.getConnectedEdges());
-		
-		node.getConnectedEdges().clear();
-		
-		// Remove node
-		this.getNodes().remove(node);
-		
+		// // Remove referenced edges
+		// this.getEdges().removeAll(node.getConnectedEdges());
+		//
+		// node.getConnectedEdges().clear();
+		//
+		// // Remove node
+		// this.getNodes().remove(node);
+
+		checkNodesDomination();
+
 	}
 
 	/**
