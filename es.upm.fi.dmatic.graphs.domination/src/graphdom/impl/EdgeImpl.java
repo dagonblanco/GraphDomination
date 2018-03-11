@@ -215,26 +215,25 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 */
 	@Override
 	public boolean flip() {
-		// TODO: implement this method
 
 		if (this.getConnectedNodes().size() != 2) return false;
 
 		Node nodeA = getConnectedNodes().get(0);
 		Node nodeB = getConnectedNodes().get(1);
 		
-		EList<Node> adjacentToA = nodeA.getAdjacentNodes();
+
 		EList<Node> adjacentToB = nodeB.getAdjacentNodes();
 		
-		adjacentToA.retainAll(adjacentToB);
+		EList<Node> adjacentToBoth = nodeA.getAdjacentNodes();
+		adjacentToBoth.retainAll(adjacentToB);
 		
-		if (adjacentToA.size() != 2) return false;
+		if (adjacentToBoth.size() != 2) return false;
 		
-		Node nodeC = adjacentToA.get(0);		
-		Node nodeD = adjacentToA.get(1);
+		Node nodeC = adjacentToBoth.get(0);		
+		Node nodeD = adjacentToBoth.get(1);
 
 		nodeA.getConnectedEdges().remove(this);
 		nodeB.getConnectedEdges().remove(this);
-		//this.connectedNodes.clear();
 		
 		this.connectedNodes.add(nodeC);
 		this.connectedNodes.add(nodeD);
