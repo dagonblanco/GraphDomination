@@ -8,14 +8,19 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
+import org.eclipse.graphiti.internal.features.context.impl.base.DoubleClickContext;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 
 import graphdom.Edge;
+import graphdom.GraphdomFactory;
 import graphdom.Node;
+import graphdomgraphics.common.GraphUtil;
 
 /**
  * @author David
@@ -44,6 +49,13 @@ public class MarkDominatingCustomFeature extends AbstractCustomFeature {
 
 	@Override
 	public boolean canExecute(ICustomContext context) {
+
+		// Always allow execution as double click feature
+		if (context instanceof DoubleClickContext) {
+			return true;
+		}
+
+		// If not double-clicking...
 		// allow mark if exactly one pictogram element
 		// representing a Node is selected
 		boolean ret = false;
@@ -100,6 +112,30 @@ public class MarkDominatingCustomFeature extends AbstractCustomFeature {
 				peList.addAll(Graphiti.getLinkService().getPictogramElements(getDiagram(),
 						new BasicEList<EObject>(nodes.get(1).getConnectedEdges()), true));
 				
+			} else {
+				// Create a new node in the given position
+				// Create target node (domain object)
+
+				Node newNode = GraphdomFactory.eINSTANCE.createNode();
+				newNode.setNodeName(String.valueOf(GraphUtil.getRootGraph(getDiagram()).getNextNodeId()));
+				newNode.setGuid(EcoreUtil.generateUUID());
+				newNode.setXCoord(context.getX());
+				newNode.setYCoord(context.getY());
+
+				GraphUtil.getRootGraph(getDiagram()).getNodes().add(newNode);
+
+				// Create shape
+				AddContext ac = new AddContext();
+				ac.setLocation(newNode.getXCoord(), newNode.getYCoord());
+				ac.setNewObject(newNode);
+				ac.setTargetContainer(getDiagram());
+				getFeatureProvider().addIfPossible(ac);
+
+				peList = Graphiti.getLinkService().getPictogramElements(getDiagram(),
+						new BasicEList<EObject>(newNode.getAdjacentNodes()), true);
+
+				peList.addAll(Graphiti.getLinkService().getPictogramElements(getDiagram(),
+						new BasicEList<EObject>(newNode.getConnectedEdges()), true));
 			}
 			for (PictogramElement pe : pes) {
 				updatePictogramElement(pe);

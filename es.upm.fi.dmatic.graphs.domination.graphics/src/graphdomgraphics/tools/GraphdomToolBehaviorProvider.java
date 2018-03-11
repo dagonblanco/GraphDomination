@@ -141,12 +141,8 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
 	    ICustomFeature customFeature =
 	        new MarkDominatingCustomFeature(getFeatureProvider());
-	    // canExecute() tests especially if the context contains a node
-	    if (customFeature.canExecute(context)) {
-	        return customFeature;
-	    }
-	 
-	    return super.getDoubleClickFeature(context);
+		// Ignore canExecute so we can execute in the diagram
+		return customFeature;
 	}
 
 	@Override
