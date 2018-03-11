@@ -38,6 +38,7 @@
 <setEntry value="org.eclipse.ecf.filetransfer.httpclient4.feature:default"/>
 <setEntry value="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature:default"/>
 <setEntry value="org.eclipse.ecf.filetransfer.ssl.feature:default"/>
+<setEntry value="org.eclipse.egit:default"/>
 <setEntry value="org.eclipse.emf.common:default"/>
 <setEntry value="org.eclipse.emf.ecore:default"/>
 <setEntry value="org.eclipse.equinox.p2.core.feature:default"/>
