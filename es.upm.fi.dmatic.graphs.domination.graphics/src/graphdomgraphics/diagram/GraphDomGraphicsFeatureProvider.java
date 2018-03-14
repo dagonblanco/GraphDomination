@@ -34,6 +34,7 @@ import graphdomgraphics.features.AddNodeFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
+import graphdomgraphics.features.DeleteEdgeFeature;
 import graphdomgraphics.features.DeleteNodeFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
@@ -169,6 +170,8 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 			if (bo instanceof Node) {
 				return new DeleteNodeFeature(this);
+			} else if (bo instanceof Edge) {
+				return new DeleteEdgeFeature(this);
 			}
 		}
 		return super.getDeleteFeature(context);

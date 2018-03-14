@@ -189,4 +189,22 @@ public abstract class GraphdomAbstractCustomFeature extends AbstractCustomFeatur
 
 	}
 
+	protected void updateGraph(Graph theGraph) {
+		theGraph.checkNodesDomination();
+
+		ILinkService linkserv = Graphiti.getLinkService();
+
+		for (Node node : theGraph.getNodes()) {
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
+				updatePictogramElement(pe);
+			}
+		}
+
+		for (Edge edge : theGraph.getEdges()) {
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), edge)) {
+				updatePictogramElement(pe);
+			}
+		}
+	}
+
 }

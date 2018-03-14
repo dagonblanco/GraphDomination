@@ -52,6 +52,7 @@ public class ConvexHullCustomFeature extends GraphdomAbstractCustomFeature {
 
 		// Model is modified now, with new edges
 		updateEdges();
+		updateGraph(GraphUtil.getRootGraph(getDiagram()));
 
 	}
 

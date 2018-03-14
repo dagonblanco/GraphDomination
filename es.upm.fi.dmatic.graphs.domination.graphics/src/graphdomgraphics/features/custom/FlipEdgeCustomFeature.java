@@ -15,6 +15,7 @@ import org.eclipse.graphiti.services.Graphiti;
 
 import graphdom.Edge;
 import graphdom.Node;
+import graphdomgraphics.common.GraphUtil;
 
 /**
  * @author David
@@ -131,6 +132,9 @@ public class FlipEdgeCustomFeature extends GraphdomAbstractCustomFeature {
 					for (PictogramElement pe : peList) {
 						updatePictogramElement(pe);
 					}
+
+					updateGraph(GraphUtil.getRootGraph(getDiagram()));
+
 				}
 			}
 
@@ -141,4 +145,6 @@ public class FlipEdgeCustomFeature extends GraphdomAbstractCustomFeature {
 	public boolean hasDoneChanges() {
 		return this.hasDoneChanges;
 	}
+
+
 }
