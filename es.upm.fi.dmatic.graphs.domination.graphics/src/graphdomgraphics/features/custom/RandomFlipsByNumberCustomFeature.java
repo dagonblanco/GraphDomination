@@ -62,6 +62,7 @@ public class RandomFlipsByNumberCustomFeature extends GraphdomAbstractCustomFeat
 
 		// Model is modified now, with new or different edges
 		updateAllEdges();
+		updateGraph(GraphUtil.getRootGraph(getDiagram()));
 
 	}
 

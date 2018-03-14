@@ -4,6 +4,8 @@ package graphdom.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.PriorityQueue;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -102,6 +104,8 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 
 	protected GraphAlgorithm algorithm = new NullAlgorithm();
 	
+	protected PriorityQueue<Integer> freeNodeIds = null;
+	
 	@Override
 	public GraphAlgorithm getAlgorithm() {
 		return algorithm;
@@ -187,7 +191,33 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 */
 	@Override
 	public int getNextNodeId() {
-		return nextNodeId++;
+
+		if (freeNodeIds == null) {
+			initializeFreeNodeIds();
+		}
+
+		return (freeNodeIds.isEmpty() ? this.getNodes().size() : freeNodeIds.poll());
+	}
+
+	private void initializeFreeNodeIds() {
+		int highestNodeId = 0;
+
+		// Get highest node name
+		for (Node node : getNodes()) {
+			int nodeName = Integer.parseInt(node.getNodeName());
+			if (nodeName > highestNodeId)
+				highestNodeId = nodeName;
+		}
+
+		// Create queue and add each unused name
+		freeNodeIds = new PriorityQueue<>();
+		for (int i = 0; i < highestNodeId; i++) {
+				freeNodeIds.add(i);
+		}
+
+		for (Node node : getNodes()) {
+			freeNodeIds.remove(Integer.parseInt(node.getNodeName()));
+		}
 	}
 
 	/**
@@ -241,16 +271,21 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	@Override
 	public void removeNode(Node node) {
 
+		if (freeNodeIds == null)
+			initializeFreeNodeIds();
+
+		freeNodeIds.add(Integer.parseInt(node.getNodeName()));
 		
-		
-		// Remove referenced edges
-		this.getEdges().removeAll(node.getConnectedEdges());
-		
-		node.getConnectedEdges().clear();
-		
-		// Remove node
-		this.getNodes().remove(node);
-		
+		// // Remove referenced edges
+		// this.getEdges().removeAll(node.getConnectedEdges());
+		//
+		// node.getConnectedEdges().clear();
+		//
+		// // Remove node
+		// this.getNodes().remove(node);
+
+		checkNodesDomination();
+
 	}
 
 	/**
@@ -302,6 +337,96 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 				}
 			}
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated not
+	 */
+	@Override
+	public boolean isTotallyDominated() {
+
+		if (!isDominated() || this.getNodes().isEmpty()) {
+			return false;
+		}
+
+		for (Node node : this.getNodes()) {
+			// All nodes must be dominated (even dominating ones!!!)
+			if (!node.isDominated()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated not
+	 */
+	@Override
+	public boolean isIndependentlyDominated() {
+
+		if (!isDominated() || this.getNodes().isEmpty()) {
+			return false;
+		}
+
+		for (Node node : this.getNodes()) {
+			// All nodes must be dominated except for dominating ones
+			if (!((!node.isDominated() && node.isDominating()) || (node.isDominated() && !node.isDominating()))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public boolean isConnectedDomination() {
+
+		if (!isDominated() || this.getNodes().isEmpty()) {
+			return false;
+		}
+
+		// All dominating nodes go to unvisited
+		HashSet<Node> unvisited = new HashSet<Node>();		
+		unvisited.addAll(this.getDominatingSet());
+
+		// toVisit is empty set
+		EList<Node> toVisit = new BasicEList<Node>();
+
+		// Get first node...
+		Node firstNode = this.getDominatingSet().get(0);
+		// ... and add it to the toVisit list
+		toVisit.add(firstNode);
+		
+		// While there are unvisited nodes (i.e. the graph may not be connected)
+		while (!unvisited.isEmpty()) {
+			
+			// If no more nodes to visit, then it's not connected
+			if (toVisit.isEmpty()) {
+				return false;
+			} else {
+				// Get first to visit (removing from the list)
+				Node visiting = toVisit.remove(0);
+				// Remove it from unvisited
+				unvisited.remove(visiting);
+				// Add every adjacent unvisited dominating node (if not already added)
+				for (Node node : visiting.getAdjacentNodes()) {
+					if (node.isDominating() && unvisited.contains(node) && !toVisit.contains(node)) {
+						toVisit.add(node);
+					}
+				}
+			}
+		}
+
+		// If all have been visited, it's a connected graph
+		return true;
 	}
 
 	/**
@@ -434,6 +559,12 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 			case GraphdomPackage.GRAPH___CHECK_NODES_DOMINATION:
 				checkNodesDomination();
 				return null;
+			case GraphdomPackage.GRAPH___IS_TOTALLY_DOMINATED:
+				return isTotallyDominated();
+			case GraphdomPackage.GRAPH___IS_INDEPENDENTLY_DOMINATED:
+				return isIndependentlyDominated();
+			case GraphdomPackage.GRAPH___IS_CONNECTED_DOMINATION:
+				return isConnectedDomination();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -1,5 +1,7 @@
 package graphdomgraphics.features.custom;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
@@ -64,6 +66,7 @@ public class GenerateRoundTriangGraphCustomFeature extends GraphdomAbstractCusto
 		Node firstNode = null;
 		Node currentNode = null;
 		Node previousNode = null;
+		EList<Node> nodeList = new BasicEList<>();
 
 		for (int i = 0; i < nNodes; i++) {
 			CreateContext cc = new CreateContext();
@@ -74,6 +77,7 @@ public class GenerateRoundTriangGraphCustomFeature extends GraphdomAbstractCusto
 			cc.setLocation(context.getX() + (int) x, context.getY() + (int) y);
 
 			currentNode = (Node) cnf.create(cc)[0];
+			nodeList.add(currentNode);
 
 			
 			if (i == 0) {
@@ -99,7 +103,7 @@ public class GenerateRoundTriangGraphCustomFeature extends GraphdomAbstractCusto
 		Graph theGraph = GraphUtil.getRootGraph(getDiagram());
 
 		// Instance the related algorithm
-		FanTriangulationAlgorithm gda = new FanTriangulationAlgorithm(theGraph);
+		FanTriangulationAlgorithm gda = new FanTriangulationAlgorithm(theGraph, firstNode, nodeList);
 
 
 		// Run the algorithm to the end

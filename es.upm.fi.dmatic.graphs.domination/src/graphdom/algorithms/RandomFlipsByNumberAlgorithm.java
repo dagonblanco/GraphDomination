@@ -1,6 +1,8 @@
 package graphdom.algorithms;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import graphdom.Edge;
 import graphdom.Graph;
@@ -27,7 +29,7 @@ public class RandomFlipsByNumberAlgorithm extends AbstractAlgorithm {
 	@Override
 	public void nextStep() {
 
-		// If no more edges left to check, we have finished
+		// If no more flips to do, we have finished
 		if (flipsDone >= flipNumber) {
 			setStatus(AlgorithmStatus.ENDED);
 		} else {
@@ -35,21 +37,35 @@ public class RandomFlipsByNumberAlgorithm extends AbstractAlgorithm {
 			boolean flipped = false;
 			int retries = 0;
 
+			Set<Integer> alreadyTried = new HashSet<>(maxRetries);
+
 			// Avoid endless loop
 			while (!flipped && (retries < maxRetries)) {
-				// Choose edge
-				int rand = rnd.nextInt(getGraph().getEdges().size());
+				// Choose nontried edge
+				int rand = nextNontriedInt(alreadyTried);
 				Edge currentEdge = getGraph().getEdges().get(rand);
 
 				if (currentEdge.flip()) {
+					// One more flip done
 					flipped = true;
 					flipsDone++;
 				} else {
+					// Mark this number as tried and increase retry count
+					alreadyTried.add(rand);
 					retries++;
 				}
 			}
 		}
 
+	}
+
+	private int nextNontriedInt(Set<Integer> alreadyTried) {
+		int currentInt;
+		do {
+			currentInt = rnd.nextInt(getGraph().getEdges().size());
+		} while (alreadyTried.contains(currentInt));
+
+		return currentInt;
 	}
 
 }

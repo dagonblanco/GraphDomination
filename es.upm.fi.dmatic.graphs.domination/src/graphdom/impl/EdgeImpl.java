@@ -2,22 +2,22 @@
  */
 package graphdom.impl;
 
-import graphdom.Edge;
-import graphdom.GraphdomPackage;
-import graphdom.Node;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import graphdom.Edge;
+import graphdom.GraphdomPackage;
+import graphdom.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,6 +129,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Node> getConnectedNodes() {
 		if (connectedNodes == null) {
 			connectedNodes = new EObjectWithInverseResolvingEList.ManyInverse<Node>(Node.class, this, GraphdomPackage.EDGE__CONNECTED_NODES, GraphdomPackage.NODE__CONNECTED_EDGES);
@@ -141,8 +142,10 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMarked() {
-		return marked;
+		return (getConnectedNodes().size() > 1 && getConnectedNodes().get(0).isDominating()
+				&& getConnectedNodes().get(1).isDominating());
 	}
 
 	/**
@@ -150,6 +153,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMarked(boolean newMarked) {
 		boolean oldMarked = marked;
 		marked = newMarked;
@@ -162,6 +166,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGuid() {
 		return guid;
 	}
@@ -171,6 +176,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGuid(String newGuid) {
 		String oldGuid = guid;
 		guid = newGuid;
@@ -183,6 +189,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getWeight() {
 		return weight;
 	}
@@ -192,6 +199,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWeight(int newWeight) {
 		int oldWeight = weight;
 		weight = newWeight;
@@ -205,27 +213,27 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @return 
 	 * @generated NOT
 	 */
+	@Override
 	public boolean flip() {
-		// TODO: implement this method
 
 		if (this.getConnectedNodes().size() != 2) return false;
 
 		Node nodeA = getConnectedNodes().get(0);
 		Node nodeB = getConnectedNodes().get(1);
 		
-		EList<Node> adjacentToA = nodeA.getAdjacentNodes();
+
 		EList<Node> adjacentToB = nodeB.getAdjacentNodes();
 		
-		adjacentToA.retainAll(adjacentToB);
+		EList<Node> adjacentToBoth = nodeA.getAdjacentNodes();
+		adjacentToBoth.retainAll(adjacentToB);
 		
-		if (adjacentToA.size() != 2) return false;
+		if (adjacentToBoth.size() != 2) return false;
 		
-		Node nodeC = adjacentToA.get(0);		
-		Node nodeD = adjacentToA.get(1);
+		Node nodeC = adjacentToBoth.get(0);		
+		Node nodeD = adjacentToBoth.get(1);
 
 		nodeA.getConnectedEdges().remove(this);
 		nodeB.getConnectedEdges().remove(this);
-		//this.connectedNodes.clear();
 		
 		this.connectedNodes.add(nodeC);
 		this.connectedNodes.add(nodeD);

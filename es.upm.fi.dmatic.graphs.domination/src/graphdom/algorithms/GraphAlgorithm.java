@@ -2,6 +2,8 @@
  */
 package graphdom.algorithms;
 
+import graphdom.Graph;
+
 //TODO Documentar interfaz
 /**
  */
@@ -13,16 +15,37 @@ public interface GraphAlgorithm {
 	AlgorithmStatus getStatus();
 
 	/**
-	 * Sets the value of the '{@link graphdom.algorithms.GraphAlgorithm#getStatus <em>Status</em>}' attribute.
+	 * Sets the value of the '<em>Status</em>' attribute.
 	 */
 	void setStatus(AlgorithmStatus value);
 
 	/**
+	 * Run the algorithm to the end
 	 */
 	void runToEnd();
 
 	/**
+	 * Run a single step of the algorithm
 	 */
 	void nextStep();
 
-} // AbstractGraphAlgorithm
+	default String getName() {
+		return this.getClass().getSimpleName();
+	}
+
+	default void initialize(Graph graph) {
+		// Do nothing by default
+	}
+
+	/**
+	 * Run statistics on the graph algorithm
+	 * 
+	 * @param statisticsInfo
+	 * @return
+	 */
+	default StatisticsResults runStatistics(StatisticsInfo statisticsInfo) {
+		// Do nothing by default
+		return new StatisticsResults();
+	};
+
+}

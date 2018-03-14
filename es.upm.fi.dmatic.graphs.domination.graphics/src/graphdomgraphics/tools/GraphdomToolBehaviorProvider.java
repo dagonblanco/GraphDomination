@@ -20,6 +20,7 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
 
+import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdomgraphics.common.GraphdomImageProvider;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.custom.ConvexHullCustomFeature;
@@ -27,6 +28,7 @@ import graphdomgraphics.features.custom.FlipEdgeCustomFeature;
 import graphdomgraphics.features.custom.GenerateRandomNodesCustomFeature;
 import graphdomgraphics.features.custom.GenerateRoundGraphCustomFeature;
 import graphdomgraphics.features.custom.GenerateRoundTriangGraphCustomFeature;
+import graphdomgraphics.features.custom.GenericAlgorithmCustomFeature;
 import graphdomgraphics.features.custom.GreedyConnectedDominationCustomFeature;
 import graphdomgraphics.features.custom.GreedyDominationCustomFeature;
 import graphdomgraphics.features.custom.MarkDominatingCustomFeature;
@@ -96,10 +98,10 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		subMenuGraphGeneration.setSubmenu(true);
 
 		ContextMenuEntry subMenuSelectedObject = new ContextMenuEntry(null, context);
-		subMenuSelectedObject.setText("Selected object");
+		subMenuSelectedObject.setText("");
 		subMenuSelectedObject.setDescription("Selected object actions submenu");
 		// display sub-menu hierarchical or flat
-		subMenuSelectedObject.setSubmenu(true);
+		subMenuSelectedObject.setSubmenu(false);
 
 		ContextMenuEntry subMenuAlgorithms = new ContextMenuEntry(null, context);
 		subMenuAlgorithms.setText("Algorithms");
@@ -107,13 +109,16 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		// display sub-menu hierarchical or flat
 		subMenuAlgorithms.setSubmenu(true);
 
-		subMenuAlgorithms.add(new ContextMenuEntry(new UnmarkAllNodesCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms.add(new ContextMenuEntry(new GreedyDominationCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms
 				.add(new ContextMenuEntry(new GreedyConnectedDominationCustomFeature(getFeatureProvider()), context));
+		subMenuAlgorithms.add(new ContextMenuEntry(
+				new GenericAlgorithmCustomFeature(getFeatureProvider(), GreedyTotalDominationAlgorithm.class),
+				context));
 
 		subMenuSelectedObject.add(new ContextMenuEntry(new MarkDominatingCustomFeature(getFeatureProvider()), context));
 		subMenuSelectedObject.add(new ContextMenuEntry(new FlipEdgeCustomFeature(getFeatureProvider()), context));
+		subMenuSelectedObject.add(new ContextMenuEntry(new UnmarkAllNodesCustomFeature(getFeatureProvider()), context));
 
 		subMenuGraphGeneration
 				.add(new ContextMenuEntry(new GenerateRandomNodesCustomFeature(getFeatureProvider()), context));
@@ -136,12 +141,8 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
 	    ICustomFeature customFeature =
 	        new MarkDominatingCustomFeature(getFeatureProvider());
-	    // canExecute() tests especially if the context contains a node
-	    if (customFeature.canExecute(context)) {
-	        return customFeature;
-	    }
-	 
-	    return super.getDoubleClickFeature(context);
+		// Ignore canExecute so we can execute in the diagram
+		return customFeature;
 	}
 
 	@Override

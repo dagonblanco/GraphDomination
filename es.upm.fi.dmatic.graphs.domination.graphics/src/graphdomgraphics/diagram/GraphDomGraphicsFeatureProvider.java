@@ -4,18 +4,24 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
+import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
+import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
+import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.features.impl.DefaultRemoveFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -28,6 +34,8 @@ import graphdomgraphics.features.AddNodeFeature;
 import graphdomgraphics.features.CreateEdgeConnectionFeature;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
 import graphdomgraphics.features.CreateNodeFeature;
+import graphdomgraphics.features.DeleteEdgeFeature;
+import graphdomgraphics.features.DeleteNodeFeature;
 import graphdomgraphics.features.LayoutNodeFeature;
 import graphdomgraphics.features.ReconnectNodeFeature;
 import graphdomgraphics.features.UpdateEdgeFeature;
@@ -132,4 +140,40 @@ public class GraphDomGraphicsFeatureProvider extends DefaultFeatureProvider {
 
 	}
 
+	@Override
+	public IRemoveFeature getRemoveFeature(IRemoveContext context) {
+		/**
+		 * return <code>NULL</code> will disable Remove action but at the same time
+		 * disable Delete action, because delete uses remove.
+		 */
+		return new DefaultRemoveFeature(this) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * org.eclipse.graphiti.features.impl.AbstractFeature#isAvailable(org.eclipse.
+			 * graphiti.features.context.IContext)
+			 */
+			@Override
+			public boolean isAvailable(IContext context) {
+				return false;
+			}
+		};
+	}
+
+	@Override
+	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
+
+		PictogramElement pictogramElement = context.getPictogramElement();
+		if (pictogramElement instanceof ContainerShape || pictogramElement instanceof Connection) {
+			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+			if (bo instanceof Node) {
+				return new DeleteNodeFeature(this);
+			} else if (bo instanceof Edge) {
+				return new DeleteEdgeFeature(this);
+			}
+		}
+		return super.getDeleteFeature(context);
+	}
 }

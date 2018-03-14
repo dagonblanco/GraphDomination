@@ -15,6 +15,7 @@ import org.eclipse.graphiti.services.Graphiti;
 
 import graphdom.Edge;
 import graphdom.Node;
+import graphdomgraphics.common.GraphUtil;
 
 /**
  * @author David
@@ -50,10 +51,27 @@ public class FlipEdgeCustomFeature extends GraphdomAbstractCustomFeature {
 		if (pes != null && pes.length == 1) {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
 			if (bo instanceof Edge) {
-				ret = true;
+				ret = isFlippable((Edge) bo);
 			}
 		}
 		return ret;
+	}
+
+	private boolean isFlippable(Edge edge) {
+
+		if (edge.getConnectedNodes().size() != 2)
+			return false;
+
+		Node nodeA = edge.getConnectedNodes().get(0);
+		Node nodeB = edge.getConnectedNodes().get(1);
+
+		EList<Node> adjacentToB = nodeB.getAdjacentNodes();
+
+		EList<Node> adjacentToBoth = nodeA.getAdjacentNodes();
+		adjacentToBoth.retainAll(adjacentToB);
+
+		return (adjacentToBoth.size() == 2);
+
 	}
 
 	@Override
@@ -114,6 +132,9 @@ public class FlipEdgeCustomFeature extends GraphdomAbstractCustomFeature {
 					for (PictogramElement pe : peList) {
 						updatePictogramElement(pe);
 					}
+
+					updateGraph(GraphUtil.getRootGraph(getDiagram()));
+
 				}
 			}
 
@@ -124,4 +145,6 @@ public class FlipEdgeCustomFeature extends GraphdomAbstractCustomFeature {
 	public boolean hasDoneChanges() {
 		return this.hasDoneChanges;
 	}
+
+
 }

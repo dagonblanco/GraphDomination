@@ -26,10 +26,12 @@ import org.eclipse.graphiti.features.impl.DefaultReconnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.ILinkService;
 
 import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.Node;
+import graphdomgraphics.common.GraphUtil;
 
 public class ReconnectNodeFeature extends DefaultReconnectionFeature {
 
@@ -97,6 +99,8 @@ public class ReconnectNodeFeature extends DefaultReconnectionFeature {
 		for (PictogramElement pe : peList) {
 			updatePictogramElement(pe);
 		}
+
+		updateGraph(GraphUtil.getRootGraph(getDiagram()));
 	}
 
 	/**
@@ -110,5 +114,23 @@ public class ReconnectNodeFeature extends DefaultReconnectionFeature {
 			}
 		}
 		return null;
+	}
+
+	private void updateGraph(Graph theGraph) {
+		theGraph.checkNodesDomination();
+
+		ILinkService linkserv = Graphiti.getLinkService();
+
+		for (Node node : theGraph.getNodes()) {
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), node)) {
+				updatePictogramElement(pe);
+			}
+		}
+
+		for (Edge edge : theGraph.getEdges()) {
+			for (PictogramElement pe : linkserv.getPictogramElements(getDiagram(), edge)) {
+				updatePictogramElement(pe);
+			}
+		}
 	}
 }
