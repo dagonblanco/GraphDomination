@@ -14,6 +14,12 @@ import junit.textui.TestRunner;
  * A test case for the model object '<em><b>Edge</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are tested:
+ * <ul>
+ *   <li>{@link graphdom.Edge#isMarked() <em>Marked</em>}</li>
+ * </ul>
+ * </p>
+ * <p>
  * The following operations are tested:
  * <ul>
  *   <li>{@link graphdom.Edge#flip() <em>Flip</em>}</li>
@@ -90,6 +96,32 @@ public class EdgeTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Edge#isMarked() <em>Marked</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Edge#isMarked()
+	 * @generated
+	 */
+	public void testIsMarked() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Edge#setMarked(boolean) <em>Marked</em>}' feature setter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Edge#setMarked(boolean)
+	 * @generated
+	 */
+	public void testSetMarked() {
+		// TODO: implement this feature setter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	/**

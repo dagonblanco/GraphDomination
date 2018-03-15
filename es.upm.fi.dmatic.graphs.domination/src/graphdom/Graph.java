@@ -19,7 +19,6 @@ import graphdom.algorithms.GraphAlgorithm;
  *   <li>{@link graphdom.Graph#getGraphName <em>Graph Name</em>}</li>
  *   <li>{@link graphdom.Graph#getNodes <em>Nodes</em>}</li>
  *   <li>{@link graphdom.Graph#getEdges <em>Edges</em>}</li>
- *   <li>{@link graphdom.Graph#getNextNodeId <em>Next Node Id</em>}</li>
  * </ul>
  *
  * @see graphdom.GraphdomPackage#getGraph()
@@ -87,30 +86,16 @@ public interface Graph extends EObject {
 	EList<Edge> getEdges();
 
 	/**
-	 * Returns the value of the '<em><b>Next Node Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Next Node Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Next Node Id</em>' attribute.
-	 * @see #setNextNodeId(int)
-	 * @see graphdom.GraphdomPackage#getGraph_NextNodeId()
-	 * @model
+	 * @model kind="operation"
 	 * @generated
 	 */
 	int getNextNodeId();
-
-	/**
-	 * Sets the value of the '{@link graphdom.Graph#getNextNodeId <em>Next Node Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Next Node Id</em>' attribute.
-	 * @see #getNextNodeId()
-	 * @generated
-	 */
-	void setNextNodeId(int value);
 
 	Node findNodeById(String id);
 

@@ -150,16 +150,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGraph_NextNodeId() {
-		return (EAttribute)graphEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EOperation getGraph__FindNodeById__String() {
 		return graphEClass.getEOperations().get(0);
 	}
@@ -242,6 +232,16 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	@Override
 	public EOperation getGraph__IsConnectedDomination() {
 		return graphEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getGraph__GetNextNodeId() {
+		return graphEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -447,7 +447,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEAttribute(graphEClass, GRAPH__GRAPH_NAME);
 		createEReference(graphEClass, GRAPH__NODES);
 		createEReference(graphEClass, GRAPH__EDGES);
-		createEAttribute(graphEClass, GRAPH__NEXT_NODE_ID);
 		createEOperation(graphEClass, GRAPH___FIND_NODE_BY_ID__STRING);
 		createEOperation(graphEClass, GRAPH___UNMARK_ALL_NODES);
 		createEOperation(graphEClass, GRAPH___REMOVE_NODE__NODE);
@@ -457,6 +456,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		createEOperation(graphEClass, GRAPH___IS_TOTALLY_DOMINATED);
 		createEOperation(graphEClass, GRAPH___IS_INDEPENDENTLY_DOMINATED);
 		createEOperation(graphEClass, GRAPH___IS_CONNECTED_DOMINATION);
+		createEOperation(graphEClass, GRAPH___GET_NEXT_NODE_ID);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NODE_NAME);
@@ -512,7 +512,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 		initEAttribute(getGraph_GraphName(), ecorePackage.getEString(), "graphName", "", 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Edges(), this.getEdge(), null, "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGraph_NextNodeId(), ecorePackage.getEInt(), "nextNodeId", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getGraph__FindNodeById__String(), this.getNode(), "findNodeById", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "id", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -534,6 +533,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 
 		initEOperation(getGraph__IsConnectedDomination(), ecorePackage.getEBoolean(), "isConnectedDomination", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getGraph__GetNextNodeId(), ecorePackage.getEInt(), "getNextNodeId", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_NodeName(), ecorePackage.getEString(), "nodeName", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Color(), ecorePackage.getEString(), "color", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -549,7 +550,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_ConnectedNodes(), this.getNode(), this.getNode_ConnectedEdges(), "connectedNodes", null, 2, 2, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getEdge_Marked(), ecorePackage.getEBoolean(), "marked", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEdge_Marked(), ecorePackage.getEBoolean(), "marked", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Guid(), ecorePackage.getEString(), "guid", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Weight(), ecorePackage.getEInt(), "weight", "0", 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -55,7 +55,7 @@ public interface Edge extends EObject {
 	 * @return the value of the '<em>Marked</em>' attribute.
 	 * @see #setMarked(boolean)
 	 * @see graphdom.GraphdomPackage#getEdge_Marked()
-	 * @model
+	 * @model derived="true"
 	 * @generated
 	 */
 	boolean isMarked();
