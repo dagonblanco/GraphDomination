@@ -270,18 +270,8 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getNode_Color() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getNode_ConnectedEdges() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
+		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -291,7 +281,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	@Override
 	public EAttribute getNode_Dominating() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -301,7 +291,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	@Override
 	public EAttribute getNode_Grade() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -311,7 +301,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	@Override
 	public EAttribute getNode_Guid() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -321,7 +311,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	@Override
 	public EAttribute getNode_XCoord() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -331,7 +321,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	@Override
 	public EAttribute getNode_YCoord() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -341,7 +331,7 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 	 */
 	@Override
 	public EAttribute getNode_Dominated() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -460,7 +450,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NODE_NAME);
-		createEAttribute(nodeEClass, NODE__COLOR);
 		createEReference(nodeEClass, NODE__CONNECTED_EDGES);
 		createEAttribute(nodeEClass, NODE__DOMINATING);
 		createEAttribute(nodeEClass, NODE__GRADE);
@@ -537,7 +526,6 @@ public class GraphdomPackageImpl extends EPackageImpl implements GraphdomPackage
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_NodeName(), ecorePackage.getEString(), "nodeName", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNode_Color(), ecorePackage.getEString(), "color", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_ConnectedEdges(), this.getEdge(), this.getEdge_ConnectedNodes(), "connectedEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Dominating(), ecorePackage.getEBoolean(), "dominating", "false", 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Grade(), ecorePackage.getELong(), "grade", "0", 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);

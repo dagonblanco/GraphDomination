@@ -61,7 +61,6 @@ public class NodeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNodeNamePropertyDescriptor(object);
-			addColorPropertyDescriptor(object);
 			addConnectedEdgesPropertyDescriptor(object);
 			addDominatingPropertyDescriptor(object);
 			addGradePropertyDescriptor(object);
@@ -87,28 +86,6 @@ public class NodeItemProvider
 				 getString("_UI_Node_nodeName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Node_nodeName_feature", "_UI_Node_type"),
 				 GraphdomPackage.Literals.NODE__NODE_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Color feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addColorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Node_color_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_color_feature", "_UI_Node_type"),
-				 GraphdomPackage.Literals.NODE__COLOR,
 				 true,
 				 false,
 				 false,
@@ -310,7 +287,6 @@ public class NodeItemProvider
 
 		switch (notification.getFeatureID(Node.class)) {
 			case GraphdomPackage.NODE__NODE_NAME:
-			case GraphdomPackage.NODE__COLOR:
 			case GraphdomPackage.NODE__DOMINATING:
 			case GraphdomPackage.NODE__GRADE:
 			case GraphdomPackage.NODE__GUID:

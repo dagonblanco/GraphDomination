@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link graphdom.impl.NodeImpl#getNodeName <em>Node Name</em>}</li>
- *   <li>{@link graphdom.impl.NodeImpl#getColor <em>Color</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#getConnectedEdges <em>Connected Edges</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#isDominating <em>Dominating</em>}</li>
  *   <li>{@link graphdom.impl.NodeImpl#getGrade <em>Grade</em>}</li>
@@ -64,24 +63,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * @ordered
 	 */
 	protected String nodeName = NODE_NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getColor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COLOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getColor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String color = COLOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getConnectedEdges() <em>Connected Edges</em>}' reference list.
@@ -222,14 +203,17 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNodeName() {
 		return nodeName;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNodeName(String newNodeName) {
 		String oldNodeName = nodeName;
 		nodeName = newNodeName;
@@ -241,25 +225,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getColor() {
-		return color;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setColor(String newColor) {
-		String oldColor = color;
-		color = newColor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GraphdomPackage.NODE__COLOR, oldColor, color));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EList<Edge> getConnectedEdges() {
 		if (connectedEdges == null) {
 			connectedEdges = new EObjectWithInverseResolvingEList.ManyInverse<Edge>(Edge.class, this, GraphdomPackage.NODE__CONNECTED_EDGES, GraphdomPackage.EDGE__CONNECTED_NODES);
@@ -271,6 +237,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDominating() {
 		return dominating;
 	}
@@ -280,6 +247,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	public void setDominating(boolean newDominating) {
 		boolean oldDominating = dominating;
 		dominating = newDominating;
@@ -314,6 +282,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	public long getGrade() {
 		return getConnectedEdges().size();
 	}
@@ -322,6 +291,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGrade(long newGrade) {
 		long oldGrade = grade;
 		grade = newGrade;
@@ -333,6 +303,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGuid() {
 		return guid;
 	}
@@ -341,6 +312,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGuid(String newGuid) {
 		String oldGuid = guid;
 		guid = newGuid;
@@ -352,6 +324,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getXCoord() {
 		return xCoord;
 	}
@@ -360,6 +333,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setXCoord(int newXCoord) {
 		int oldXCoord = xCoord;
 		xCoord = newXCoord;
@@ -371,6 +345,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getYCoord() {
 		return yCoord;
 	}
@@ -379,6 +354,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setYCoord(int newYCoord) {
 		int oldYCoord = yCoord;
 		yCoord = newYCoord;
@@ -390,6 +366,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDominated() {
 		return dominated;
 	}
@@ -398,6 +375,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDominated(boolean newDominated) {
 		boolean oldDominated = dominated;
 		dominated = newDominated;
@@ -410,6 +388,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	public EList<Node> getAdjacentNodes() {
 
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -462,8 +441,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		switch (featureID) {
 			case GraphdomPackage.NODE__NODE_NAME:
 				return getNodeName();
-			case GraphdomPackage.NODE__COLOR:
-				return getColor();
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				return getConnectedEdges();
 			case GraphdomPackage.NODE__DOMINATING:
@@ -492,9 +469,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		switch (featureID) {
 			case GraphdomPackage.NODE__NODE_NAME:
 				setNodeName((String)newValue);
-				return;
-			case GraphdomPackage.NODE__COLOR:
-				setColor((String)newValue);
 				return;
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				getConnectedEdges().clear();
@@ -532,9 +506,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case GraphdomPackage.NODE__NODE_NAME:
 				setNodeName(NODE_NAME_EDEFAULT);
 				return;
-			case GraphdomPackage.NODE__COLOR:
-				setColor(COLOR_EDEFAULT);
-				return;
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				getConnectedEdges().clear();
 				return;
@@ -569,8 +540,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		switch (featureID) {
 			case GraphdomPackage.NODE__NODE_NAME:
 				return NODE_NAME_EDEFAULT == null ? nodeName != null : !NODE_NAME_EDEFAULT.equals(nodeName);
-			case GraphdomPackage.NODE__COLOR:
-				return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
 			case GraphdomPackage.NODE__CONNECTED_EDGES:
 				return connectedEdges != null && !connectedEdges.isEmpty();
 			case GraphdomPackage.NODE__DOMINATING:
@@ -613,8 +582,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nodeName: ");
 		result.append(nodeName);
-		result.append(", color: ");
-		result.append(color);
 		result.append(", dominating: ");
 		result.append(dominating);
 		result.append(", grade: ");
