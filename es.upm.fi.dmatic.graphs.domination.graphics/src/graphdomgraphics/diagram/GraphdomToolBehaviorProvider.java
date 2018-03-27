@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphdomgraphics.tools;
+package graphdomgraphics.diagram;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -20,6 +20,7 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
 
+import graphdom.algorithms.GreedyOptimizedDominationAlgorithm;
 import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdomgraphics.common.GraphdomImageProvider;
 import graphdomgraphics.features.CreateEdgeConnectionWithNodeFeature;
@@ -114,6 +115,9 @@ public class GraphdomToolBehaviorProvider extends DefaultToolBehaviorProvider {
 				.add(new ContextMenuEntry(new GreedyConnectedDominationCustomFeature(getFeatureProvider()), context));
 		subMenuAlgorithms.add(new ContextMenuEntry(
 				new GenericAlgorithmCustomFeature(getFeatureProvider(), GreedyTotalDominationAlgorithm.class),
+				context));
+		subMenuAlgorithms.add(new ContextMenuEntry(
+				new GenericAlgorithmCustomFeature(getFeatureProvider(), GreedyOptimizedDominationAlgorithm.class),
 				context));
 
 		subMenuSelectedObject.add(new ContextMenuEntry(new MarkDominatingCustomFeature(getFeatureProvider()), context));

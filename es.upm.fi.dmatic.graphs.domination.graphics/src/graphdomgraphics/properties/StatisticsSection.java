@@ -39,6 +39,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import graphdom.Graph;
 import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
 import graphdom.algorithms.GreedyDominationAlgorithm;
+import graphdom.algorithms.GreedyOptimizedDominationAlgorithm;
 import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdom.algorithms.StatisticsInfo;
 import graphdom.algorithms.StatisticsResults;
@@ -91,25 +92,27 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 		CLabel algorithmLabel = factory.createCLabel(composite, "Algorithm Selection:", SWT.NONE); //$NON-NLS-1$
 		algorithmLabel.setLayoutData(defaultGridData);
 
-		algorithmCombo = factory.createCCombo(composite, SWT.FILL);
+		algorithmCombo = factory.createCCombo(composite);
 		// algorithmCombo.setLayoutData(defaultGridData);
 		algorithmCombo.add("Greedy domination");
 		algorithmCombo.add("Greedy connected domination");
 		algorithmCombo.add("Greedy total domination");
+		algorithmCombo.add("Optimized greedy domination");
+
 		algorithmCombo.select(0);
 
 		buttonRun = factory.createButton(composite, "Run Statistics", SWT.PUSH);
 		buttonRun.setLayoutData(spanGridData);
 
-		buttonMin = factory.createButton(composite, "Min graph", SWT.PUSH);
+		buttonMin = factory.createButton(composite, "Switch to lowest domination number graph", SWT.PUSH);
 		buttonMin.setLayoutData(defaultGridData);
 		buttonMin.setEnabled(false);
 
-		buttonMax = factory.createButton(composite, "Max graph", SWT.PUSH);
+		buttonMax = factory.createButton(composite, "Switch to highest domination number graph", SWT.PUSH);
 		buttonMax.setLayoutData(defaultGridData);
 		buttonMax.setEnabled(false);
 
-		buttonRestore = factory.createButton(composite, "Restore graph", SWT.PUSH);
+		buttonRestore = factory.createButton(composite, "Restore original graph", SWT.PUSH);
 		buttonRestore.setLayoutData(spanGridData);
 		buttonRestore.setEnabled(false);
 
@@ -148,6 +151,9 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 							break;
 						case 2:
 							theGraph.setAlgorithm(new GreedyTotalDominationAlgorithm(theGraph));
+							break;
+						case 3:
+							theGraph.setAlgorithm(new GreedyOptimizedDominationAlgorithm(theGraph));
 							break;
 						default:
 							break;

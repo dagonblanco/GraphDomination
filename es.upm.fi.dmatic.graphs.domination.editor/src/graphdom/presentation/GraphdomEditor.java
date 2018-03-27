@@ -314,6 +314,7 @@ public class GraphdomEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	protected IPartListener partListener = new IPartListener() {
+			@Override
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
@@ -332,15 +333,19 @@ public class GraphdomEditor extends MultiPageEditorPart
 					handleActivate();
 				}
 			}
+			@Override
 			public void partBroughtToTop(IWorkbenchPart p) {
 				// Ignore.
 			}
+			@Override
 			public void partClosed(IWorkbenchPart p) {
 				// Ignore.
 			}
+			@Override
 			public void partDeactivated(IWorkbenchPart p) {
 				// Ignore.
 			}
+			@Override
 			public void partOpened(IWorkbenchPart p) {
 				// Ignore.
 			}
@@ -425,7 +430,8 @@ public class GraphdomEditor extends MultiPageEditorPart
 					dispatching = true;
 					getSite().getShell().getDisplay().asyncExec
 						(new Runnable() {
-							 public void run() {
+							 @Override
+							public void run() {
 								 dispatching = false;
 								 updateProblemIndication();
 							 }
@@ -610,10 +616,12 @@ public class GraphdomEditor extends MultiPageEditorPart
 		//
 		commandStack.addCommandStackListener
 			(new CommandStackListener() {
-				 public void commandStackChanged(final EventObject event) {
+				 @Override
+				public void commandStackChanged(final EventObject event) {
 					 getContainer().getDisplay().asyncExec
 						 (new Runnable() {
-							  public void run() {
+							  @Override
+							public void run() {
 								  firePropertyChange(IEditorPart.PROP_DIRTY);
 
 								  // Try to select the affected objects.
@@ -665,6 +673,7 @@ public class GraphdomEditor extends MultiPageEditorPart
 		if (theSelection != null && !theSelection.isEmpty()) {
 			Runnable runnable =
 				new Runnable() {
+					@Override
 					public void run() {
 						// Try to select the items in the current content viewer of the editor.
 						//
@@ -782,6 +791,7 @@ public class GraphdomEditor extends MultiPageEditorPart
 					new ISelectionChangedListener() {
 						// This just notifies those things that are affected by the section.
 						//
+						@Override
 						public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
 							setSelection(selectionChangedEvent.getSelection());
 						}
@@ -1122,7 +1132,8 @@ public class GraphdomEditor extends MultiPageEditorPart
 
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable() {
-					 public void run() {
+					 @Override
+					public void run() {
 						 setActivePage(0);
 					 }
 				 });
@@ -1146,7 +1157,8 @@ public class GraphdomEditor extends MultiPageEditorPart
 
 		getSite().getShell().getDisplay().asyncExec
 			(new Runnable() {
-				 public void run() {
+				 @Override
+				public void run() {
 					 updateProblemIndication();
 				 }
 			 });
@@ -1279,7 +1291,8 @@ public class GraphdomEditor extends MultiPageEditorPart
 				(new ISelectionChangedListener() {
 					 // This ensures that we handle selections correctly.
 					 //
-					 public void selectionChanged(SelectionChangedEvent event) {
+					 @Override
+					public void selectionChanged(SelectionChangedEvent event) {
 						 handleContentOutlineSelection(event.getSelection());
 					 }
 				 });
@@ -1385,6 +1398,7 @@ public class GraphdomEditor extends MultiPageEditorPart
 			new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
 				//
+				@Override
 				public void run(IProgressMonitor monitor) {
 					// Save the resources to the file system.
 					//

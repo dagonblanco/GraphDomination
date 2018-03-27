@@ -37,6 +37,7 @@ import graphdom.Graph;
 import graphdom.algorithms.AlgorithmStatus;
 import graphdom.algorithms.GreedyConnectedDominationAlgorithm;
 import graphdom.algorithms.GreedyDominationAlgorithm;
+import graphdom.algorithms.GreedyOptimizedDominationAlgorithm;
 import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.UpdateGraphFeature;
@@ -75,6 +76,7 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 		algorithmCombo.add("Greedy domination");
 		algorithmCombo.add("Greedy connected domination");
 		algorithmCombo.add("Greedy total domination");
+		algorithmCombo.add("Optimized greedy domination");
 		algorithmCombo.select(0);
 
 
@@ -103,6 +105,9 @@ public class AlgorithmSection extends GFPropertySection implements ITabbedProper
 							break;
 						case 2:
 							theGraph.setAlgorithm(new GreedyTotalDominationAlgorithm(theGraph));
+							break;
+						case 3:
+							theGraph.setAlgorithm(new GreedyOptimizedDominationAlgorithm(theGraph));
 							break;
 						default:
 							break;

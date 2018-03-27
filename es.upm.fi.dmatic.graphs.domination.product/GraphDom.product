@@ -25,22 +25,16 @@ Facultad de Informática, Universidad Politécnica de Madrid
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_16.png" i32="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_32.png" i48="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_48.png" i256="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_256.png"/>
+   <windowImages/>
 
    <splash
       startupProgressRect="5,275,445,15"
       startupMessageRect="7,252,445,20"
       startupForegroundColor="000000" />
    <launcher name="GraphDom">
-      <win useIco="false">
-         <ico path="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination.ico"/>
-         <bmp
-            winSmallHigh="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_16.bmp"
-            winSmallLow="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_16_8.bmp"
-            winMediumHigh="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_32.bmp"
-            winMediumLow="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_32_8.bmp"
-            winLargeLow="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_48_8.bmp"
-            winExtraLargeHigh="/es.upm.fi.dmatic.graphs.domination.product/images/GraphsDomination_256.bmp"/>
+      <win useIco="true">
+         <ico path="/images/GraphDom.ico"/>
+         <bmp/>
       </win>
    </launcher>
 
