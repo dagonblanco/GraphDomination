@@ -15,6 +15,7 @@
  *******************************************************************************/
 package graphdomgraphics.properties;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -43,6 +44,7 @@ import graphdom.algorithms.StatisticsInfo;
 import graphdom.algorithms.StatisticsResults;
 import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.UpdateGraphFeature;
+import graphdomgraphics.features.custom.ReplaceGraphCustomFeature;
 
 public class StatisticsSection extends GFPropertySection implements ITabbedPropertyConstants {
 
@@ -51,9 +53,13 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 	private Spinner flipsCount;
 	CCombo algorithmCombo;
 	private Button buttonRun;
+	private Button buttonMax;
+	private Button buttonMin;
+	private Button buttonRestore;
 	private Text minDomination;
 	private Text maxDomination;
 	private Text avgDomination;
+	StatisticsResults runStatistics;
 
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
@@ -94,6 +100,18 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 
 		buttonRun = factory.createButton(composite, "Run Statistics", SWT.PUSH);
 		buttonRun.setLayoutData(spanGridData);
+
+		buttonMin = factory.createButton(composite, "Min graph", SWT.PUSH);
+		buttonMin.setLayoutData(defaultGridData);
+		buttonMin.setEnabled(false);
+
+		buttonMax = factory.createButton(composite, "Max graph", SWT.PUSH);
+		buttonMax.setLayoutData(defaultGridData);
+		buttonMax.setEnabled(false);
+
+		buttonRestore = factory.createButton(composite, "Restore graph", SWT.PUSH);
+		buttonRestore.setLayoutData(spanGridData);
+		buttonRestore.setEnabled(false);
 
 		factory.createCLabel(composite, "Max domination number:"); //$NON-NLS-1$
 		maxDomination = factory.createText(composite, ""); //$NON-NLS-1$
@@ -138,17 +156,93 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 						maxDomination.setText("Processing...");
 						avgDomination.setText("Processing...");
 						buttonRun.setEnabled(false);
+						refresh();
 						minDomination.redraw();
 
 						StatisticsInfo statisticsInfo = new StatisticsInfo();
 						statisticsInfo.setExecutionNumber(executionCount.getSelection());
 						statisticsInfo.setFlipsNumber(flipsCount.getSelection());
-						StatisticsResults runStatistics = theGraph.getAlgorithm().runStatistics(statisticsInfo);
+						runStatistics = theGraph.getAlgorithm().runStatistics(statisticsInfo);
 
 						minDomination.setText(String.valueOf(runStatistics.getMinDominationNumber()));
 						maxDomination.setText(String.valueOf(runStatistics.getMaxDominationNumber()));
 						avgDomination.setText(String.valueOf(runStatistics.getAverageDominationNumber()));
 
+						buttonMax.setEnabled(true);
+						buttonMin.setEnabled(true);
+
+						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
+								.execute(new CustomContext());
+						refresh();
+
+					}
+				});
+
+			}
+		});
+
+		buttonMax.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(theGraph);
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						if (theGraph == null)
+							return;
+						new ReplaceGraphCustomFeature(getDiagramTypeProvider().getFeatureProvider(),
+								EcoreUtil.copy(runStatistics.getMaxGraph())).execute(new CustomContext());
+
+						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
+								.execute(new CustomContext());
+						buttonRestore.setEnabled(true);
+
+						refresh();
+
+					}
+				});
+
+			}
+		});
+
+		buttonMin.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(theGraph);
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						if (theGraph == null)
+							return;
+						new ReplaceGraphCustomFeature(getDiagramTypeProvider().getFeatureProvider(),
+								EcoreUtil.copy(runStatistics.getMinGraph())).execute(new CustomContext());
+
+						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
+								.execute(new CustomContext());
+						buttonRestore.setEnabled(true);
+
+						refresh();
+
+					}
+				});
+
+			}
+		});
+
+		buttonRestore.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(theGraph);
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						if (theGraph == null)
+							return;
+						new ReplaceGraphCustomFeature(getDiagramTypeProvider().getFeatureProvider(),
+								EcoreUtil.copy(runStatistics.getBackupGraph())).execute(new CustomContext());
 
 						new UpdateGraphFeature(getDiagramTypeProvider().getFeatureProvider())
 								.execute(new CustomContext());
@@ -162,6 +256,7 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 
 	}
 
+
 	@Override
 	public void refresh() {
 
@@ -169,4 +264,6 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 		buttonRun.setEnabled(true);
 
 	}
+	
+
 }
