@@ -102,6 +102,8 @@ public abstract class AbstractAlgorithm implements GraphAlgorithm {
 		int maxDominationNumber = 0;
 		int minDominationNumber = Integer.MAX_VALUE;
 		int sumOfDominationNumbers = 0;
+		results.setBackupGraph(EcoreUtil.copy(getGraph()));
+
 
 		// For each iteration...
 		for (int i = 0; i < info.getExecutionNumber(); i++) {
@@ -121,10 +123,12 @@ public abstract class AbstractAlgorithm implements GraphAlgorithm {
 			if (dominatingSetSize > maxDominationNumber) {
 				// Found max
 				maxDominationNumber = dominatingSetSize;
+				results.setMaxGraph(currentGraph);
 			}
 			if (dominatingSetSize < minDominationNumber) {
 				// Found min
 				minDominationNumber = dominatingSetSize;
+				results.setMinGraph(currentGraph);
 			}
 			sumOfDominationNumbers += dominatingSetSize;
 

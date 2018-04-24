@@ -23,7 +23,11 @@ public class RandomFlipsByNumberAlgorithm extends AbstractAlgorithm {
 
 		maxRetries = getGraph().getEdges().size();
 		// Switch status from uninitialized
-		setStatus(AlgorithmStatus.INPROGRESS);
+		if (maxRetries != 0) {
+			setStatus(AlgorithmStatus.INPROGRESS);
+		} else {
+			setStatus(AlgorithmStatus.ENDED);
+		}
 	}
 
 	@Override

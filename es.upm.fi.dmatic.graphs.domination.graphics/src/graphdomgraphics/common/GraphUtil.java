@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -145,7 +146,7 @@ public class GraphUtil {
 			// Create base domain object (eObject)
 			Graph diagramBO = GraphdomFactory.eINSTANCE.createGraph();
 
-			// Add the x object to the diagram resource
+			// Add the Graph to the diagram resource
 			command = new AddCommand(editingDomain, diagram.eResource().getContents(), diagramBO);
 			editingDomain.getCommandStack().execute(command);
 
@@ -166,6 +167,36 @@ public class GraphUtil {
 		} else {
 			throw new IllegalStateException();
 		}
+	}
+
+	public static void setRootGraph(Diagram diagram, Graph graph) {
+
+		PictogramLink link = diagram.getLink();
+
+		if (link == null) {
+
+			// Create the pictogram link object
+			link = PictogramsFactory.eINSTANCE.createPictogramLink();
+		}
+
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(diagram);
+		Command command;
+
+		// Remove the Graph from the diagram resource
+		command = new RemoveCommand(editingDomain, diagram.eResource().getContents(), link.getBusinessObjects());
+		editingDomain.getCommandStack().execute(command);
+
+		// Add the Graph to the diagram resource
+		link.getBusinessObjects().clear();
+		link.getBusinessObjects().add(graph);
+
+		command = new AddCommand(editingDomain, diagram.eResource().getContents(), graph);
+		editingDomain.getCommandStack().execute(command);
+
+		// Set the pictogram link object for the diagram object
+		command = new SetCommand(editingDomain, diagram,
+				PictogramsPackage.eINSTANCE.getDiagram().getEStructuralFeature(PictogramsPackage.DIAGRAM__LINK), link);
+		editingDomain.getCommandStack().execute(command);
 	}
 
 	public static boolean equalsColorAndConstant(Color color, IColorConstant constant) {
