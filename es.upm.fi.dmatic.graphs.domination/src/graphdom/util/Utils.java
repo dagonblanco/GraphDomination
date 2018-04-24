@@ -51,6 +51,20 @@ public class Utils {
 	}
 
 	/**
+	 * Find the node with most undominated & undominating neighbours dominating
+	 */
+
+	public static Node findHighestUndominatedUndominatingGradeNode(EList<Node> nodelist) {
+		Node maxNode = null;
+		for (Node node : nodelist) {
+			if (maxNode == null || findUndominatedUndominatingGrade(node) > findUndominatedUndominatingGrade(maxNode)) {
+				maxNode = node;
+			}
+		}
+		return maxNode;
+	}
+
+	/**
 	 * Find the number of undominated adjacent nodes of a given node
 	 * 
 	 * @param node
@@ -66,6 +80,25 @@ public class Utils {
 			}
 		}
 		return undominatedGrade;
+
+	}
+
+	/**
+	 * Find the number of undominated & undominating adjacent nodes of a given node
+	 * 
+	 * @param node
+	 * @return
+	 */
+
+	public static int findUndominatedUndominatingGrade(Node node) {
+
+		int undominatedUndominatingGrade = 0;
+		for (Node neighbour : node.getAdjacentNodes()) {
+			if (!neighbour.isDominated() && !neighbour.isDominating()) {
+				undominatedUndominatingGrade++;
+			}
+		}
+		return undominatedUndominatingGrade;
 
 	}
 }

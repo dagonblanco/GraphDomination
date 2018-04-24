@@ -222,13 +222,22 @@ public interface GraphdomPackage extends EPackage {
 	int NODE__NODE_NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__COLOR = 1;
+
+	/**
 	 * The feature id for the '<em><b>Connected Edges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__CONNECTED_EDGES = 1;
+	int NODE__CONNECTED_EDGES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Dominating</b></em>' attribute.
@@ -237,7 +246,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__DOMINATING = 2;
+	int NODE__DOMINATING = 3;
 
 	/**
 	 * The feature id for the '<em><b>Grade</b></em>' attribute.
@@ -246,7 +255,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__GRADE = 3;
+	int NODE__GRADE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Guid</b></em>' attribute.
@@ -255,7 +264,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__GUID = 4;
+	int NODE__GUID = 5;
 
 	/**
 	 * The feature id for the '<em><b>XCoord</b></em>' attribute.
@@ -264,7 +273,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__XCOORD = 5;
+	int NODE__XCOORD = 6;
 
 	/**
 	 * The feature id for the '<em><b>YCoord</b></em>' attribute.
@@ -273,7 +282,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__YCOORD = 6;
+	int NODE__YCOORD = 7;
 
 	/**
 	 * The feature id for the '<em><b>Dominated</b></em>' attribute.
@@ -282,7 +291,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__DOMINATED = 7;
+	int NODE__DOMINATED = 8;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -291,7 +300,7 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 8;
+	int NODE_FEATURE_COUNT = 9;
 
 	/**
 	 * The operation id for the '<em>Get Adjacent Nodes</em>' operation.
@@ -548,6 +557,17 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNode_NodeName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link graphdom.Node#getColor <em>Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Color</em>'.
+	 * @see graphdom.Node#getColor()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_Color();
 
 	/**
 	 * Returns the meta object for the reference list '{@link graphdom.Node#getConnectedEdges <em>Connected Edges</em>}'.
@@ -854,6 +874,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NODE__NODE_NAME = eINSTANCE.getNode_NodeName();
+
+		/**
+		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__COLOR = eINSTANCE.getNode_Color();
 
 		/**
 		 * The meta object literal for the '<em><b>Connected Edges</b></em>' reference list feature.

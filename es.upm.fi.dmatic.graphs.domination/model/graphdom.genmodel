@@ -12,6 +12,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Graph/graphName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphdom.ecore#//Graph/nodes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphdom.ecore#//Graph/edges"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Graph/nextNodeId"/>
       <genOperations ecoreOperation="graphdom.ecore#//Graph/findNodeById">
         <genParameters ecoreParameter="graphdom.ecore#//Graph/findNodeById/id"/>
       </genOperations>
@@ -22,13 +23,10 @@
       <genOperations ecoreOperation="graphdom.ecore#//Graph/isDominated"/>
       <genOperations ecoreOperation="graphdom.ecore#//Graph/getDominatingSet"/>
       <genOperations ecoreOperation="graphdom.ecore#//Graph/checkNodesDomination"/>
-      <genOperations ecoreOperation="graphdom.ecore#//Graph/isTotallyDominated"/>
-      <genOperations ecoreOperation="graphdom.ecore#//Graph/isIndependentlyDominated"/>
-      <genOperations ecoreOperation="graphdom.ecore#//Graph/isConnectedDomination"/>
-      <genOperations ecoreOperation="graphdom.ecore#//Graph/getNextNodeId"/>
     </genClasses>
     <genClasses ecoreClass="graphdom.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/nodeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/color"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference graphdom.ecore#//Node/connectedEdges"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/dominating"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphdom.ecore#//Node/grade"/>

@@ -24,6 +24,11 @@ public class GreedyConnectedDominationAlgorithm extends AbstractAlgorithm {
 		if (workingNode==null){
 			workingNode = Utils.findHighestGradeNode(getGraph().getNodes());
 		}
+		if (workingNode.isDominating()) {
+			// We are looping, graph may not be connected, end algorithm
+			setStatus(AlgorithmStatus.ENDED);
+			return;
+		}
 		
 		// Mark as dominating in real graph
 		workingNode.setDominating(true);						
