@@ -43,6 +43,7 @@ import graphdom.algorithms.GreedyOptimizedDominationAlgorithm;
 import graphdom.algorithms.GreedyTotalDominationAlgorithm;
 import graphdom.algorithms.StatisticsInfo;
 import graphdom.algorithms.StatisticsResults;
+import graphdom.util.Utils;
 import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.UpdateGraphFeature;
 import graphdomgraphics.features.custom.ReplaceGraphCustomFeature;
@@ -60,6 +61,11 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 	private Text minDomination;
 	private Text maxDomination;
 	private Text avgDomination;
+	private Text minGraphMaxGrade;
+	private Text maxGraphMaxGrade;
+	private Text minGraphMinGrade;
+	private Text maxGraphMinGrade;
+
 	StatisticsResults runStatistics;
 
 	@Override
@@ -71,23 +77,20 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 
 		composite = new Composite(parent, SWT.NONE);
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 2;
+		gridLayout.numColumns = 4;
 		gridLayout.makeColumnsEqualWidth = true;
 		composite.setLayout(gridLayout);
 
 		GridData defaultGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
 
-		GridData spanGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
+		GridData span2GridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
+
+		GridData span4GridData = new GridData(SWT.FILL, SWT.FILL, true, true, 4, 1);
 
 		factory.createCLabel(composite, "Number of executions:"); //$NON-NLS-1$
 
 		executionCount = new Spinner(composite, SWT.FILL);
-		executionCount.setValues(20, 1, Integer.MAX_VALUE, 0, 1, 10);
-
-		factory.createCLabel(composite, "Number of flips:"); //$NON-NLS-1$
-
-		flipsCount = new Spinner(composite, SWT.FILL);
-		flipsCount.setValues(50, 1, Integer.MAX_VALUE, 0, 1, 10);
+		executionCount.setValues(100, 1, Integer.MAX_VALUE, 0, 1, 10);
 
 		CLabel algorithmLabel = factory.createCLabel(composite, "Algorithm Selection:", SWT.NONE); //$NON-NLS-1$
 		algorithmLabel.setLayoutData(defaultGridData);
@@ -101,30 +104,55 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 
 		algorithmCombo.select(0);
 
+		factory.createCLabel(composite, "Number of flips per execution:"); //$NON-NLS-1$
+
+		flipsCount = new Spinner(composite, SWT.FILL);
+		flipsCount.setValues(100, 1, Integer.MAX_VALUE, 0, 1, 10);
+
 		buttonRun = factory.createButton(composite, "Run Statistics", SWT.PUSH);
-		buttonRun.setLayoutData(spanGridData);
+		buttonRun.setLayoutData(span4GridData);
 
 		buttonMin = factory.createButton(composite, "Switch to lowest domination number graph", SWT.PUSH);
-		buttonMin.setLayoutData(defaultGridData);
+		buttonMin.setLayoutData(span2GridData);
 		buttonMin.setEnabled(false);
 
 		buttonMax = factory.createButton(composite, "Switch to highest domination number graph", SWT.PUSH);
-		buttonMax.setLayoutData(defaultGridData);
+		buttonMax.setLayoutData(span2GridData);
 		buttonMax.setEnabled(false);
 
 		buttonRestore = factory.createButton(composite, "Restore original graph", SWT.PUSH);
-		buttonRestore.setLayoutData(spanGridData);
+		buttonRestore.setLayoutData(span4GridData);
 		buttonRestore.setEnabled(false);
+
+		factory.createCLabel(composite, "Min domination number:"); //$NON-NLS-1$
+		minDomination = factory.createText(composite, ""); //$NON-NLS-1$
+		minDomination.setEditable(false);
+		minDomination.setLayoutData(defaultGridData);
 
 		factory.createCLabel(composite, "Max domination number:"); //$NON-NLS-1$
 		maxDomination = factory.createText(composite, ""); //$NON-NLS-1$
 		maxDomination.setEditable(false);
 		maxDomination.setLayoutData(defaultGridData);
 
-		factory.createCLabel(composite, "Min domination number:"); //$NON-NLS-1$
-		minDomination = factory.createText(composite, ""); //$NON-NLS-1$
-		minDomination.setEditable(false);
-		minDomination.setLayoutData(defaultGridData);
+		factory.createCLabel(composite, "Min domination graph max grade:"); //$NON-NLS-1$
+		minGraphMaxGrade = factory.createText(composite, ""); //$NON-NLS-1$
+		minGraphMaxGrade.setEditable(false);
+		minGraphMaxGrade.setLayoutData(defaultGridData);
+
+		factory.createCLabel(composite, "Max domination graph max grade:"); //$NON-NLS-1$
+		maxGraphMaxGrade = factory.createText(composite, ""); //$NON-NLS-1$
+		maxGraphMaxGrade.setEditable(false);
+		maxGraphMaxGrade.setLayoutData(defaultGridData);
+
+		factory.createCLabel(composite, "Min domination graph min grade:"); //$NON-NLS-1$
+		minGraphMinGrade = factory.createText(composite, ""); //$NON-NLS-1$
+		minGraphMinGrade.setEditable(false);
+		minGraphMinGrade.setLayoutData(defaultGridData);
+
+		factory.createCLabel(composite, "Max domination graph min grade:"); //$NON-NLS-1$
+		maxGraphMinGrade = factory.createText(composite, ""); //$NON-NLS-1$
+		maxGraphMinGrade.setEditable(false);
+		maxGraphMinGrade.setLayoutData(defaultGridData);
 
 		factory.createCLabel(composite, "Average domination number:"); //$NON-NLS-1$
 		avgDomination = factory.createText(composite, ""); //$NON-NLS-1$
@@ -173,6 +201,10 @@ public class StatisticsSection extends GFPropertySection implements ITabbedPrope
 						minDomination.setText(String.valueOf(runStatistics.getMinDominationNumber()));
 						maxDomination.setText(String.valueOf(runStatistics.getMaxDominationNumber()));
 						avgDomination.setText(String.valueOf(runStatistics.getAverageDominationNumber()));
+						minGraphMaxGrade.setText(String.valueOf(Utils.findMaxGrade(runStatistics.getMinGraph())));
+						maxGraphMaxGrade.setText(String.valueOf(Utils.findMaxGrade(runStatistics.getMaxGraph())));
+						minGraphMinGrade.setText(String.valueOf(Utils.findMinGrade(runStatistics.getMinGraph())));
+						maxGraphMinGrade.setText(String.valueOf(Utils.findMinGrade(runStatistics.getMaxGraph())));
 
 						buttonMax.setEnabled(true);
 						buttonMin.setEnabled(true);

@@ -2,9 +2,14 @@ package graphdom.util;
 
 import org.eclipse.emf.common.util.EList;
 
+import graphdom.Graph;
 import graphdom.Node;
 
 public class Utils {
+
+	private Utils() {
+		// Prevent instantiation
+	}
 
 	/**
 	 * Finds the node with most neighbours
@@ -101,4 +106,33 @@ public class Utils {
 		return undominatedUndominatingGrade;
 
 	}
+
+	/**
+	 * Find the highest grade for all the nodes in a graph
+	 * 
+	 * @param graph
+	 * @return
+	 */
+	public static long findMaxGrade(Graph graph) {
+		long grade = 0;
+		for (Node node : graph.getNodes()) {
+			grade = node.getGrade() > grade ? node.getGrade() : grade;
+		}
+		return grade;
+	}
+
+	/**
+	 * Find the lowest grade for all the nodes in a graph
+	 * 
+	 * @param graph
+	 * @return
+	 */
+	public static long findMinGrade(Graph graph) {
+		long grade = graph.getNodes().size() - 1L;
+		for (Node node : graph.getNodes()) {
+			grade = node.getGrade() < grade ? node.getGrade() : grade;
+		}
+		return grade;
+	}
+
 }
