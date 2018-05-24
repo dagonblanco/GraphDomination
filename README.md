@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+# Graph Domination Eclipse Framework
 
-You can use the [editor on GitHub](https://github.com/mediocaballero/GraphDomination/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+![Image](https://i.imgur.com/pCQxrT2.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is an open-source project to develop an Eclipse-based (i.e. an Eclipse plugin suite) that will enable graph editing and domination study over the generated graphs.
 
-### Markdown
+It includes all the plugin projects required to use it as an Eclipse feature or to build an standalone application (Eclipse Product).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Main features:
+- Model-based (EMF and Graphiti)
+- Extensible
 
-```markdown
-Syntax highlighted code block
+## Build
 
-# Header 1
-## Header 2
-### Header 3
+Maven/Tycho pom.xml files are provided so you only need to run
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+mvn install
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+On the parent project, and you will get all the plugin and executable files built for you.
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mediocaballero/GraphDomination/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Feel free to contribute via Issues or Pull requests.
