@@ -9,7 +9,7 @@
 <booleanAttribute key="automaticValidate" value="true"/>
 <stringAttribute key="bootstrap" value=""/>
 <stringAttribute key="checked" value="[NONE]"/>
-<booleanAttribute key="clearConfig" value="false"/>
+<booleanAttribute key="clearConfig" value="true"/>
 <booleanAttribute key="clearws" value="false"/>
 <booleanAttribute key="clearwslog" value="false"/>
 <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/Graphs Product"/>
@@ -28,7 +28,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.7 -Xms256m -Xmx1024m -Doomph.update.url=http://download.eclipse.org/oomph/updates/milestone/latest -Doomph.redirection.index.redirection=index:/-&gt;http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/"/>
 <stringAttribute key="pde.version" value="3.3"/>
-<stringAttribute key="product" value="es.upm.fi.dmatic.graphs.domination.graphics.GraphDomGraphics"/>
+<stringAttribute key="product" value="es.upm.fi.dmatic.graphs.domination.product.product"/>
 <setAttribute key="selected_features">
 <setEntry value="es.upm.fi.dmatic.graphs.domination.feature:default"/>
 <setEntry value="org.eclipse.e4.rcp:default"/>

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
+Bundle-Name: Graphs Domination Framework Graphic Components
 Bundle-SymbolicName: es.upm.fi.dmatic.graphs.domination.graphics;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: graphdomgraphics.Activator
@@ -21,3 +21,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.views.properties.tabbed
 Bundle-ClassPath: .
+Bundle-Vendor: David Gonzalo Blanco
