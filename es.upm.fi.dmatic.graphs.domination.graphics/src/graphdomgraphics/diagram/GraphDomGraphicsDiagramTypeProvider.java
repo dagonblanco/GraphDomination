@@ -3,8 +3,6 @@ package graphdomgraphics.diagram;
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 
-import graphdomgraphics.tools.GraphdomToolBehaviorProvider;
-
 public class GraphDomGraphicsDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
 	private IToolBehaviorProvider[] toolBehaviorProviders;

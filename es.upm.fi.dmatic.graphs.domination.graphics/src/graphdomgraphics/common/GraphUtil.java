@@ -23,11 +23,14 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -45,8 +48,11 @@ import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
+import graphdom.Edge;
 import graphdom.Graph;
 import graphdom.GraphdomFactory;
+import graphdom.Node;
+import graphdom.algorithms.FanTriangulationAlgorithm;
 
 public class GraphUtil {
 
@@ -145,7 +151,7 @@ public class GraphUtil {
 			// Create base domain object (eObject)
 			Graph diagramBO = GraphdomFactory.eINSTANCE.createGraph();
 
-			// Add the x object to the diagram resource
+			// Add the Graph to the diagram resource
 			command = new AddCommand(editingDomain, diagram.eResource().getContents(), diagramBO);
 			editingDomain.getCommandStack().execute(command);
 
@@ -168,10 +174,95 @@ public class GraphUtil {
 		}
 	}
 
+	public static void setRootGraph(Diagram diagram, Graph graph) {
+
+		PictogramLink link = diagram.getLink();
+
+		if (link == null) {
+
+			// Create the pictogram link object
+			link = PictogramsFactory.eINSTANCE.createPictogramLink();
+		}
+
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(diagram);
+		Command command;
+
+		// Remove the Graph from the diagram resource
+		command = new RemoveCommand(editingDomain, diagram.eResource().getContents(), link.getBusinessObjects());
+		editingDomain.getCommandStack().execute(command);
+
+		// Add the Graph to the diagram resource
+		link.getBusinessObjects().clear();
+		link.getBusinessObjects().add(graph);
+
+		command = new AddCommand(editingDomain, diagram.eResource().getContents(), graph);
+		editingDomain.getCommandStack().execute(command);
+
+		// Set the pictogram link object for the diagram object
+		command = new SetCommand(editingDomain, diagram,
+				PictogramsPackage.eINSTANCE.getDiagram().getEStructuralFeature(PictogramsPackage.DIAGRAM__LINK), link);
+		editingDomain.getCommandStack().execute(command);
+	}
+
 	public static boolean equalsColorAndConstant(Color color, IColorConstant constant) {
 
 		return ((color.getBlue() == constant.getBlue()) 
 				&& (color.getRed() == constant.getRed())
 				&& (color.getGreen() == constant.getGreen()));
+	}
+
+	public static Graph createTempRoundTriangledGraph(int nNodes) {
+
+		Graph theGraph = GraphdomFactory.eINSTANCE.createGraph();
+
+		Node firstNode = null;
+		Node currentNode = null;
+		Node previousNode = null;
+		EList<Node> nodeList = theGraph.getNodes();
+		EList<Edge> edgeList = theGraph.getEdges();
+
+		for (int i = 0; i < nNodes; i++) {
+
+			currentNode = GraphdomFactory.eINSTANCE.createNode();
+			currentNode.setNodeName(String.valueOf(theGraph.getNextNodeId()));
+			currentNode.setGuid(EcoreUtil.generateUUID());
+			nodeList.add(currentNode);
+
+			if (i == 0) {
+				// Save the first node (to connect it with the last one)
+				firstNode = currentNode;
+			} else {
+				edgeList.add(createEdge(currentNode, previousNode));
+			}
+
+			previousNode = currentNode;
+
+		}
+
+		if (firstNode != null && currentNode != null && !firstNode.equals(currentNode)) {
+			edgeList.add(createEdge(currentNode, firstNode));
+		}
+
+		// Now for the triangulation...
+
+		// Instance the related algorithm
+		FanTriangulationAlgorithm gda = new FanTriangulationAlgorithm(theGraph, firstNode, nodeList);
+
+		// Run the algorithm to the end
+		gda.runToEnd();
+
+		return theGraph;
+	}
+
+	/**
+	 * Creates a Edge between two Nodees.
+	 */
+	private static Edge createEdge(Node source, Node target) {
+		Edge myEdge = GraphdomFactory.eINSTANCE.createEdge();
+
+		myEdge.getConnectedNodes().add(source);
+		myEdge.getConnectedNodes().add(target);
+
+		return myEdge;
 	}
 }

@@ -30,6 +30,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 import graphdom.Graph;
 import graphdom.Node;
+import graphdom.util.Utils;
 import graphdomgraphics.common.GraphUtil;
 
 public class GraphSection extends GFPropertySection implements ITabbedPropertyConstants {
@@ -39,6 +40,8 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 	private Text dominated;
 	private Text dominatingSet;
 	private Text matrixText;
+	private Text maxGrade;
+	private Text minGrade;
 
 
 	@Override
@@ -67,6 +70,16 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 		edgeCount = factory.createText(composite, ""); //$NON-NLS-1$
 		edgeCount.setEditable(false);
 		edgeCount.setLayoutData(defaultGridData);
+
+		factory.createCLabel(composite, "Max grade:"); //$NON-NLS-1$
+		maxGrade = factory.createText(composite, ""); //$NON-NLS-1$
+		maxGrade.setEditable(false);
+		maxGrade.setLayoutData(defaultGridData);
+
+		factory.createCLabel(composite, "Min grade:"); //$NON-NLS-1$
+		minGrade = factory.createText(composite, ""); //$NON-NLS-1$
+		minGrade.setEditable(false);
+		minGrade.setLayoutData(defaultGridData);
 
 		factory.createCLabel(composite, "Dominated:"); //$NON-NLS-1$
 		dominated = factory.createText(composite, ""); //$NON-NLS-1$
@@ -99,6 +112,8 @@ public class GraphSection extends GFPropertySection implements ITabbedPropertyCo
 
 			nodeCount.setText(String.valueOf(theGraph.getNodes().size()));
 			edgeCount.setText(String.valueOf(theGraph.getEdges().size()));
+			maxGrade.setText(String.valueOf(Utils.findMaxGrade(theGraph)));
+			minGrade.setText(String.valueOf(Utils.findMinGrade(theGraph)));
 			
 			StringBuilder dominatedValue = calculateDominatedVariations(theGraph);
 			dominated.setText(dominatedValue.toString());

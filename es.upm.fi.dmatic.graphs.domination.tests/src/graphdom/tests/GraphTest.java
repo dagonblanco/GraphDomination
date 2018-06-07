@@ -36,6 +36,7 @@ import junit.textui.TestRunner;
  *   <li>{@link graphdom.Graph#isTotallyDominated() <em>Is Totally Dominated</em>}</li>
  *   <li>{@link graphdom.Graph#isIndependentlyDominated() <em>Is Independently Dominated</em>}</li>
  *   <li>{@link graphdom.Graph#isConnectedDomination() <em>Is Connected Domination</em>}</li>
+ *   <li>{@link graphdom.Graph#getNextNodeId() <em>Get Next Node Id</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -223,6 +224,19 @@ public class GraphTest extends TestCase {
 	 * @generated
 	 */
 	public void testIsConnectedDomination() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link graphdom.Graph#getNextNodeId() <em>Get Next Node Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see graphdom.Graph#getNextNodeId()
+	 * @generated
+	 */
+	public void testGetNextNodeId() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

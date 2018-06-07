@@ -95,22 +95,13 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH__EDGES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Next Node Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__NEXT_NODE_ID = 3;
-
-	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = 4;
+	int GRAPH_FEATURE_COUNT = 3;
 
 	/**
 	 * The operation id for the '<em>Find Node By Id</em>' operation.
@@ -194,13 +185,22 @@ public interface GraphdomPackage extends EPackage {
 	int GRAPH___IS_CONNECTED_DOMINATION = 8;
 
 	/**
+	 * The operation id for the '<em>Get Next Node Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH___GET_NEXT_NODE_ID = 9;
+
+	/**
 	 * The number of operations of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = 9;
+	int GRAPH_OPERATION_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.
@@ -438,17 +438,6 @@ public interface GraphdomPackage extends EPackage {
 	EReference getGraph_Edges();
 
 	/**
-	 * Returns the meta object for the attribute '{@link graphdom.Graph#getNextNodeId <em>Next Node Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Next Node Id</em>'.
-	 * @see graphdom.Graph#getNextNodeId()
-	 * @see #getGraph()
-	 * @generated
-	 */
-	EAttribute getGraph_NextNodeId();
-
-	/**
 	 * Returns the meta object for the '{@link graphdom.Graph#findNodeById(java.lang.String) <em>Find Node By Id</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -537,6 +526,16 @@ public interface GraphdomPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGraph__IsConnectedDomination();
+
+	/**
+	 * Returns the meta object for the '{@link graphdom.Graph#getNextNodeId() <em>Get Next Node Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Next Node Id</em>' operation.
+	 * @see graphdom.Graph#getNextNodeId()
+	 * @generated
+	 */
+	EOperation getGraph__GetNextNodeId();
 
 	/**
 	 * Returns the meta object for class '{@link graphdom.Node <em>Node</em>}'.
@@ -779,14 +778,6 @@ public interface GraphdomPackage extends EPackage {
 		EReference GRAPH__EDGES = eINSTANCE.getGraph_Edges();
 
 		/**
-		 * The meta object literal for the '<em><b>Next Node Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GRAPH__NEXT_NODE_ID = eINSTANCE.getGraph_NextNodeId();
-
-		/**
 		 * The meta object literal for the '<em><b>Find Node By Id</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -857,6 +848,14 @@ public interface GraphdomPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GRAPH___IS_CONNECTED_DOMINATION = eINSTANCE.getGraph__IsConnectedDomination();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Next Node Id</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GRAPH___GET_NEXT_NODE_ID = eINSTANCE.getGraph__GetNextNodeId();
 
 		/**
 		 * The meta object literal for the '{@link graphdom.impl.NodeImpl <em>Node</em>}' class.

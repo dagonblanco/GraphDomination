@@ -73,7 +73,8 @@ public class UpdateEdgeFeature extends AbstractUpdateFeature {
 		if (bo instanceof Edge) {
 			Edge edge = (Edge) bo;
 			
-			dominating = edge.getConnectedNodes().get(0).isDominating() && edge.getConnectedNodes().get(1).isDominating();
+			dominating = edge.getConnectedNodes().size() > 1 && edge.getConnectedNodes().get(0).isDominating()
+					&& edge.getConnectedNodes().get(1).isDominating();
 
 		}
 

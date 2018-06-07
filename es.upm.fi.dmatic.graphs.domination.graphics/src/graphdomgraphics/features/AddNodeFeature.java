@@ -63,7 +63,7 @@ public class AddNodeFeature extends AbstractAddFeature implements IAddFeature {
 			ellipse.setForeground(manageColor(IColorConstants.NODE_FOREGROUND));
 			ellipse.setBackground(manageColor(IColorConstants.NODE_BACKGROUND));
 		}
-		gaService.setLocationAndSize(ellipse, context.getX(), context.getY(), width, height);
+		gaService.setLocationAndSize(ellipse, context.getX() - width / 2, context.getY() - height / 2, width, height);
 		// if added node has no resource we add it to the resource
 		// of the diagram
 		if (addedNode.eResource() == null) {

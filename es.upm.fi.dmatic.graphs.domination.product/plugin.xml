@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension id="product" point="org.eclipse.core.runtime.products">
+      <product
+          name="Graph Domination Framework"
+          description="Eclipse Graph Domination Framework"
+          application="org.eclipse.ui.ide.workbench">
+        <property name="appName" value="Graph Domination Framework"/>
+        <property
+           name="windowImages"
+           value="images/GraphsDomination_16.png,images/GraphsDomination_32.png,images/GraphsDomination_48.png,images/GraphsDomination_64.png,images/GraphsDomination_128.png,images/GraphsDomination_256.png">
+        </property>
+        <property
+           name="titleImage"
+           value="images/GraphsDomination_64.png">
+        </property>
+        <property
+              name="aboutImage"
+              value="images/GraphsDomination_128.png">
+        </property>
+        <property
+              name="aboutText"
+              value="GraphDom - Dominación en Grafos&#x0A;&#x0A;TFC&#x0A;&#x0A;Autor: David Gonzalo Blanco&#x0A;Tutor: Gregorio Hernández Peñalver&#x0A;&#x0A;Facultad de Informática, Universidad Politécnica de Madrid">
+        </property>
+        <property
+              name="startupForegroundColor"
+              value="FFFFFF">
+        </property>
+        <property
+              name="startupMessageRect"
+              value="7,220,441,20">
+        </property>
+        <property
+              name="startupProgressRect"
+              value="0,280,455,15">
+        </property>
+        <property
+              name="preferenceCustomization"
+              value="plugin_customization.ini">
+        </property>
+      </product>
+   </extension>
+</plugin>

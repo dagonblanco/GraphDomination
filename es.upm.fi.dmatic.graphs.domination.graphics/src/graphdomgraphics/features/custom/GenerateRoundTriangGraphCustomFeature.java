@@ -9,6 +9,7 @@ import org.eclipse.graphiti.features.context.impl.CreateContext;
 import graphdom.Graph;
 import graphdom.Node;
 import graphdom.algorithms.FanTriangulationAlgorithm;
+import graphdom.algorithms.RandomFlipsByNumberAlgorithm;
 import graphdomgraphics.common.GraphUtil;
 import graphdomgraphics.features.CreateNodeFeature;
 
@@ -21,6 +22,10 @@ public class GenerateRoundTriangGraphCustomFeature extends GraphdomAbstractCusto
 	private static final String TITLE = "Create round triangled graph";
 
 	private static final String USER_QUESTION = "Enter number of nodes to create:";
+
+	private static final String TITLE2 = "Randomize newly created graph";
+
+	private static final String USER_QUESTION2 = "Enter number of flips for graph randomization (0 for no randomization):";
 
 	private boolean hasDoneChanges = false;
 
@@ -110,9 +115,27 @@ public class GenerateRoundTriangGraphCustomFeature extends GraphdomAbstractCusto
 		gda.runToEnd();
 
 		// Model is modified now, with new edges
-
 		updateEdges();
 		
+		String numberOfFlips = GraphUtil.askString(TITLE2, USER_QUESTION2, "50");
+		int nFlips = 0;
+		try {
+			nFlips = Integer.parseUnsignedInt(numberOfFlips);
+		} catch (NumberFormatException e) {
+			nFlips = 0;
+		}
+
+		// Now for the randomization...
+
+		// Instance the related algorithm
+		RandomFlipsByNumberAlgorithm rfbna = new RandomFlipsByNumberAlgorithm(theGraph, nFlips);
+
+		// Run the algorithm to the end
+		rfbna.runToEnd();
+
+		// Model is modified now, with new edges
+		updateAllEdges();
+		updateGraph(theGraph);
 	}
 	
 	@Override
