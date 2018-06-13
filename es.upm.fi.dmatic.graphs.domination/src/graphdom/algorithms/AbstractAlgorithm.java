@@ -89,6 +89,8 @@ public abstract class AbstractAlgorithm implements GraphAlgorithm {
 	public void initialize(Graph graph) {
 		this.graph = graph;
 		if (graph != null) {
+			// Unmark all of its nodes, so we can mark the dominating ones
+			getGraph().unmarkAllNodes();
 			// Switch status from uninitialized
 			setStatus(AlgorithmStatus.INPROGRESS);
 		}

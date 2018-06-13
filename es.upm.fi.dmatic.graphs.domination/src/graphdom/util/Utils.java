@@ -30,11 +30,15 @@ public class Utils {
 	 * Finds the dominated node with most neighbours
 	 */
 
-	public static Node findHighestGradeDominatedNode (EList<Node> nodelist) {
-		
+	public static Node findHighestGradeDominatedUndominatingNode(EList<Node> nodelist) {
+
 		Node maxNode = null;
 		for (Node node : nodelist) {
-			if ((maxNode == null || (node.getGrade() > maxNode.getGrade())) && node.isDominated() && !node.isDominating()) {
+			if (node.isDominated() && !node.isDominating() && 
+					(maxNode == null 
+					|| (node.getGrade() > maxNode.getGrade()) // Higher grade
+					|| (node.getGrade() == maxNode.getGrade() && node.getNodeName().compareTo(maxNode.getNodeName()) < 0)) // Or same grade and lower name
+					) {
 				maxNode = node;
 			}
 		}

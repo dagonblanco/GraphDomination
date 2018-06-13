@@ -40,18 +40,4 @@ public class GreedyTotalDominationAlgorithm extends AbstractAlgorithm {
 		return "Greedy Total Domination";
 	}
 
-	@Override
-	public void initialize(Graph graph) {
-		super.initialize(graph);
-		if (graph != null) {
-
-			// Unmark all of its nodes, so we can mark the dominating ones
-			getGraph().unmarkAllNodes();
-
-			// Switch status from uninitialized
-			setStatus(AlgorithmStatus.INPROGRESS);
-		}
-
-	}
-
 }

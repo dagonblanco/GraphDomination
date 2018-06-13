@@ -20,7 +20,7 @@ public class GreedyConnectedDominationAlgorithm extends AbstractAlgorithm {
 	public void nextStep() {
 		
 		// Search highest-grade node		
-		Node workingNode = Utils.findHighestGradeDominatedNode(getGraph().getNodes());
+		Node workingNode = Utils.findHighestGradeDominatedUndominatingNode(getGraph().getNodes());
 		if (workingNode==null){
 			workingNode = Utils.findHighestGradeNode(getGraph().getNodes());
 		}
@@ -41,4 +41,9 @@ public class GreedyConnectedDominationAlgorithm extends AbstractAlgorithm {
 		// Step ended
 	}
 
+	@Override
+	public String getName() {
+
+		return "Greedy Connected Domination";
+	}
 }
